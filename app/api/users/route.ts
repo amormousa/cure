@@ -1,7 +1,7 @@
 // app/api/users/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { CreateUserSchema, UpdateUserSchema } from '@/lib/validations'
+import { CreateUserSchema } from '@/lib/validations'
 import { getAuthUser } from '@/lib/auth'
 import bcrypt from 'bcryptjs'
 
@@ -12,8 +12,8 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Only return nurses if requestor is not admin
-    const where = authUser.role !== 'ADMIN' ? { role: 'NURSE' } : {}
+    // Admins can see all users; nurses/others can only see active nurses
+    const where = authUser.role === 'ADMIN' ? {} : { role: 'NURSE' as const, isActive: true }
 
     const users = await prisma.user.findMany({
       where,
@@ -35,7 +35,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ data: users }, { status: 200 })
   } catch (error) {
     console.error('[GET /api/users]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 }
 
@@ -57,16 +60,23 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if user already exists
-    const existing = await prisma.user.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: { email: validated.data.email },
     })
 
-    if (existing) {
-      return NextResponse.json({ error: 'User already exists' }, { status: 409 })
+    if (existingUser) {
+      return NextResponse.json(
+        { error: 'User with this email already exists' },
+        { status: 409 }
+      )
     }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(validated.data.password, 10)
+    
+    // Generate avatar seed based on name
+    const seedName = encodeURIComponent(validated.data.name)
+    const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedName}`
 
     const user = await prisma.user.create({
       data: {
@@ -75,6 +85,7 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
         role: validated.data.role,
         phone: validated.data.phone || null,
+        avatar: avatar,
       },
       select: {
         id: true,
@@ -82,8 +93,11 @@ export async function POST(req: NextRequest) {
         name: true,
         role: true,
         isActive: true,
+        isOnline: true,
+        avatar: true,
         phone: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
 
@@ -94,7 +108,11 @@ export async function POST(req: NextRequest) {
         action: 'USER_CREATED',
         entityType: 'User',
         entityId: user.id,
-        details: { email: user.email, name: user.name, role: user.role },
+        details: {
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        },
       },
     })
 
@@ -104,71 +122,9 @@ export async function POST(req: NextRequest) {
     )
   } catch (error) {
     console.error('[POST /api/users]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
-}
-
-export async function PATCH(req: NextRequest) {
-  try {
-    const authUser = await getAuthUser()
-    if (!authUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    const { searchParams } = new URL(req.url)
-    const userId = searchParams.get('id')
-
-    if (!userId) {
-      return NextResponse.json({ error: 'User ID required' }, { status: 400 })
-    }
-
-    // Users can only update themselves unless they're admin
-    if (authUser.userId !== userId && authUser.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
-
-    const body = await req.json()
-    const validated = UpdateUserSchema.safeParse(body)
-
-    if (!validated.success) {
-      return NextResponse.json(
-        { error: 'Validation failed', details: validated.error.issues },
-        { status: 422 }
-      )
-    }
-
-    const user = await prisma.user.update({
-      where: { id: userId },
-      data: {
-        name: validated.data.name,
-        role: validated.data.role,
-        isActive: validated.data.isActive,
-        phone: validated.data.phone,
-      },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        role: true,
-        isActive: true,
-        phone: true,
-      },
-    })
-
-    // Create audit log
-    await prisma.auditLog.create({
-      data: {
-        userId: authUser.userId,
-        action: 'USER_UPDATED',
-        entityType: 'User',
-        entityId: userId,
-        details: validated.data,
-      },
-    })
-
-    return NextResponse.json({ data: user, message: 'User updated' }, { status: 200 })
-  } catch (error) {
-    console.error('[PATCH /api/users]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 }

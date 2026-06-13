@@ -16,70 +16,97 @@ export async function GET(req: NextRequest) {
 
     // Default to last 30 days
     const toDate = to ? new Date(to) : new Date()
-    const fromDate = from ? new Date(from) : new Date(toDate.getTime() - 30 * 24 * 60 * 60 * 1000)
+    const fromDate = from
+      ? new Date(from)
+      : new Date(toDate.getTime() - 30 * 24 * 60 * 60 * 1000)
 
-    // Get all dispatches in date range
-    const dispatches = await prisma.dispatch.findMany({
-      where: {
-        createdAt: {
-          gte: fromDate,
-          lte: toDate,
-        },
-      },
-      include: {
-        nurse: { select: { id: true, name: true } },
-      },
-    })
+    // --- KPI: Quick aggregate queries run in parallel ---
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
 
-    // Generate daily series
+    const [allDispatches, completedTodayCount, allNurses, urgentPendingCount] =
+      await Promise.all([
+        // All dispatches in range (for series + breakdown)
+        prisma.dispatch.findMany({
+          where: {
+            createdAt: { gte: fromDate, lte: toDate },
+          },
+          include: {
+            nurse: { select: { id: true, name: true } },
+          },
+        }),
+        // Completed today
+        prisma.dispatch.count({
+          where: {
+            status: 'COMPLETED',
+            completedAt: { gte: today },
+          },
+        }),
+        // All active nurses for "available nurses" calc
+        prisma.user.findMany({
+          where: { role: 'NURSE', isActive: true },
+          select: {
+            id: true,
+            isOnline: true,
+            dispatches: {
+              where: { status: { in: ['ASSIGNED', 'IN_PROGRESS'] } },
+              select: { id: true },
+            },
+          },
+        }),
+        // Urgent pending
+        prisma.dispatch.count({
+          where: { status: 'PENDING', priority: 'URGENT' },
+        }),
+      ])
+
+    // Available nurses = online AND no active dispatch
+    const availableNursesCount = allNurses.filter(
+      (n) => n.isOnline && n.dispatches.length === 0
+    ).length
+
+    // --- Daily series ---
     const dailyMap = new Map<string, { created: number; completed: number }>()
-    let current = new Date(fromDate)
-    while (current <= toDate) {
-      const dateStr = current.toISOString().split('T')[0]
-      dailyMap.set(dateStr, { created: 0, completed: 0 })
-      current.setDate(current.getDate() + 1)
+    let cur = new Date(fromDate)
+    while (cur <= toDate) {
+      dailyMap.set(cur.toISOString().split('T')[0], { created: 0, completed: 0 })
+      cur = new Date(cur.getTime() + 24 * 60 * 60 * 1000)
     }
 
-    dispatches.forEach((dispatch) => {
-      const dateStr = dispatch.createdAt.toISOString().split('T')[0]
+    allDispatches.forEach((d) => {
+      const dateStr = d.createdAt.toISOString().split('T')[0]
       const entry = dailyMap.get(dateStr)
-      if (entry) {
-        entry.created++
-        if (dispatch.status === 'COMPLETED' && dispatch.completedAt) {
-          const completedStr = dispatch.completedAt.toISOString().split('T')[0]
-          const completedEntry = dailyMap.get(completedStr)
-          if (completedEntry) {
-            completedEntry.completed++
-          }
-        }
+      if (entry) entry.created++
+
+      if (d.status === 'COMPLETED' && d.completedAt) {
+        const completedStr = d.completedAt.toISOString().split('T')[0]
+        const completedEntry = dailyMap.get(completedStr)
+        if (completedEntry) completedEntry.completed++
       }
     })
 
     const dailySeries = Array.from(dailyMap.entries())
-      .map(([date, data]) => ({
-        date,
-        ...data,
-      }))
+      .map(([date, data]) => ({ date, ...data }))
       .sort((a, b) => a.date.localeCompare(b.date))
 
-    // Status breakdown (current snapshot)
+    // --- Status breakdown ---
     const statusBreakdown = {
-      PENDING: dispatches.filter((d) => d.status === 'PENDING').length,
-      ASSIGNED: dispatches.filter((d) => d.status === 'ASSIGNED').length,
-      IN_PROGRESS: dispatches.filter((d) => d.status === 'IN_PROGRESS').length,
-      COMPLETED: dispatches.filter((d) => d.status === 'COMPLETED').length,
-      CANCELLED: dispatches.filter((d) => d.status === 'CANCELLED').length,
+      PENDING: allDispatches.filter((d) => d.status === 'PENDING').length,
+      ASSIGNED: allDispatches.filter((d) => d.status === 'ASSIGNED').length,
+      IN_PROGRESS: allDispatches.filter((d) => d.status === 'IN_PROGRESS').length,
+      COMPLETED: allDispatches.filter((d) => d.status === 'COMPLETED').length,
+      CANCELLED: allDispatches.filter((d) => d.status === 'CANCELLED').length,
     }
 
-    // Priority breakdown
+    // --- Priority breakdown ---
     const priorityBreakdown = {
-      LOW: dispatches.filter((d) => d.priority === 'LOW').length,
-      MEDIUM: dispatches.filter((d) => d.priority === 'MEDIUM').length,
-      HIGH: dispatches.filter((d) => d.priority === 'HIGH').length,
-      URGENT: dispatches.filter((d) => d.priority === 'URGENT').length,
+      LOW: allDispatches.filter((d) => d.priority === 'LOW').length,
+      MEDIUM: allDispatches.filter((d) => d.priority === 'MEDIUM').length,
+      HIGH: allDispatches.filter((d) => d.priority === 'HIGH').length,
+      URGENT: allDispatches.filter((d) => d.priority === 'URGENT').length,
     }
 
-    // Nurse performance (completed this month)
+    // --- Nurse performance (completed this month) ---
     const monthStart = new Date()
     monthStart.setDate(1)
     monthStart.setHours(0, 0, 0, 0)
@@ -87,32 +114,27 @@ export async function GET(req: NextRequest) {
     const completedThisMonth = await prisma.dispatch.findMany({
       where: {
         status: 'COMPLETED',
-        completedAt: {
-          gte: monthStart,
-        },
+        completedAt: { gte: monthStart },
       },
-      include: {
-        nurse: { select: { id: true, name: true } },
-      },
+      include: { nurse: { select: { id: true, name: true } } },
     })
 
     const nurseStats = new Map<
       string,
       { nurseId: string; name: string; completed: number }
     >()
-
-    completedThisMonth.forEach((dispatch) => {
-      if (dispatch.nurse) {
-        const key = dispatch.nurse.id
-        if (!nurseStats.has(key)) {
-          nurseStats.set(key, {
-            nurseId: dispatch.nurse.id,
-            name: dispatch.nurse.name,
-            completed: 0,
+    completedThisMonth.forEach((d) => {
+      if (d.nurse) {
+        const existing = nurseStats.get(d.nurse.id)
+        if (existing) {
+          existing.completed++
+        } else {
+          nurseStats.set(d.nurse.id, {
+            nurseId: d.nurse.id,
+            name: d.nurse.name,
+            completed: 1,
           })
         }
-        const stat = nurseStats.get(key)!
-        stat.completed++
       }
     })
 
@@ -123,6 +145,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         data: {
+          // KPI fields (used by dashboard overview)
+          completedToday: completedTodayCount,
+          availableNurses: availableNursesCount,
+          urgentPending: urgentPendingCount,
+          // Chart fields
           dailySeries,
           statusBreakdown,
           priorityBreakdown,
@@ -133,9 +160,6 @@ export async function GET(req: NextRequest) {
     )
   } catch (error) {
     console.error('[GET /api/analytics]', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
