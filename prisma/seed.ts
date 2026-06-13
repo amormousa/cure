@@ -1,8 +1,6 @@
-// prisma/seed.ts
-import { PrismaClient, Role, Priority, DispatchStatus } from '@prisma/client'
+import { Role, Priority, DispatchStatus } from '@prisma/client'
+import { prisma } from '../app/lib/prisma'
 import bcrypt from 'bcryptjs'
-
-const prisma = new PrismaClient()
 
 const egyptianNames = [
   'أحمد محمود',
