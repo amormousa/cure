@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans, 'Segoe UI', sans-serif); background: var(--color-background-tertiary); color: var(--color-text-primary); direction: rtl; }
+
+.sidebar {
+  position: fixed; right: 0; top: 0; width: 240px; height: 100vh;
+  background: var(--color-background-primary);
+  border-left: 0.5px solid var(--color-border-tertiary);
+  overflow-y: auto; padding: 1.5rem 0; z-index: 100;
+}
+.sidebar-logo { padding: 0 1.25rem 1.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 1rem; }
+.logo-badge { display: inline-flex; align-items: center; gap: 8px; }
+.logo-icon { width: 32px; height: 32px; background: #0F6E56; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-icon i { color: #fff; font-size: 18px; }
+.logo-text { font-size: 15px; font-weight: 500; }
+.logo-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.nav-section { padding: 0 1rem 0.5rem; }
+.nav-label { font-size: 10px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 0.25rem; margin-bottom: 4px; }
+.nav-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--color-text-secondary); transition: all 0.15s; margin-bottom: 1px; }
+.nav-item:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+.nav-item.active { background: #E1F5EE; color: #0F6E56; font-weight: 500; }
+.nav-item i { font-size: 15px; flex-shrink: 0; }
+
+.main { margin-right: 240px; min-height: 100vh; }
+.hero { background: linear-gradient(135deg, #085041 0%, #0F6E56 60%, #1D9E75 100%); padding: 4rem 3rem; color: #fff; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -60px; left: -60px; width: 300px; height: 300px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+.hero::after { content: ''; position: absolute; bottom: -80px; right: 10%; width: 200px; height: 200px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); border: 0.5px solid rgba(255,255,255,0.25); border-radius: 20px; padding: 4px 12px; font-size: 12px; margin-bottom: 1.5rem; }
+.hero h1 { font-size: 2.2rem; font-weight: 500; line-height: 1.2; margin-bottom: 0.75rem; }
+.hero p { font-size: 1rem; opacity: 0.8; max-width: 560px; line-height: 1.6; margin-bottom: 2rem; }
+.hero-meta { display: flex; gap: 2rem; font-size: 13px; opacity: 0.7; flex-wrap: wrap; }
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+.content { padding: 2.5rem 3rem; }
+.section { margin-bottom: 3rem; }
+.section-anchor { scroll-margin-top: 2rem; }
+
+.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.section-number { width: 28px; height: 28px; background: #E1F5EE; color: #0F6E56; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+.section-title { font-size: 1.15rem; font-weight: 500; }
+
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg, 12px); padding: 1.25rem; margin-bottom: 1rem; }
+.card-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+.kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md, 8px); padding: 1rem; text-align: center; }
+.kpi-val { font-size: 1.6rem; font-weight: 500; color: #0F6E56; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.tech-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md,8px); padding: 0.875rem 1rem; display: flex; align-items: flex-start; gap: 10px; }
+.tech-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+.tech-icon.teal { background: #E1F5EE; color: #0F6E56; }
+.tech-icon.blue { background: #E6F1FB; color: #185FA5; }
+.tech-icon.purple { background: #EEEDFE; color: #534AB7; }
+.tech-icon.amber { background: #FAEEDA; color: #854F0B; }
+.tech-icon.coral { background: #FAECE7; color: #993C1D; }
+.tech-name { font-size: 13px; font-weight: 500; }
+.tech-desc { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+.badge-green { background: #E1F5EE; color: #0F6E56; }
+.badge-blue { background: #E6F1FB; color: #185FA5; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+.badge-purple { background: #EEEDFE; color: #534AB7; }
+.badge-red { background: #FCEBEB; color: #A32D2D; }
+.badge-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+
+.req-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.req-table th { text-align: right; padding: 8px 12px; background: var(--color-background-secondary); font-weight: 500; font-size: 11px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+.req-table td { padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: top; }
+.req-table tr:last-child td { border-bottom: none; }
+.req-table tr:hover td { background: var(--color-background-secondary); }
+
+.arch-flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 1rem 0; }
+.arch-box { padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; text-align: center; min-width: 90px; flex-shrink: 0; }
+.arch-arrow { color: var(--color-text-tertiary); padding: 0 4px; font-size: 16px; flex-shrink: 0; }
+
+.usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.usecase-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md, 8px); padding: 0.875rem; background: var(--color-background-primary); }
+.usecase-actor { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+.usecase-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.usecase-freq { font-size: 11px; }
+
+.roadmap-item { display: flex; gap: 12px; padding: 0.875rem 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.roadmap-item:last-child { border-bottom: none; }
+.roadmap-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.roadmap-content { flex: 1; }
+.roadmap-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.roadmap-desc { font-size: 12px; color: var(--color-text-secondary); }
+
+.ai-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.ai-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg, 12px); padding: 1rem; background: var(--color-background-primary); }
+.ai-card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 18px; }
+.ai-card-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+.ai-card-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+.metric-success { display: flex; align-items: center; gap: 12px; padding: 0.875rem; background: #E1F5EE; border-radius: var(--border-radius-md,8px); margin-bottom: 8px; }
+.metric-icon { color: #0F6E56; font-size: 20px; }
+.metric-val { font-size: 1.1rem; font-weight: 500; color: #0F6E56; }
+.metric-label { font-size: 12px; color: #0F6E56; opacity: 0.8; }
+
+.tab-nav { display: flex; gap: 4px; margin-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.tab-btn { padding: 8px 14px; font-size: 13px; cursor: pointer; background: none; border: none; color: var(--color-text-secondary); border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: inherit; }
+.tab-btn.active { color: #0F6E56; border-bottom-color: #0F6E56; font-weight: 500; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.endpoint { font-family: var(--font-mono, monospace); font-size: 12px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.method { font-weight: 500; font-size: 11px; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; }
+.method.get { background: #E1F5EE; color: #0F6E56; }
+.method.post { background: #E6F1FB; color: #185FA5; }
+.method.put { background: #FAEEDA; color: #854F0B; }
+.method.delete { background: #FCEBEB; color: #A32D2D; }
+
+.schema-field { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
+.field-name { font-family: var(--font-mono,monospace); font-weight: 500; min-width: 120px; }
+.field-type { color: #185FA5; font-family: var(--font-mono,monospace); font-size: 11px; min-width: 70px; }
+.field-desc { color: var(--color-text-secondary); flex: 1; }
+.field-req { color: #A32D2D; font-size: 10px; }
+
+.toc-list { list-style: none; }
+.toc-item { padding: 3px 0; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.toc-item:hover { color: #0F6E56; }
+
+.stakeholder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.stakeholder-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md,8px); padding: 0.875rem; text-align: center; background: var(--color-background-primary); }
+.stakeholder-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; margin: 0 auto 8px; }
+.stakeholder-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+.stakeholder-desc { font-size: 11px; color: var(--color-text-secondary); line-height: 1.4; }
+
+.nfr-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.nfr-icon { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; margin-top: 2px; }
+.nfr-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.nfr-desc { font-size: 12px; color: var(--color-text-secondary); }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge">
+      <div class="logo-icon"><i class="ti ti-medical-cross" aria-hidden="true"></i></div>
+      <div>
+        <div class="logo-text">CURE Portal</div>
+        <div class="logo-sub">توثيق المشروع v1.0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">مقدمة</div>
+    <div class="nav-item active" onclick="scrollTo('overview')"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> نظرة عامة</div>
+    <div class="nav-item" onclick="scrollTo('problem')"><i class="ti ti-bulb" aria-hidden="true"></i> المشكلة والفرصة</div>
+    <div class="nav-item" onclick="scrollTo('stakeholders')"><i class="ti ti-users" aria-hidden="true"></i> أصحاب المصلحة</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">المتطلبات</div>
+    <div class="nav-item" onclick="scrollTo('functional')"><i class="ti ti-list-check" aria-hidden="true"></i> المتطلبات الوظيفية</div>
+    <div class="nav-item" onclick="scrollTo('nonfunctional')"><i class="ti ti-shield-check" aria-hidden="true"></i> المتطلبات غير الوظيفية</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">التقنية</div>
+    <div class="nav-item" onclick="scrollTo('architecture')"><i class="ti ti-hierarchy" aria-hidden="true"></i> معمارية النظام</div>
+    <div class="nav-item" onclick="scrollTo('api')"><i class="ti ti-api" aria-hidden="true"></i> واجهات API</div>
+    <div class="nav-item" onclick="scrollTo('database')"><i class="ti ti-database" aria-hidden="true"></i> قاعدة البيانات</div>
+    <div class="nav-item" onclick="scrollTo('testing')"><i class="ti ti-test-pipe" aria-hidden="true"></i> استراتيجية الاختبار</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">متقدم</div>
+    <div class="nav-item" onclick="scrollTo('ai')"><i class="ti ti-robot" aria-hidden="true"></i> تكامل الذكاء الاصطناعي</div>
+    <div class="nav-item" onclick="scrollTo('devops')"><i class="ti ti-rocket" aria-hidden="true"></i> DevOps والنشر</div>
+    <div class="nav-item" onclick="scrollTo('roadmap')"><i class="ti ti-road" aria-hidden="true"></i> خارطة الطريق</div>
+    <div class="nav-item" onclick="scrollTo('metrics')"><i class="ti ti-chart-bar" aria-hidden="true"></i> مقاييس النجاح</div>
+  </div>
+</nav>
+
+<main class="main">
+
+<div class="hero">
+  <div class="hero-badge"><i class="ti ti-medical-cross" aria-hidden="true"></i> Software Requirements Specification</div>
+  <h1>CURE Operations Portal</h1>
+  <p>منصة مركزية متكاملة لإدارة عمليات الرعاية المنزلية السريرية — تحويل العمليات اليدوية إلى نظام آلي ذكي قابل للتوسع</p>
+  <div class="hero-meta">
+    <span><i class="ti ti-calendar" aria-hidden="true"></i> June 2026</span>
+    <span><i class="ti ti-git-branch" aria-hidden="true"></i> Version 1.0</span>
+    <span><i class="ti ti-user" aria-hidden="true"></i> Full Stack Software Engineer</span>
+    <span><i class="ti ti-file-text" aria-hidden="true"></i> SRS Document</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- Section 1: Overview -->
+<section class="section section-anchor" id="overview">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">نظرة عامة على المشروع</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-val">60-70%</div><div class="kpi-label">تقليل وقت الاستجابة</div></div>
+    <div class="kpi"><div class="kpi-val">85%+</div><div class="kpi-label">كفاءة استخدام الممرضين</div></div>
+    <div class="kpi"><div class="kpi-val">99.9%</div><div class="kpi-label">وقت التشغيل المستهدف</div></div>
+    <div class="kpi"><div class="kpi-val">&lt; 5 دقائق</div><div class="kpi-label">وقت تعيين المهمة</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-info-circle" aria-hidden="true"></i> وصف المشروع</div>
+    <p style="font-size:13px; color: var(--color-text-secondary); line-height:1.7;">
+      CURE Operations Portal هي منصة Command Center متكاملة مصممة لإدارة عمليات الرعاية المنزلية السريرية. تتيح للإدارة الإشراف اللحظي على تتبع الممرضين في الوقت الفعلي، إدارة الزيارات المنزلية من الطلب حتى الإغلاق، توزيع المهام الذكي بدعم AI، ومراقبة الأداء عبر KPIs متقدمة.
+    </p>
+  </div>
+
+  <div class="card" style="background: #E1F5EE; border-color: #5DCAA5;">
+    <div class="card-title" style="color: #0F6E56;"><i class="ti ti-target" aria-hidden="true"></i> الهدف الاستراتيجي</div>
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-size:13px; color:#085041; display:flex; align-items:center; gap:8px;"><i class="ti ti-check" style="color:#1D9E75"></i> تحويل العمليات اليدوية إلى نظام آلي قابل للتوسع</div>
+      <div style="font-size:13px; color:#085041; display:flex; align-items:center; gap:8px;"><i class="ti ti-check" style="color:#1D9E75"></i> تحسين رضا المرضى والممرضين</div>
+      <div style="font-size:13px; color:#085041; display:flex; align-items:center; gap:8px;"><i class="ti ti-check" style="color:#1D9E75"></i> دعم نمو الشركة برؤى بيانات قابلة للتنفيذ</div>
+      <div style="font-size:13px; color:#085041; display:flex; align-items:center; gap:8px;"><i class="ti ti-check" style="color:#1D9E75"></i> تقليل الأخطاء البشرية ورفع دقة التقارير</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Problem -->
+<section class="section section-anchor" id="problem">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div class="section-title">المشكلة والفرصة</div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <div class="card">
+      <div class="card-title" style="color:#A32D2D;"><i class="ti ti-alert-circle" aria-hidden="true"></i> المشكلات الحالية</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#A32D2D; margin-top:2px;">✗</span><div><strong>توزيع يدوي</strong> — تأخير وأخطاء في تعيين المهام</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#A32D2D; margin-top:2px;">✗</span><div><strong>صعوبة التتبع</strong> — لا رؤية لتوافر الممرضين</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#A32D2D; margin-top:2px;">✗</span><div><strong>تقارير غير دقيقة</strong> — إعداد يدوي يستهلك وقتًا</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#A32D2D; margin-top:2px;">✗</span><div><strong>قرارات بطيئة</strong> — غياب الرؤية المركزية</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#0F6E56;"><i class="ti ti-trending-up" aria-hidden="true"></i> فرص التحسين</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#0F6E56; margin-top:2px;">✓</span><div><strong>أتمتة كاملة</strong> — Workflow آلي من البداية للنهاية</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#0F6E56; margin-top:2px;">✓</span><div><strong>Real-time updates</strong> — مراقبة لحظية للعمليات</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#0F6E56; margin-top:2px;">✓</span><div><strong>AI للتنبؤ</strong> — تحسين التوزيع بالذكاء الاصطناعي</div></div>
+        <div style="font-size:13px; display:flex; gap:8px; align-items:flex-start;"><span style="color:#0F6E56; margin-top:2px;">✓</span><div><strong>Actionable Insights</strong> — تقارير تفاعلية فورية</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Stakeholders -->
+<section class="section section-anchor" id="stakeholders">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div class="section-title">أصحاب المصلحة</div>
+  </div>
+  <div class="stakeholder-grid">
+    <div class="stakeholder-card">
+      <div class="stakeholder-avatar" style="background:#EEEDFE; color:#534AB7;"><i class="ti ti-crown" aria-hidden="true"></i></div>
+      <div class="stakeholder-name">Super Admin</div>
+      <div class="stakeholder-desc">إدارة كاملة للنظام، تقارير شاملة، إعدادات الصلاحيات</div>
+      <div style="margin-top:8px;"><span class="badge badge-purple">Full Access</span></div>
+    </div>
+    <div class="stakeholder-card">
+      <div class="stakeholder-avatar" style="background:#E6F1FB; color:#185FA5;"><i class="ti ti-layout-kanban" aria-hidden="true"></i></div>
+      <div class="stakeholder-name">Dispatcher</div>
+      <div class="stakeholder-desc">توزيع المهام، مراقبة Kanban، تعيين الممرضين</div>
+      <div style="margin-top:8px;"><span class="badge badge-blue">Operational</span></div>
+    </div>
+    <div class="stakeholder-card">
+      <div class="stakeholder-avatar" style="background:#E1F5EE; color:#0F6E56;"><i class="ti ti-stethoscope" aria-hidden="true"></i></div>
+      <div class="stakeholder-name">Nurse / Field Staff</div>
+      <div class="stakeholder-desc">عرض المهام المعينة، تحديث الحالة، تلقي الإشعارات</div>
+      <div style="margin-top:8px;"><span class="badge badge-green">Mobile-first</span></div>
+    </div>
+    <div class="stakeholder-card">
+      <div class="stakeholder-avatar" style="background:#FAEEDA; color:#854F0B;"><i class="ti ti-chart-pie" aria-hidden="true"></i></div>
+      <div class="stakeholder-name">Management</div>
+      <div class="stakeholder-desc">لوحات تحليلية، KPIs، تصدير التقارير</div>
+      <div style="margin-top:8px;"><span class="badge badge-amber">Analytics</span></div>
+    </div>
+    <div class="stakeholder-card">
+      <div class="stakeholder-avatar" style="background:#FAECE7; color:#993C1D;"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <div class="stakeholder-name">Patient (Indirect)</div>
+      <div class="stakeholder-desc">المستفيد النهائي من تحسين جودة الرعاية والاستجابة</div>
+      <div style="margin-top:8px;"><span class="badge badge-gray">Beneficiary</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Functional Requirements -->
+<section class="section section-anchor" id="functional">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">المتطلبات الوظيفية</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(this,'fr-modules')">الوحدات الرئيسية</button>
+    <button class="tab-btn" onclick="switchTab(this,'fr-usecases')">حالات الاستخدام</button>
+    <button class="tab-btn" onclick="switchTab(this,'fr-pages')">الصفحات والمكونات</button>
+  </div>
+
+  <div class="tab-content active" id="fr-modules">
+    <table class="req-table">
+      <thead><tr><th>المتطلب</th><th>الوصف</th><th>الأولوية</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:500;">Authentication & Authorization</td><td>Multi-role RBAC + JWT + Refresh Tokens + OAuth optional</td><td><span class="badge badge-red">حرج</span></td></tr>
+        <tr><td style="font-weight:500;">إدارة المستخدمين والممرضين</td><td>CRUD + Bulk Import + Availability Calendar + Profile Management</td><td><span class="badge badge-red">حرج</span></td></tr>
+        <tr><td style="font-weight:500;">إدارة الزيارات (Dispatch)</td><td>Create/Assign/Update/Delete + Priority Scoring + Status Tracking</td><td><span class="badge badge-red">حرج</span></td></tr>
+        <tr><td style="font-weight:500;">لوحة Kanban</td><td>Drag & Drop (React DnD) + Real-time (SSE/WebSockets) + Filters + Comments</td><td><span class="badge badge-red">حرج</span></td></tr>
+        <tr><td style="font-weight:500;">لوحة التحليلات</td><td>Interactive Charts + KPI Cards + Date Range Picker + Export (PDF/CSV)</td><td><span class="badge badge-blue">عالي</span></td></tr>
+        <tr><td style="font-weight:500;">Audit Trail & Activity Log</td><td>تسجيل كل عملية للـ Compliance + بحث + تصفية</td><td><span class="badge badge-blue">عالي</span></td></tr>
+        <tr><td style="font-weight:500;">نظام الإشعارات</td><td>Real-time notifications + Email alerts + In-app alerts</td><td><span class="badge badge-amber">متوسط</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-content" id="fr-usecases">
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-user" aria-hidden="true"></i> Dispatcher</div>
+        <div class="usecase-title">تعيين زيارة منزلية</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: زيارة بحالة Pending<br>Post: Status=Assigned + إشعار للممرض</div>
+        <div class="usecase-freq"><span class="badge badge-red">تكرار عالي</span></div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-stethoscope" aria-hidden="true"></i> Nurse</div>
+        <div class="usecase-title">تحديث حالة الزيارة</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: زيارة مُعيَّنة للممرض<br>Post: تحديث الكانبان في الوقت الفعلي</div>
+        <div class="usecase-freq"><span class="badge badge-red">تكرار عالي</span></div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-crown" aria-hidden="true"></i> Admin</div>
+        <div class="usecase-title">إنشاء حساب ممرض</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: Admin مسجل الدخول<br>Post: حساب جديد + email تفعيل</div>
+        <div class="usecase-freq"><span class="badge badge-amber">تكرار متوسط</span></div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-chart-pie" aria-hidden="true"></i> Management</div>
+        <div class="usecase-title">تصدير تقرير شهري</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: تاريخ محدد<br>Post: ملف PDF/CSV جاهز للتنزيل</div>
+        <div class="usecase-freq"><span class="badge badge-green">تكرار منخفض</span></div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-robot" aria-hidden="true"></i> AI System</div>
+        <div class="usecase-title">اقتراح تعيين ذكي</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: زيارة جديدة + بيانات الممرضين<br>Post: قائمة مرتبة بأفضل ممرض</div>
+        <div class="usecase-freq"><span class="badge badge-purple">AI-driven</span></div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-actor"><i class="ti ti-layout-kanban" aria-hidden="true"></i> Dispatcher</div>
+        <div class="usecase-title">سحب وإفلات الزيارة</div>
+        <div style="font-size:11px; color:var(--color-text-secondary); margin-bottom:6px;">Pre: Kanban مفتوح<br>Post: تحديث فوري لكل المستخدمين</div>
+        <div class="usecase-freq"><span class="badge badge-red">تكرار عالي</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="fr-pages">
+    <table class="req-table">
+      <thead><tr><th>الصفحة</th><th>المكونات الرئيسية</th><th>الصلاحيات</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:500;">Login / Auth</td><td>JWT form + Role detection + Protected Routes</td><td><span class="badge badge-gray">عام</span></td></tr>
+        <tr><td style="font-weight:500;">Dashboard</td><td>KPI Grid + Live Nurse Matrix + Recent Dispatches + Charts</td><td><span class="badge badge-blue">Admin/Manager</span></td></tr>
+        <tr><td style="font-weight:500;">Kanban Board</td><td>4 أعمدة (Pending→Completed) + Drag&Drop + Real-time + تعليقات</td><td><span class="badge badge-blue">Dispatcher</span></td></tr>
+        <tr><td style="font-weight:500;">Nurse Management</td><td>جدول + فلاتر + إنشاء/تعديل + Availability Calendar</td><td><span class="badge badge-purple">Admin</span></td></tr>
+        <tr><td style="font-weight:500;">Dispatch Management</td><td>قائمة + نموذج إنشاء + AI Suggestion + تاريخ</td><td><span class="badge badge-blue">Dispatcher</span></td></tr>
+        <tr><td style="font-weight:500;">Analytics</td><td>Charts متعددة + Date Range + Drill-down + Export</td><td><span class="badge badge-amber">Manager</span></td></tr>
+        <tr><td style="font-weight:500;">Audit Trail</td><td>جدول Activity Log + بحث + تصفية</td><td><span class="badge badge-purple">Admin</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Section 5: NFR -->
+<section class="section section-anchor" id="nonfunctional">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div class="section-title">المتطلبات غير الوظيفية</div>
+  </div>
+  <div class="card">
+    <div class="nfr-row"><div class="nfr-icon" style="color:#185FA5;"><i class="ti ti-bolt" aria-hidden="true"></i></div><div><div class="nfr-title">الأداء (Performance)</div><div class="nfr-desc">وقت الاستجابة &lt; 1.5 ثانية، دعم 500+ مستخدم متزامن، Lighthouse Score &gt; 90</div></div></div>
+    <div class="nfr-row"><div class="nfr-icon" style="color:#A32D2D;"><i class="ti ti-shield-lock" aria-hidden="true"></i></div><div><div class="nfr-title">الأمان (Security)</div><div class="nfr-desc">JWT + bcrypt + Rate Limiting + OWASP Top 10 + تشفير البيانات في التخزين والنقل</div></div></div>
+    <div class="nfr-row"><div class="nfr-icon" style="color:#0F6E56;"><i class="ti ti-arrows-maximize" aria-hidden="true"></i></div><div><div class="nfr-title">قابلية التوسع (Scalability)</div><div class="nfr-desc">Horizontal scaling + Redis Caching (optional) + Database connection pooling</div></div></div>
+    <div class="nfr-row"><div class="nfr-icon" style="color:#854F0B;"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i></div><div><div class="nfr-title">الموثوقية (Reliability)</div><div class="nfr-desc">99.9% Uptime + Graceful degradation + Error Boundaries + Auto-retry</div></div></div>
+    <div class="nfr-row"><div class="nfr-icon" style="color:#534AB7;"><i class="ti ti-accessible" aria-hidden="true"></i></div><div><div class="nfr-title">قابلية الاستخدام (Usability)</div><div class="nfr-desc">Mobile-first Responsive + WCAG 2.1 Accessibility + RTL/LTR Support</div></div></div>
+    <div class="nfr-row" style="border-bottom:none;"><div class="nfr-icon" style="color:#185FA5;"><i class="ti ti-code" aria-hidden="true"></i></div><div><div class="nfr-title">قابلية الصيانة (Maintainability)</div><div class="nfr-desc">Modular Components + TypeScript + Comprehensive Docs + CI/CD Pipeline</div></div></div>
+  </div>
+</section>
+
+<!-- Section 6: Architecture -->
+<section class="section section-anchor" id="architecture">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <div class="section-title">معمارية النظام</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-sitemap" aria-hidden="true"></i> تدفق البيانات — Layered Architecture</div>
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div class="arch-box" style="background:#EEEDFE; color:#534AB7;">Client Browser / Mobile</div>
+        <div class="arch-arrow"><i class="ti ti-arrow-left" aria-hidden="true"></i></div>
+        <div class="arch-box" style="background:#E6F1FB; color:#185FA5;">Next.js 15 App Router</div>
+        <div class="arch-arrow"><i class="ti ti-arrow-left" aria-hidden="true"></i></div>
+        <div class="arch-box" style="background:#E1F5EE; color:#0F6E56;">API Routes / Express</div>
+        <div class="arch-arrow"><i class="ti ti-arrow-left" aria-hidden="true"></i></div>
+        <div class="arch-box" style="background:#FAEEDA; color:#854F0B;">Prisma ORM</div>
+        <div class="arch-arrow"><i class="ti ti-arrow-left" aria-hidden="true"></i></div>
+        <div class="arch-box" style="background:#FAECE7; color:#993C1D;">PostgreSQL</div>
+      </div>
+      <div style="font-size:12px; color:var(--color-text-secondary); display:flex; align-items:center; gap:6px;">
+        <i class="ti ti-arrows-exchange" aria-hidden="true"></i> Real-time Layer: Supabase Realtime / SSE / WebSockets للتحديثات الفورية
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-icon teal"><i class="ti ti-brand-nextjs" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Next.js 15</div><div class="tech-desc">App Router + TypeScript + SSR/SSG</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon blue"><i class="ti ti-palette" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Tailwind CSS</div><div class="tech-desc">Utility-first + shadcn/ui components</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon purple"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+      <div><div class="tech-name">TanStack Query</div><div class="tech-desc">Server state + Cache + Optimistic updates</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon amber"><i class="ti ti-database" aria-hidden="true"></i></div>
+      <div><div class="tech-name">PostgreSQL + Prisma</div><div class="tech-desc">ORM + Migrations + Type-safe queries</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon teal"><i class="ti ti-brand-supabase" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Supabase Realtime</div><div class="tech-desc">WebSockets + RLS + Auth</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon coral"><i class="ti ti-rocket" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Vercel + Railway</div><div class="tech-desc">Frontend + Backend + DB hosting</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon blue"><i class="ti ti-container" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Docker (Optional)</div><div class="tech-desc">Containerization + Docker Compose</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon purple"><i class="ti ti-atom" aria-hidden="true"></i></div>
+      <div><div class="tech-name">Zustand</div><div class="tech-desc">Client state management — lightweight</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7: API -->
+<section class="section section-anchor" id="api">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <div class="section-title">واجهات API (REST Endpoints)</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(this,'api-auth')">Auth</button>
+    <button class="tab-btn" onclick="switchTab(this,'api-dispatches')">Dispatches</button>
+    <button class="tab-btn" onclick="switchTab(this,'api-nurses')">Nurses</button>
+    <button class="tab-btn" onclick="switchTab(this,'api-analytics')">Analytics</button>
+  </div>
+
+  <div class="tab-content active" id="api-auth">
+    <div class="endpoint"><span class="method post">POST</span> /api/auth/login</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/auth/refresh</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/auth/logout</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/auth/me</div>
+  </div>
+
+  <div class="tab-content" id="api-dispatches">
+    <div class="endpoint"><span class="method get">GET</span> /api/dispatches — قائمة مع فلاتر + pagination</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/dispatches — إنشاء + AI Suggestion للتعيين</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/dispatches/:id — تفاصيل + تاريخ</div>
+    <div class="endpoint"><span class="method put">PUT</span> /api/dispatches/:id — تحديث الحالة أو التعيين</div>
+    <div class="endpoint"><span class="method delete">DELETE</span> /api/dispatches/:id — حذف مع Audit Log</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/dispatches/ai-suggest — Smart Assignment</div>
+  </div>
+
+  <div class="tab-content" id="api-nurses">
+    <div class="endpoint"><span class="method get">GET</span> /api/nurses — مع availability + workload</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/nurses — إنشاء + إرسال بريد التفعيل</div>
+    <div class="endpoint"><span class="method put">PUT</span> /api/nurses/:id — تعديل البيانات</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/nurses/:id/schedule — جدول الممرض</div>
+    <div class="endpoint"><span class="method post">POST</span> /api/nurses/bulk-import — استيراد CSV</div>
+  </div>
+
+  <div class="tab-content" id="api-analytics">
+    <div class="endpoint"><span class="method get">GET</span> /api/analytics/kpis?range=30d — KPI Cards</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/analytics/dispatches/trends — بيانات الرسوم البيانية</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/analytics/nurses/utilization — كفاءة الممرضين</div>
+    <div class="endpoint"><span class="method get">GET</span> /api/analytics/export?format=pdf — تصدير التقرير</div>
+  </div>
+</section>
+
+<!-- Section 8: Database -->
+<section class="section section-anchor" id="database">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <div class="section-title">تصميم قاعدة البيانات (ERD)</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <div class="card">
+      <div class="card-title" style="color:#534AB7;"><i class="ti ti-table" aria-hidden="true"></i> جدول Users</div>
+      <div class="schema-field"><span class="field-name">id</span><span class="field-type">uuid PK</span><span class="field-req">required</span></div>
+      <div class="schema-field"><span class="field-name">email</span><span class="field-type">string</span><span class="field-desc">unique</span></div>
+      <div class="schema-field"><span class="field-name">passwordHash</span><span class="field-type">string</span><span class="field-desc">bcrypt</span></div>
+      <div class="schema-field"><span class="field-name">role</span><span class="field-type">enum</span><span class="field-desc">ADMIN|DISPATCHER|NURSE</span></div>
+      <div class="schema-field"><span class="field-name">createdAt</span><span class="field-type">timestamp</span><span class="field-desc">auto</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#0F6E56;"><i class="ti ti-table" aria-hidden="true"></i> جدول Nurses</div>
+      <div class="schema-field"><span class="field-name">id</span><span class="field-type">uuid PK</span><span class="field-req">required</span></div>
+      <div class="schema-field"><span class="field-name">userId</span><span class="field-type">uuid FK</span><span class="field-desc">→ Users</span></div>
+      <div class="schema-field"><span class="field-name">specialization</span><span class="field-type">string[]</span><span class="field-desc">مجالات التخصص</span></div>
+      <div class="schema-field"><span class="field-name">isAvailable</span><span class="field-type">boolean</span><span class="field-desc">default true</span></div>
+      <div class="schema-field"><span class="field-name">location</span><span class="field-type">point</span><span class="field-desc">GPS coordinates</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#185FA5;"><i class="ti ti-table" aria-hidden="true"></i> جدول Dispatches</div>
+      <div class="schema-field"><span class="field-name">id</span><span class="field-type">uuid PK</span><span class="field-req">required</span></div>
+      <div class="schema-field"><span class="field-name">patientName</span><span class="field-type">string</span><span class="field-desc">اسم المريض</span></div>
+      <div class="schema-field"><span class="field-name">nurseId</span><span class="field-type">uuid FK</span><span class="field-desc">→ Nurses (nullable)</span></div>
+      <div class="schema-field"><span class="field-name">status</span><span class="field-type">enum</span><span class="field-desc">PENDING|ASSIGNED|IN_PROGRESS|DONE</span></div>
+      <div class="schema-field"><span class="field-name">priority</span><span class="field-type">enum</span><span class="field-desc">LOW|MEDIUM|HIGH|URGENT</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#854F0B;"><i class="ti ti-table" aria-hidden="true"></i> جدول AuditLogs</div>
+      <div class="schema-field"><span class="field-name">id</span><span class="field-type">uuid PK</span><span class="field-req">required</span></div>
+      <div class="schema-field"><span class="field-name">userId</span><span class="field-type">uuid FK</span><span class="field-desc">من قام بالعملية</span></div>
+      <div class="schema-field"><span class="field-name">action</span><span class="field-type">string</span><span class="field-desc">نوع العملية</span></div>
+      <div class="schema-field"><span class="field-name">entity</span><span class="field-type">string</span><span class="field-desc">الجدول المتأثر</span></div>
+      <div class="schema-field"><span class="field-name">metadata</span><span class="field-type">jsonb</span><span class="field-desc">بيانات إضافية</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:8px;">
+    <div class="card-title"><i class="ti ti-sparkles" aria-hidden="true"></i> ميزات متقدمة في قاعدة البيانات</div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="badge badge-blue">Indexes على FKs</span>
+      <span class="badge badge-blue">Row Level Security (RLS)</span>
+      <span class="badge badge-green">Triggers للـ Timestamps</span>
+      <span class="badge badge-purple">Materialized Views للـ Analytics</span>
+      <span class="badge badge-amber">Partitioning للبيانات التاريخية</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 9: Testing -->
+<section class="section section-anchor" id="testing">
+  <div class="section-header">
+    <div class="section-number">9</div>
+    <div class="section-title">استراتيجية الاختبار</div>
+  </div>
+  <table class="req-table">
+    <thead><tr><th>نوع الاختبار</th><th>الأداة</th><th>النطاق</th><th>الهدف</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-blue">Unit Tests</span></td><td style="font-family:monospace; font-size:12px;">Jest + React Testing Library</td><td>Components, utils, hooks</td><td>Coverage &gt; 80%</td></tr>
+      <tr><td><span class="badge badge-green">Integration Tests</span></td><td style="font-family:monospace; font-size:12px;">Supertest + Jest</td><td>API Endpoints + DB</td><td>كل endpoint مختبر</td></tr>
+      <tr><td><span class="badge badge-purple">E2E Tests</span></td><td style="font-family:monospace; font-size:12px;">Playwright</td><td>Login → Dispatch Flow</td><td>Critical paths 100%</td></tr>
+      <tr><td><span class="badge badge-amber">Performance Tests</span></td><td style="font-family:monospace; font-size:12px;">k6 + Lighthouse</td><td>Load testing 500 users</td><td>P95 &lt; 2s</td></tr>
+      <tr><td><span class="badge badge-red">Security Tests</span></td><td style="font-family:monospace; font-size:12px;">OWASP ZAP</td><td>API Security Scan</td><td>Zero Critical Vulns</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Section 10: AI -->
+<section class="section section-anchor" id="ai">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <div class="section-title">تكامل الذكاء الاصطناعي</div>
+  </div>
+
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="ai-card-icon" style="background:#E1F5EE; color:#0F6E56;"><i class="ti ti-user-check" aria-hidden="true"></i></div>
+      <div class="ai-card-title">Smart Nurse Assignment</div>
+      <div class="ai-card-desc">نموذج تسجيل ذكي يأخذ بعين الاعتبار: التوافر، حمل العمل، التخصص، الموقع الجغرافي، والأداء التاريخي</div>
+      <div style="margin-top:8px;"><span class="badge badge-green">ML Scoring</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon" style="background:#E6F1FB; color:#185FA5;"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+      <div class="ai-card-title">Predictive Analytics</div>
+      <div class="ai-card-desc">توقع حجم الزيارات اليومية باستخدام Time-Series Analysis (Prophet-like) لتحسين تخطيط الموارد</div>
+      <div style="margin-top:8px;"><span class="badge badge-blue">Time-Series</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon" style="background:#FAEEDA; color:#854F0B;"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+      <div class="ai-card-title">Priority Detection</div>
+      <div class="ai-card-desc">تحليل وصف الحالة بـ NLP لتحديد الأولوية تلقائيًا (Urgent vs Routine) وتقليل التأخير في الحالات الحرجة</div>
+      <div style="margin-top:8px;"><span class="badge badge-amber">NLP</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon" style="background:#EEEDFE; color:#534AB7;"><i class="ti ti-search" aria-hidden="true"></i></div>
+      <div class="ai-card-title">Anomaly Detection</div>
+      <div class="ai-card-desc">كشف تأخيرات غير معتادة أو overload على ممرضين معيَّنين وإرسال تنبيهات تلقائية للمشرفين</div>
+      <div style="margin-top:8px;"><span class="badge badge-purple">Real-time</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon" style="background:#FAECE7; color:#993C1D;"><i class="ti ti-message-chatbot" aria-hidden="true"></i></div>
+      <div class="ai-card-title">AI Copilot Assistant</div>
+      <div class="ai-card-desc">مساعد ذكي للـ Dispatchers يجيب على الأسئلة ويقدم توصيات في الوقت الفعلي داخل التطبيق</div>
+      <div style="margin-top:8px;"><span class="badge badge-red">LLM Integration</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 11: DevOps -->
+<section class="section section-anchor" id="devops">
+  <div class="section-header">
+    <div class="section-number">11</div>
+    <div class="section-title">DevOps وخطة النشر</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-git-merge" aria-hidden="true"></i> CI/CD Pipeline — GitHub Actions</div>
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px;">
+      <div class="arch-box" style="background:#E1F5EE; color:#0F6E56; font-size:11px;">Push to main</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="background:#E6F1FB; color:#185FA5; font-size:11px;">Lint + TypeCheck</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="background:#EEEDFE; color:#534AB7; font-size:11px;">Run Tests</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="background:#FAEEDA; color:#854F0B; font-size:11px;">Build</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="background:#E1F5EE; color:#0F6E56; font-size:11px;">Deploy</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:10px;">
+    <div class="card" style="padding:1rem;">
+      <div style="font-size:12px; font-weight:500; margin-bottom:4px; display:flex; align-items:center; gap:6px;"><i class="ti ti-eye" style="color:#185FA5" aria-hidden="true"></i> المراقبة</div>
+      <div style="font-size:12px; color:var(--color-text-secondary);">Sentry للأخطاء + Vercel Analytics + Custom Health Checks</div>
+    </div>
+    <div class="card" style="padding:1rem;">
+      <div style="font-size:12px; font-weight:500; margin-bottom:4px; display:flex; align-items:center; gap:6px;"><i class="ti ti-database-backup" style="color:#0F6E56" aria-hidden="true"></i> النسخ الاحتياطي</div>
+      <div style="font-size:12px; color:var(--color-text-secondary);">PostgreSQL daily backups + Point-in-time recovery</div>
+    </div>
+    <div class="card" style="padding:1rem;">
+      <div style="font-size:12px; font-weight:500; margin-bottom:4px; display:flex; align-items:center; gap:6px;"><i class="ti ti-cloud" style="color:#854F0B" aria-hidden="true"></i> البنية التحتية</div>
+      <div style="font-size:12px; color:var(--color-text-secondary);">Vercel (FE) + Railway/Render (BE) + Neon/Supabase (DB)</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 12: Roadmap -->
+<section class="section section-anchor" id="roadmap">
+  <div class="section-header">
+    <div class="section-number">12</div>
+    <div class="section-title">خارطة الطريق (Future Roadmap)</div>
+  </div>
+  <div class="card">
+    <div class="roadmap-item">
+      <div class="roadmap-dot" style="background:#0F6E56;"></div>
+      <div><div class="roadmap-title">المرحلة الأولى — MVP (v1.0)</div><div class="roadmap-desc">Authentication + Dispatch Management + Kanban Board + Basic Analytics — الآن</div></div>
+      <span class="badge badge-green" style="margin-right:auto; flex-shrink:0;">قيد التنفيذ</span>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot" style="background:#185FA5;"></div>
+      <div><div class="roadmap-title">المرحلة الثانية — AI Integration (v1.5)</div><div class="roadmap-desc">Smart Assignment + Priority Detection + Predictive Analytics — Q3 2026</div></div>
+      <span class="badge badge-blue" style="margin-right:auto; flex-shrink:0;">مخطط</span>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot" style="background:#534AB7;"></div>
+      <div><div class="roadmap-title">المرحلة الثالثة — Mobile App (v2.0)</div><div class="roadmap-desc">React Native / PWA + Push Notifications (Firebase) + Voice Commands — Q1 2027</div></div>
+      <span class="badge badge-purple" style="margin-right:auto; flex-shrink:0;">مستقبلي</span>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot" style="background:#854F0B;"></div>
+      <div><div class="roadmap-title">المرحلة الرابعة — Enterprise (v3.0)</div><div class="roadmap-desc">Multi-tenant / Multi-branch + EHR Integration + BI Tools (Metabase) + Telemedicine</div></div>
+      <span class="badge badge-amber" style="margin-right:auto; flex-shrink:0;">مستقبلي</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 13: Metrics -->
+<section class="section section-anchor" id="metrics">
+  <div class="section-header">
+    <div class="section-number">13</div>
+    <div class="section-title">مقاييس النجاح والخلاصة</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-bottom:1.5rem;">
+    <div class="metric-success">
+      <div class="metric-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+      <div><div class="metric-val">&lt; 5 دقائق</div><div class="metric-label">وقت تعيين الزيارة</div></div>
+    </div>
+    <div class="metric-success">
+      <div class="metric-icon"><i class="ti ti-user-check" aria-hidden="true"></i></div>
+      <div><div class="metric-val">&gt; 85%</div><div class="metric-label">معدل كفاءة الممرضين</div></div>
+    </div>
+    <div class="metric-success">
+      <div class="metric-icon"><i class="ti ti-alert-circle" aria-hidden="true"></i></div>
+      <div><div class="metric-val">&lt; 1%</div><div class="metric-label">معدل الأخطاء التشغيلية</div></div>
+    </div>
+    <div class="metric-success">
+      <div class="metric-icon"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i></div>
+      <div><div class="metric-val">99.9%</div><div class="metric-label">وقت تشغيل النظام</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="background: #085041; color:#fff; border-color:#085041;">
+    <div style="font-size:14px; font-weight:500; margin-bottom:8px; opacity:0.9; display:flex; align-items:center; gap:8px;"><i class="ti ti-rocket" aria-hidden="true"></i> الخلاصة</div>
+    <p style="font-size:13px; line-height:1.7; opacity:0.85;">
+      CURE Operations Portal يحوّل شركة CURE إلى منظمة <strong style="color:#5DCAA5;">Data-Driven</strong> و <strong style="color:#5DCAA5;">AI-Augmented</strong>، جاهزة للنمو والتوسع. النظام يجمع بين الهندسة المتينة والذكاء الاصطناعي والتجربة الاستثنائية للمستخدم — لتحقيق التحول الرقمي الكامل في قطاع الرعاية المنزلية.
+    </p>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+function switchTab(btn, contentId) {
+  const parent = btn.closest('.section') || btn.closest('.main');
+  const container = btn.parentElement.nextElementSibling;
+  let current = container;
+  while(current) {
+    if(current.classList && current.classList.contains('tab-content')) { current.classList.remove('active'); }
+    current = current.nextElementSibling;
+  }
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(contentId).classList.add('active');
+}
+</script>
+</body>
+</html>
