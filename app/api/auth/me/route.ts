@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
         avatar: true,
         phone: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
 

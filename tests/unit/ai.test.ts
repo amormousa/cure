@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+/// <reference types="vitest/globals" />
 import { detectPriority, calculateNurseScore } from '../../app/lib/ai'
 import { Priority, DispatchStatus } from '@prisma/client'
 

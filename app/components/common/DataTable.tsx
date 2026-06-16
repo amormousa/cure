@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 import { ChevronDown, ChevronUp, Search } from 'lucide-react'
 
 export interface Column<T> {
@@ -18,11 +18,11 @@ interface DataTableProps<T> {
   filterOptions?: {
     key: keyof T | string
     label: string
-    options: { label: string; value: any }[]
+    options: { label: string; value: string | number | boolean }[]
   }
 }
 
-export function DataTable<T extends Record<string, any>>({
+export function DataTable<T extends Record<string, unknown>>({
   data,
   columns,
   searchKey,
@@ -34,9 +34,14 @@ export function DataTable<T extends Record<string, any>>({
   const [filterValue, setFilterValue] = useState<string>('all')
 
   // Resolve nested object path access (e.g., 'patient.name')
-  const getRowValue = (row: T, path: string): any => {
-    return path.split('.').reduce((obj, key) => (obj && obj[key] !== undefined ? obj[key] : undefined), row)
-  }
+  const getRowValue = useCallback((row: T, path: string): unknown => {
+    return path.split('.').reduce<unknown>((obj, key) => {
+      if (obj && typeof obj === 'object' && key in obj) {
+        return (obj as Record<string, unknown>)[key]
+      }
+      return undefined
+    }, row)
+  }, [])
 
   // Handle sorting
   const handleSort = (key: string) => {
@@ -116,7 +121,7 @@ export function DataTable<T extends Record<string, any>>({
             >
               <option value="all">All</option>
               {filterOptions.options.map((opt) => (
-                <option key={opt.value} value={opt.value}>
+                <option key={String(opt.value)} value={String(opt.value)}>
                   {opt.label}
                 </option>
               ))}
@@ -132,19 +137,19 @@ export function DataTable<T extends Record<string, any>>({
             <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-600 border-b border-gray-200">
               <tr>
                 {columns.map((col, idx) => {
-                  const key = (col.accessorKey || idx) as string
-                  const isSorted = sortConfig?.key === col.accessorKey
+                  const colKey = col.accessorKey ? String(col.accessorKey) : undefined
+                  const isSorted = sortConfig?.key === colKey
                   return (
                     <th
                       key={idx}
-                      onClick={() => col.sortable && col.accessorKey && handleSort(col.accessorKey as string)}
+                      onClick={() => col.sortable && colKey && handleSort(colKey)}
                       className={`px-6 py-4 font-semibold ${
                         col.sortable ? 'cursor-pointer hover:bg-gray-100 hover:text-gray-900 transition' : ''
                       }`}
                     >
                       <div className="flex items-center gap-1">
                         {col.header}
-                        {col.sortable && col.accessorKey && (
+                        {col.sortable && colKey && (
                           <span className="text-gray-400">
                             {isSorted && sortConfig?.direction === 'asc' ? (
                               <ChevronUp className="h-4 w-4 text-indigo-600" />

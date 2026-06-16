@@ -7,6 +7,7 @@ import { Badge } from '@/app/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/app/components/ui/table'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { ArrowLeft, MapPin, Phone, User, Calendar, Activity, AlertTriangle, Clock } from 'lucide-react'
+import { dispatchApi } from '@/app/lib/api/endpoints'
 
 export default function DispatchDetailsPage() {
   const params = useParams()
@@ -19,10 +20,9 @@ export default function DispatchDetailsPage() {
 
   const fetchDispatch = async () => {
     try {
-      const res = await fetch(`/api/dispatches/${id}`)
-      if (res.ok) {
-        const { data } = await res.json()
-        setDispatch(data)
+      const result = await dispatchApi.get(id)
+      if (result.ok && result.data) {
+        setDispatch(result.data.data)
       } else {
         setError('Dispatch not found')
       }
@@ -40,12 +40,8 @@ export default function DispatchDetailsPage() {
   const handleStatusChange = async (newStatus: string) => {
     setUpdating(true)
     try {
-      const res = await fetch(`/api/dispatches/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
-      })
-      if (res.ok) {
+      const result = await dispatchApi.update(id, { status: newStatus })
+      if (result.ok) {
         // Refresh data to get new AuditLogs
         await fetchDispatch()
       } else {

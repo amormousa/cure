@@ -1,6 +1,6 @@
 // types/index.ts
 
-export type Role = 'ADMIN' | 'NURSE'
+export type Role = 'ADMIN' | 'NURSE' | 'DISPATCHER'
 export type DispatchStatus = 'PENDING' | 'ASSIGNED' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELLED'
 export type Priority = 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT'
 
@@ -11,8 +11,8 @@ export interface User {
   role: Role
   isActive: boolean
   isOnline: boolean
-  avatar?: string
-  phone?: string
+  avatar?: string | null
+  phone?: string | null
   createdAt: string
   updatedAt: string
 }
@@ -42,6 +42,31 @@ export interface Dispatch {
   updatedAt: string
 }
 
+export interface DispatchAuditLog {
+  id: string
+  userId: string
+  action: string
+  entityType: string
+  entityId: string
+  details?: {
+    changedFields?: string[]
+    after?: Partial<Dispatch>
+    priority?: Priority
+    [key: string]: unknown
+  } | null
+  createdAt: string
+  dispatchId?: string | null
+  user?: { name: string }
+}
+
+export interface DispatchDetail extends Dispatch {
+  auditLogs: DispatchAuditLog[]
+}
+
+export interface NurseDetail extends User {
+  dispatches: Dispatch[]
+}
+
 export interface AnalyticsPayload {
   dailySeries: { date: string; created: number; completed: number }[]
   statusBreakdown: Record<DispatchStatus, number>
@@ -55,7 +80,7 @@ export interface AuditLog {
   action: string
   entityType: string
   entityId: string
-  details?: Record<string, any>
+  details?: Record<string, unknown>
   createdAt: string
   dispatchId?: string | null
 }

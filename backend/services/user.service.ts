@@ -1,10 +1,11 @@
 // backend/services/user.service.ts
 // Business logic for User CRUD.
 
-import { prisma } from '@/backend/config/prisma'
+import { prisma } from '@/lib/prisma'
 import { createLogger } from '@/backend/utils/logger'
 import { Errors } from '@/backend/utils/errors'
 import bcrypt from 'bcryptjs'
+import type { Role } from '@/backend/types/models'
 
 const log = createLogger('UserService')
 
@@ -29,9 +30,9 @@ export async function listUsers(role?: string | null, callerRole?: string) {
   if (callerRole === 'ADMIN') {
     if (role) {
       if (!['ADMIN', 'NURSE', 'DISPATCHER'].includes(role)) {
-        throw new (Errors.validation as any)('Invalid role filter')
+        throw Errors.validation([{ path: ['role'], message: 'Invalid role filter' }])
       }
-      where.role = role
+      where.role = role as Role
     }
   } else {
     where = { role: 'NURSE', isActive: true }

@@ -8,7 +8,7 @@ const log = createLogger('API:auth/logout')
 export async function POST(req: NextRequest) {
   try {
     await clearAuthCookie()
-    return NextResponse.json({ message: 'Logged out successfully' }, { status: 200 })
+    return NextResponse.json({ data: null, message: 'Logged out successfully' }, { status: 200 })
   } catch (error) {
     log.error('POST /api/auth/logout failed', error)
     return NextResponse.json(

@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     // Redirect to dashboard
-    router.replace('/dashboard')
+    router.replace('/admin/nurses')
   }, [router])
 
   return (

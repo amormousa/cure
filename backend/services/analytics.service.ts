@@ -1,7 +1,7 @@
 // backend/services/analytics.service.ts
 // Business logic for the analytics dashboard.
 
-import { prisma } from '@/backend/config/prisma'
+import { prisma } from '@/lib/prisma'
 import { createLogger } from '@/backend/utils/logger'
 import type {
   AnalyticsResponse,

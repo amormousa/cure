@@ -1,7 +1,7 @@
 // backend/services/patient.service.ts
 // Business logic for Patient CRUD.
 
-import { prisma } from '@/backend/config/prisma'
+import { prisma } from '@/lib/prisma'
 import { createLogger } from '@/backend/utils/logger'
 import { Errors } from '@/backend/utils/errors'
 
@@ -75,7 +75,7 @@ export async function getPatientById(id: string) {
   })
 
   if (!patient) {
-    throw Errors.notFound('Patient', id)
+    throw Errors.notFound('Patient')
   }
 
   return patient
@@ -93,7 +93,7 @@ export interface UpdatePatientData {
 export async function updatePatient(id: string, data: UpdatePatientData, userId: string) {
   const existing = await prisma.patient.findUnique({ where: { id } })
   if (!existing) {
-    throw Errors.notFound('Patient', id)
+    throw Errors.notFound('Patient')
   }
 
   const patient = await prisma.patient.update({
@@ -119,7 +119,7 @@ export async function updatePatient(id: string, data: UpdatePatientData, userId:
 export async function deletePatient(id: string, userId: string) {
   const existing = await prisma.patient.findUnique({ where: { id } })
   if (!existing) {
-    throw Errors.notFound('Patient', id)
+    throw Errors.notFound('Patient')
   }
 
   const deleted = await prisma.patient.delete({ where: { id } })

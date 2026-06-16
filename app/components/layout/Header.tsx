@@ -3,8 +3,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { Menu, LogOut, Settings } from 'lucide-react'
+import { authApi } from '@/app/lib/api/endpoints'
 
 interface HeaderProps {
   userName: string
@@ -18,7 +18,7 @@ export function Header({ userName, userRole, onMenuClick }: HeaderProps) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('/api/auth/logout', { method: 'POST' })
+      const response = await authApi.logout()
       if (response.ok) {
         router.replace('/login')
       }

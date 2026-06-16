@@ -9,6 +9,7 @@ import { DataTable } from '@/app/components/common/DataTable'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { AnalyticsPayload } from '@/types'
 import { BarChart3, Download, TrendingUp } from 'lucide-react'
+import { analyticsApi } from '@/app/lib/api/endpoints'
 
 interface AnalyticsData extends AnalyticsPayload {
   completedToday: number
@@ -50,10 +51,11 @@ export default function AnalyticsPage() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch(`/api/analytics?from=${from}&to=${to}`)
-      if (!res.ok) throw new Error('Failed to fetch analytics')
-      const result = await res.json()
-      setData(result.data)
+      const days = Math.max(1, Math.ceil((new Date(to).getTime() - new Date(from).getTime()) / (24 * 60 * 60 * 1000)))
+      const range = days <= 7 ? '7d' : days <= 30 ? '30d' : '90d'
+      const result = await analyticsApi.get({ range })
+      if (!result.ok || !result.data) throw new Error(result.error?.message || 'Failed to fetch analytics')
+      setData(result.data.data)
     } catch (e) {
       setError('Failed to load analytics data. Please try again.')
     } finally {

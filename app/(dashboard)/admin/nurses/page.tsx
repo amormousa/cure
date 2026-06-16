@@ -12,6 +12,8 @@ import { Input } from '@/app/components/ui/input'
 import { Label } from '@/app/components/ui/label'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { Search, Plus, UserX } from 'lucide-react'
+import { userApi } from '@/app/lib/api/endpoints'
+import { getErrorMessage } from '@/app/lib/api/client'
 
 // Types
 type Nurse = {
@@ -39,10 +41,13 @@ export default function NursesPage() {
 
   const fetchNurses = async () => {
     try {
-      const res = await fetch('/api/users')
-      const { data } = await res.json()
-      if (res.ok) {
-        setNurses(data.filter((u: any) => u.role === 'NURSE'))
+      const result = await userApi.list({ role: 'NURSE' })
+      if (result.ok && result.data) {
+        setNurses(
+          result.data.data
+            .filter((u) => u.role === 'NURSE')
+            .map((u) => ({ ...u, isActive: u.isActive ?? true, isOnline: u.isOnline ?? false }) as Nurse)
+        )
       }
     } finally {
       setLoading(false)
@@ -55,12 +60,8 @@ export default function NursesPage() {
 
   const toggleStatus = async (id: string, currentStatus: boolean) => {
     try {
-      const res = await fetch(`/api/users/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isActive: !currentStatus }),
-      })
-      if (res.ok) {
+      const result = await userApi.update(id, { isActive: !currentStatus })
+      if (result.ok) {
         setNurses(nurses.map(n => n.id === id ? { ...n, isActive: !currentStatus } : n))
       }
     } catch (e) {
@@ -73,18 +74,13 @@ export default function NursesPage() {
     setFormLoading(true)
     setFormError('')
     try {
-      const res = await fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, role: 'NURSE' }),
-      })
-      const data = await res.json()
-      if (res.ok) {
+      const result = await userApi.create({ ...formData, role: 'NURSE' })
+      if (result.ok) {
         setIsDialogOpen(false)
         setFormData({ name: '', email: '', phone: '', password: '' })
         fetchNurses()
       } else {
-        setFormError(data.error || 'Failed to create nurse')
+        setFormError(getErrorMessage(result.error))
       }
     } catch (e) {
       setFormError('An error occurred')

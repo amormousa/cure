@@ -20,13 +20,14 @@ import {
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
 import { SocketStatusBanner } from '@/app/components/common/SocketStatusBanner'
+import { authApi } from '@/app/lib/api/endpoints'
 
 interface AuthUser {
   id: string
   email: string
   name: string
   role: 'ADMIN' | 'NURSE' | 'DISPATCHER'
-  avatar?: string
+  avatar?: string | null
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -40,13 +41,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch('/api/auth/me')
-        if (!res.ok) {
+        const result = await authApi.getMe()
+        if (!result.ok || !result.data) {
           router.replace('/login')
           return
         }
-        const { data } = await res.json()
-        setUser(data)
+        setUser(result.data.data)
       } catch {
         router.replace('/login')
       } finally {
@@ -57,35 +57,35 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, [router])
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' })
+    await authApi.logout()
     router.replace('/login')
   }
 
   const navItems = [
     {
       name: 'Overview',
-      href: '/dashboard',
+      href: '/',
       icon: LayoutDashboard,
       exact: true,
       roles: ['ADMIN', 'NURSE'],
     },
     {
       name: 'Operations',
-      href: '/dashboard/operations/kanban',
+      href: '/operations/kanban',
       icon: Kanban,
       exact: false,
       roles: ['ADMIN'],
     },
     {
       name: 'Analytics',
-      href: '/dashboard/analytics',
+      href: '/analytics',
       icon: BarChart3,
       exact: false,
       roles: ['ADMIN'],
     },
     {
       name: 'Users',
-      href: '/dashboard/admin/users',
+      href: '/admin/nurses',
       icon: Users,
       exact: false,
       roles: ['ADMIN'],

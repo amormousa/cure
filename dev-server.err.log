@@ -1,0 +1,1901 @@
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:38:30)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:22:36)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:38:30)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:22:36)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:38:30)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:38:30)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+Token verification failed: Error: The edge runtime does not support Node.js 'crypto' module.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+    at verifyToken (app\lib\auth.ts:25:25)
+    at middleware (middleware.ts:38:30)
+  23 | export function verifyToken(token: string): JWTPayload | null {
+  24 |   try {
+> 25 |     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
+     |                         ^
+  26 |     return decoded
+  27 |   } catch (error) {
+  28 |     console.error('Token verification failed:', error) {
+  
+}
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] API error for /api/auth/login: {
+  error: { code: [32m'UNAUTHORIZED'[39m, message: [32m'Invalid email or password'[39m },
+  status: [33m401[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: { code: [32m'UNAUTHORIZED'[39m, message: [32m'Invalid email or password'[39m },
+  status: [33m401[39m
+} (app/lib/api/client.ts:30:54)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher'[39m,
+        email: [32m'dispatcher@cure.com'[39m,
+        id: [32m'cmqgtbv2n0001nktfrlsjldcd'[39m,
+        name: [32m'Operations Dispatcher'[39m,
+        role: [32m'DISPATCHER'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/auth/logout: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected null, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: { message: [32m'Logged out successfully'[39m }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleLogout (app/(dashboard)/layout.tsx:60:5)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/auth/logout: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected null, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: { message: [32m'Logged out successfully'[39m }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleLogout (app/(dashboard)/layout.tsx:60:5)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] Response validation failed for /api/auth/logout: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected null, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: { message: [32m'Logged out successfully'[39m }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleLogout (app/(dashboard)/layout.tsx:60:5)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/auth/login: {
+  error: {
+    code: [32m'TOO_MANY_REQUESTS'[39m,
+    message: [32m'Too many requests. Please try again later.'[39m
+  },
+  status: [33m429[39m
+} (app/lib/api/client.ts:30:54)
+[browser] Response validation failed for /api/auth/logout: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected null, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: { message: [32m'Logged out successfully'[39m }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleLogout (app/(dashboard)/layout.tsx:60:5)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/login: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected string, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: {
+    data: {
+      user: {
+        avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'[39m,
+        email: [32m'admin@cure.com'[39m,
+        id: [32m'cmqgtbv2g0000nktf8w9ws8p1'[39m,
+        name: [32m'System Administrator'[39m,
+        role: [32m'ADMIN'[39m
+      }
+    },
+    message: [32m'Login successful'[39m
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleSubmit (app/(auth)/login/page.tsx:22:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/auth/logout: {
+  errors: {
+    fieldErrors: { data: [ [32m'Invalid input: expected null, received undefined'[39m ] },
+    formErrors: []
+  },
+  received: { message: [32m'Logged out successfully'[39m }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async handleLogout (app/(dashboard)/layout.tsx:60:5)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/users/cmqgtbv2q0003nktflmolx30f: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.018Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+          notes: [32m'Hypertension check cancelled by patient request.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+          notes: [32m'Wound dressing replacement completed.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'LOW'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+        }
+      ],
+      email: [32m'nurse2@cure.com'[39m,
+      id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mfalse[39m,
+      name: [32m'فاطمة علي'[39m,
+      phone: [32m'+201001234571'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:44:11.209Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2q0003nktflmolx30f: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.018Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+          notes: [32m'Hypertension check cancelled by patient request.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+          notes: [32m'Wound dressing replacement completed.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'LOW'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+        }
+      ],
+      email: [32m'nurse2@cure.com'[39m,
+      id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mfalse[39m,
+      name: [32m'فاطمة علي'[39m,
+      phone: [32m'+201001234571'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:44:11.209Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2r0004nktfzzd8zomx: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.019Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+          id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+          notes: [32m'Dietary counseling and glucose check.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+          status: [32m'ASSIGNED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+          id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+          notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+          status: [32m'IN_PROGRESS'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+          notes: [32m'Regular blood pressure monitoring visit.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+        }
+      ],
+      email: [32m'nurse3@cure.com'[39m,
+      id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'ياسمين حسن'[39m,
+      phone: [32m'+201001234572'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T15:44:32.019Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2r0004nktfzzd8zomx: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.019Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+          id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+          notes: [32m'Dietary counseling and glucose check.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+          status: [32m'ASSIGNED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+          id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+          notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+          status: [32m'IN_PROGRESS'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+          notes: [32m'Regular blood pressure monitoring visit.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+        }
+      ],
+      email: [32m'nurse3@cure.com'[39m,
+      id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'ياسمين حسن'[39m,
+      phone: [32m'+201001234572'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T15:44:32.019Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2r0004nktfzzd8zomx: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.019Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+          id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+          notes: [32m'Dietary counseling and glucose check.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+          status: [32m'ASSIGNED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+          id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+          notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+          status: [32m'IN_PROGRESS'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+          notes: [32m'Regular blood pressure monitoring visit.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+        }
+      ],
+      email: [32m'nurse3@cure.com'[39m,
+      id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'ياسمين حسن'[39m,
+      phone: [32m'+201001234572'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T15:44:32.019Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2r0004nktfzzd8zomx: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.019Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+          id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+          notes: [32m'Dietary counseling and glucose check.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+          status: [32m'ASSIGNED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+          id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+          notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+          status: [32m'IN_PROGRESS'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+        },
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+          notes: [32m'Regular blood pressure monitoring visit.'[39m,
+          nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'MEDIUM'[39m,
+          scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+        }
+      ],
+      email: [32m'nurse3@cure.com'[39m,
+      id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'ياسمين حسن'[39m,
+      phone: [32m'+201001234572'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T15:44:32.019Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2o0002nktfzftxpfj5: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.016Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+          id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+          notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+          notes: [32m'Intensive physical rehabilitation session.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+          createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+          notes: [32m'Urgent wound care dressing replacement.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+          status: [32m'COMPLETED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+        }
+      ],
+      email: [32m'nurse1@cure.com'[39m,
+      id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'عائشة أحمد'[39m,
+      phone: [32m'+201001234570'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:42:46.827Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2o0002nktfzftxpfj5: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.016Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+          id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+          notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+          notes: [32m'Intensive physical rehabilitation session.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+          createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+          notes: [32m'Urgent wound care dressing replacement.'[39m,
+          nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'URGENT'[39m,
+          scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+          status: [32m'COMPLETED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+        }
+      ],
+      email: [32m'nurse1@cure.com'[39m,
+      id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mtrue[39m,
+      name: [32m'عائشة أحمد'[39m,
+      phone: [32m'+201001234570'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:42:46.827Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2q0003nktflmolx30f: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.018Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+          notes: [32m'Hypertension check cancelled by patient request.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+          notes: [32m'Wound dressing replacement completed.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'LOW'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+        }
+      ],
+      email: [32m'nurse2@cure.com'[39m,
+      id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mfalse[39m,
+      name: [32m'فاطمة علي'[39m,
+      phone: [32m'+201001234571'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:44:11.209Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/users/cmqgtbv2q0003nktflmolx30f: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m,
+        [32m'Invalid input: expected string, received undefined'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: {
+      avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+      createdAt: [32m'2026-06-16T15:44:32.018Z'[39m,
+      dispatches: [
+        {
+          completedAt: [1mnull[22m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+          notes: [32m'Hypertension check cancelled by patient request.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          priority: [32m'HIGH'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+        },
+        {
+          completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+          createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+          id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+          notes: [32m'Wound dressing replacement completed.'[39m,
+          nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          patient: [32m'[Object]'[39m,
+          patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          priority: [32m'LOW'[39m,
+          scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+          status: [32m'CANCELLED'[39m,
+          updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+        }
+      ],
+      email: [32m'nurse2@cure.com'[39m,
+      id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+      isActive: [33mtrue[39m,
+      isOnline: [33mfalse[39m,
+      name: [32m'فاطمة علي'[39m,
+      phone: [32m'+201001234571'[39m,
+      role: [32m'NURSE'[39m,
+      updatedAt: [32m'2026-06-16T20:44:11.209Z'[39m
+    }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async NurseDetailsPage.useEffect.fetchNurse (app/(dashboard)/admin/nurses/[id]/page.tsx:22:26)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[33m[WARN][0m 2026-06-16T21:47:05.837Z [SocketEmitter] Socket connection error on attempt 1/2 {"event":"dispatch:created","error":"websocket error"}
+[33m[WARN][0m 2026-06-16T21:47:06.850Z [SocketEmitter] Socket connection error on attempt 2/2 {"event":"dispatch:created","error":"websocket error"}
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[33m[WARN][0m 2026-06-16T21:47:27.926Z [SocketEmitter] Socket connection error on attempt 1/2 {"event":"dispatch:status_changed","error":"websocket error"}
+[33m[WARN][0m 2026-06-16T21:47:28.807Z [SocketEmitter] Socket connection error on attempt 1/2 {"event":"dispatch:status_changed","error":"websocket error"}
+[33m[WARN][0m 2026-06-16T21:47:28.932Z [SocketEmitter] Socket connection error on attempt 2/2 {"event":"dispatch:status_changed","error":"websocket error"}
+[33m[WARN][0m 2026-06-16T21:47:29.818Z [SocketEmitter] Socket connection error on attempt 2/2 {"event":"dispatch:status_changed","error":"websocket error"}
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)

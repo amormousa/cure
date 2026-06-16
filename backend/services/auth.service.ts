@@ -51,16 +51,16 @@ export async function login(credentials: LoginCredentials) {
   })
 
   if (!user) {
-    throw new ApiError(401, 'INVALID_CREDENTIALS', 'Invalid email or password')
+    throw new ApiError('INVALID_CREDENTIALS', 'Invalid email or password', 401)
   }
 
   if (!user.isActive) {
-    throw new ApiError(403, 'ACCOUNT_INACTIVE', 'Your account has been deactivated. Contact an administrator.')
+    throw new ApiError('ACCOUNT_INACTIVE', 'Your account has been deactivated. Contact an administrator.', 403)
   }
 
   const passwordMatch = await bcrypt.compare(password, user.password)
   if (!passwordMatch) {
-    throw new ApiError(401, 'INVALID_CREDENTIALS', 'Invalid email or password')
+    throw new ApiError('INVALID_CREDENTIALS', 'Invalid email or password', 401)
   }
 
   const token = signToken({
@@ -83,7 +83,7 @@ export async function refreshToken(userId: string): Promise<string> {
   const user = await prisma.user.findUnique({ where: { id: userId } })
 
   if (!user || !user.isActive) {
-    throw new ApiError(401, 'UNAUTHORIZED', 'User not found or inactive')
+    throw new ApiError('UNAUTHORIZED', 'User not found or inactive', 401)
   }
 
   const token = signToken({
@@ -106,7 +106,7 @@ export async function getMe(userId: string) {
   })
 
   if (!user || !user.isActive) {
-    throw new ApiError(401, 'UNAUTHORIZED', 'User not found or inactive')
+    throw new ApiError('UNAUTHORIZED', 'User not found or inactive', 401)
   }
 
   return user

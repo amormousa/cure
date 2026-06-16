@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { User, Role } from '@/types'
+import { authApi } from '@/app/lib/api/endpoints'
 
 interface AuthState {
   user: User | null
@@ -23,10 +24,14 @@ export function useAuth() {
     // Get user from API on mount
     const fetchUser = async () => {
       try {
-        const res = await fetch('/api/auth/me')
-        if (res.ok) {
-          const { data } = await res.json()
-          setState({ user: data, role: data.role, isLoading: false })
+        const result = await authApi.getMe()
+        if (result.ok && result.data) {
+          const user = {
+            ...result.data.data,
+            isActive: result.data.data.isActive ?? true,
+            isOnline: result.data.data.isOnline ?? false,
+          } as User
+          setState({ user, role: user.role, isLoading: false })
         } else {
           setState({ user: null, role: null, isLoading: false })
         }
@@ -40,7 +45,7 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' })
+      await authApi.logout()
       setState({ user: null, role: null, isLoading: false })
       router.push('/login')
     } catch (error) {

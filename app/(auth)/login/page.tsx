@@ -3,7 +3,8 @@
 
 import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { authApi } from '@/app/lib/api/endpoints'
+import { getErrorMessage } from '@/app/lib/api/client'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -18,28 +19,22 @@ export default function LoginPage() {
     setError('')
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
+      const result = await authApi.login(email, password)
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        setError(data.error?.message || 'Login failed')
+      if (!result.ok) {
+        setError(getErrorMessage(result.error))
         setLoading(false)
         return
       }
 
       // Redirect based on role
-      const role = data.data?.user?.role;
+      const role = result.data?.data.user.role;
       if (role === 'ADMIN') {
-        router.replace('/admin')
+        router.replace('/admin/nurses')
       } else if (role === 'DISPATCHER') {
-        router.replace('/operations')
+        router.replace('/operations/kanban')
       } else {
-        router.replace('/dashboard')
+        router.replace('/')
       }
     } catch (err) {
       setError('An error occurred. Please try again.')

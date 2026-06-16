@@ -18,25 +18,25 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
   const navItems = [
     {
       name: 'Dashboard',
-      href: '/dashboard',
+      href: '/',
       icon: LayoutDashboard,
       roles: ['ADMIN', 'NURSE'],
     },
     {
       name: 'Operations',
-      href: '/dashboard/operations/kanban',
+      href: '/operations/kanban',
       icon: Kanban,
       roles: ['ADMIN'],
     },
     {
       name: 'Analytics',
-      href: '/dashboard/analytics',
+      href: '/analytics',
       icon: BarChart3,
       roles: ['ADMIN'],
     },
     {
       name: 'Users',
-      href: '/dashboard/admin/users',
+      href: '/admin/nurses',
       icon: Users,
       roles: ['ADMIN'],
     },
@@ -45,7 +45,7 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
   const filteredItems = navItems.filter((item) => item.roles.includes(userRole))
 
   const isActive = (href: string) => {
-    return pathname.startsWith(href)
+    return href === '/' ? pathname === '/' : pathname.startsWith(href)
   }
 
   return (

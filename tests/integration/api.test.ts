@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+/// <reference types="vitest/globals" />
 import { NextRequest } from 'next/server'
 import { POST as loginPost } from '../../app/api/auth/login/route'
 import { GET as dispatchesGet, POST as dispatchesPost } from '../../app/api/dispatches/route'

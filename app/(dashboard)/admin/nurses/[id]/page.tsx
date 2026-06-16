@@ -7,6 +7,7 @@ import { Badge } from '@/app/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/app/components/ui/table'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { ArrowLeft, Phone, Mail, Clock } from 'lucide-react'
+import { userApi } from '@/app/lib/api/endpoints'
 
 export default function NurseDetailsPage() {
   const params = useParams()
@@ -18,10 +19,9 @@ export default function NurseDetailsPage() {
   useEffect(() => {
     const fetchNurse = async () => {
       try {
-        const res = await fetch(`/api/users/${id}`)
-        if (res.ok) {
-          const { data } = await res.json()
-          setNurse(data)
+          const result = await userApi.get(id)
+          if (result.ok && result.data) {
+          setNurse(result.data.data)
         }
       } finally {
         setLoading(false)

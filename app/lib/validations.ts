@@ -44,6 +44,14 @@ export const CreatePatientSchema = z.object({
   notes: z.string().optional(),
 })
 
+export const UpdatePatientSchema = z.object({
+  name: z.string().min(2).max(100).optional(),
+  address: z.string().min(5).optional(),
+  phone: z.string().regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number').optional(),
+  condition: z.string().min(3).optional(),
+  notes: z.string().optional().nullable(),
+})
+
 export const AISuggestSchema = z.object({
   dispatchId: z.string().cuid('Invalid dispatch ID').optional(),
   patientId: z.string().cuid('Invalid patient ID').optional(),
@@ -58,5 +66,5 @@ export type UpdateDispatchInput = z.infer<typeof UpdateDispatchSchema>
 export type CreateUserInput = z.infer<typeof CreateUserSchema>
 export type UpdateUserInput = z.infer<typeof UpdateUserSchema>
 export type CreatePatientInput = z.infer<typeof CreatePatientSchema>
+export type UpdatePatientInput = z.infer<typeof UpdatePatientSchema>
 export type AISuggestInput = z.infer<typeof AISuggestSchema>
-

@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { Patient } from '@/types'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { X, PlusCircle } from 'lucide-react'
+import { dispatchApi, patientApi } from '@/app/lib/api/endpoints'
+import { getErrorMessage } from '@/app/lib/api/client'
 
 interface CreateDispatchModalProps {
   isOpen: boolean
@@ -29,10 +31,9 @@ export function CreateDispatchModal({ isOpen, onClose, onCreated }: CreateDispat
     setError('')
     const fetchPatients = async () => {
       try {
-        const res = await fetch('/api/patients')
-        if (res.ok) {
-          const { data } = await res.json()
-          setPatients(data)
+        const result = await patientApi.list()
+        if (result.ok && result.data) {
+          setPatients(result.data.data as Patient[])
         }
       } finally {
         setLoading(false)
@@ -50,17 +51,12 @@ export function CreateDispatchModal({ isOpen, onClose, onCreated }: CreateDispat
     setSubmitting(true)
     setError('')
     try {
-      const res = await fetch('/api/dispatches', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          scheduledFor: new Date(form.scheduledFor).toISOString(),
-        }),
+      const result = await dispatchApi.create({
+        ...form,
+        scheduledFor: new Date(form.scheduledFor).toISOString(),
       })
-      const data = await res.json()
-      if (!res.ok) {
-        setError(data.error ?? 'Failed to create dispatch.')
+      if (!result.ok) {
+        setError(getErrorMessage(result.error))
         return
       }
       onCreated()

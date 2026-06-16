@@ -9,6 +9,7 @@ import { AssignNurseModal } from './AssignNurseModal'
 import { ConfirmDialog } from '@/app/components/common/ConfirmDialog'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { PlusCircle, Search, Filter } from 'lucide-react'
+import { dispatchApi } from '@/app/lib/api/endpoints'
 
 export function KanbanBoard() {
   const [dispatches, setDispatches] = useState<Dispatch[]>([])
@@ -37,10 +38,9 @@ export function KanbanBoard() {
 
   const fetchDispatches = async () => {
     try {
-      const res = await fetch('/api/dispatches')
-      if (res.ok) {
-        const result = await res.json()
-        setDispatches(result.data)
+      const result = await dispatchApi.list()
+      if (result.ok && result.data) {
+        setDispatches(result.data.data as Dispatch[])
       }
     } catch (error) {
       console.error('Failed to fetch dispatches:', error)
@@ -87,13 +87,9 @@ export function KanbanBoard() {
     )
 
     try {
-      const res = await fetch(`/api/dispatches/${dispatchId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
-      })
+      const result = await dispatchApi.update(dispatchId, { status: newStatus })
 
-      if (!res.ok) {
+      if (!result.ok) {
         throw new Error('Failed to update dispatch status')
       }
 
@@ -135,16 +131,12 @@ export function KanbanBoard() {
     )
 
     try {
-      const res = await fetch(`/api/dispatches/${selectedDispatch.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nurseId,
-          status: nurseId ? 'ASSIGNED' : 'PENDING',
-        }),
+      const result = await dispatchApi.update(selectedDispatch.id, {
+        nurseId,
+        status: nurseId ? 'ASSIGNED' : 'PENDING',
       })
 
-      if (!res.ok) {
+      if (!result.ok) {
         throw new Error('Failed to assign nurse')
       }
 
@@ -167,13 +159,9 @@ export function KanbanBoard() {
     if (!selectedDispatch) return
 
     try {
-      const res = await fetch(`/api/dispatches/${selectedDispatch.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ notes: noteValue }),
-      })
+      const result = await dispatchApi.update(selectedDispatch.id, { notes: noteValue })
 
-      if (!res.ok) {
+      if (!result.ok) {
         throw new Error('Failed to save notes')
       }
 
@@ -194,11 +182,9 @@ export function KanbanBoard() {
     if (!selectedDispatch) return
 
     try {
-      const res = await fetch(`/api/dispatches/${selectedDispatch.id}`, {
-        method: 'DELETE',
-      })
+      const result = await dispatchApi.cancel(selectedDispatch.id)
 
-      if (!res.ok) {
+      if (!result.ok) {
         throw new Error('Failed to cancel dispatch')
       }
 

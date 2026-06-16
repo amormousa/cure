@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const ip = req.headers.get('x-forwarded-for') || 'unknown';
     const now = Date.now();
     const rateLimit = rateLimitMap.get(ip);
-    
+
     if (rateLimit) {
       if (now - rateLimit.timestamp < WINDOW_MS) {
         if (rateLimit.count >= LIMIT) {
@@ -85,6 +85,11 @@ export async function POST(req: NextRequest) {
             name: user.name,
             role: user.role,
             avatar: user.avatar,
+            isActive: user.isActive,
+            isOnline: user.isOnline,
+            phone: user.phone,
+            createdAt: user.createdAt.toISOString(),
+            updatedAt: user.updatedAt?.toISOString(),
           },
         },
         message: 'Login successful',

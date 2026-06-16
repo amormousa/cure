@@ -1,10 +1,10 @@
 // backend/services/dispatch.service.ts
 // Business logic for Dispatch CRUD, separated from HTTP routing.
 
-import { prisma } from '@/backend/config/prisma'
+import { prisma } from '@/lib/prisma'
 import { createLogger } from '@/backend/utils/logger'
 import { Errors } from '@/backend/utils/errors'
-import { emitSocketEvent } from '@/lib/socket-emitter'
+import { emitSocketEvent } from '@/backend/lib/socket'
 import type {
   DispatchWithRelations,
   DispatchDetail,
@@ -184,10 +184,6 @@ export async function updateDispatch(id: string, data: UpdateDispatchData, userI
   } else if (data.nurseId !== undefined) {
     await emitSocketEvent('dispatch:nurse_assigned', {
       id: updated.id, nurseId: updated.nurseId,
-    })
-  } else {
-    await emitSocketEvent('dispatch:status_changed', {
-      id: updated.id, status: updated.status, nurseId: updated.nurseId,
     })
   }
 
