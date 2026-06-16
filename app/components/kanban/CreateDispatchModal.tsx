@@ -19,7 +19,7 @@ export function CreateDispatchModal({ isOpen, onClose, onCreated }: CreateDispat
 
   const [form, setForm] = useState({
     patientId: '',
-    priority: 'MEDIUM' as const,
+    priority: 'MEDIUM' as 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT',
     scheduledFor: '',
     notes: '',
   })
