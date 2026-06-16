@@ -121,42 +121,38 @@ export function SmartInsights({ data }: SmartInsightsProps) {
       {insights.map((insight, idx) => (
         <div
           key={idx}
-          className={`rounded-lg border p-4 flex gap-4 transition-all ${
-            insight.type === 'warning'
+          className={`rounded-lg border p-4 flex gap-4 transition-all ${insight.type === 'warning'
               ? 'bg-red-50 border-red-200'
               : insight.type === 'tip'
-              ? 'bg-blue-50 border-blue-200'
-              : 'bg-green-50 border-green-200'
-          }`}
+                ? 'bg-blue-50 border-blue-200'
+                : 'bg-green-50 border-green-200'
+            }`}
         >
           <div className="flex-shrink-0 mt-1">{insight.icon}</div>
           <div className="flex-1 min-w-0">
-            <h4 className={`font-semibold text-sm mb-1 ${
-              insight.type === 'warning'
+            <h4 className={`font-semibold text-sm mb-1 ${insight.type === 'warning'
                 ? 'text-red-900'
                 : insight.type === 'tip'
-                ? 'text-blue-900'
-                : 'text-green-900'
-            }`}>
+                  ? 'text-blue-900'
+                  : 'text-green-900'
+              }`}>
               {insight.title}
             </h4>
-            <p className={`text-xs ${
-              insight.type === 'warning'
+            <p className={`text-xs ${insight.type === 'warning'
                 ? 'text-red-800'
                 : insight.type === 'tip'
-                ? 'text-blue-800'
-                : 'text-green-800'
-            }`}>
+                  ? 'text-blue-800'
+                  : 'text-green-800'
+              }`}>
               {insight.description}
             </p>
             {insight.action && (
-              <button className={`mt-2 text-xs font-medium px-2 py-1 rounded transition-colors ${
-                insight.type === 'warning'
+              <button className={`mt-2 text-xs font-medium px-2 py-1 rounded transition-colors ${insight.type === 'warning'
                   ? 'text-red-700 hover:bg-red-100'
                   : insight.type === 'tip'
-                  ? 'text-blue-700 hover:bg-blue-100'
-                  : 'text-green-700 hover:bg-green-100'
-              }`}>
+                    ? 'text-blue-700 hover:bg-blue-100'
+                    : 'text-green-700 hover:bg-green-100'
+                }`}>
                 {insight.action} →
               </button>
             )}

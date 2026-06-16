@@ -50,7 +50,7 @@ export function AdvancedAnalytics({ data, title = 'Dispatch Analytics (30 Days)'
     <div className="space-y-6">
       <div className="rounded-lg border bg-white p-6 shadow-sm">
         <h3 className="mb-4 text-lg font-semibold">{title}</h3>
-        
+
         {/* Key Metrics */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 p-4 border border-blue-200">

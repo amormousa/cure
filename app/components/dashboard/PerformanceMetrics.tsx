@@ -38,16 +38,16 @@ const PRIORITY_COLORS = {
 export function PerformanceMetrics({ statusBreakdown, priorityBreakdown }: PerformanceMetricsProps) {
   const statusData = statusBreakdown
     ? Object.entries(statusBreakdown).map(([status, count]) => ({
-        name: status,
-        count,
-      }))
+      name: status,
+      count,
+    }))
     : []
 
   const priorityData = priorityBreakdown
     ? Object.entries(priorityBreakdown).map(([priority, count]) => ({
-        name: priority,
-        count,
-      }))
+      name: priority,
+      count,
+    }))
     : []
 
   return (

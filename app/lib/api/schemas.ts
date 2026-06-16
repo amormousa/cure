@@ -37,7 +37,7 @@ export const PatientSchema = z.object({
   address: z.string(),
   phone: z.string(),
   condition: z.string(),
-  notes: z.string().optional(),
+  notes: z.string().nullable().optional(),
   createdAt: z.string(),
 })
 
@@ -53,7 +53,7 @@ export const DispatchSchema = z.object({
   scheduledFor: z.string(),
   nurseId: z.string().nullable().optional(),
   nurse: UserSchema.pick({ id: true, name: true, avatar: true }).nullable().optional(),
-  notes: z.string().optional(),
+  notes: z.string().nullable().optional(),
   completedAt: z.string().nullable().optional(),
   createdAt: z.string(),
   updatedAt: z.string(),

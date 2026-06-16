@@ -66,7 +66,7 @@ export default function DashboardPage() {
       })
 
       if (dispatchesRes.ok && dispatchesRes.data) {
-        const sorted = [...dispatchesRes.data.data].sort((a: any, b: any) => 
+        const sorted = [...dispatchesRes.data.data].sort((a: any, b: any) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
         setRecentDispatches(sorted.slice(0, 10))
@@ -184,7 +184,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Advanced Analytics */}
-      <AdvancedAnalytics 
+      <AdvancedAnalytics
         data={analyticsData?.dailySeries}
         title="30-Day Dispatch Analytics"
       />
@@ -204,7 +204,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <NursePerformance 
+        <NursePerformance
           data={analyticsData?.nursePerformance}
           title="Top Performers"
         />
@@ -242,9 +242,9 @@ export default function DashboardPage() {
                     <TableCell className="font-medium">{dispatch.patient?.name}</TableCell>
                     <TableCell>
                       <Badge variant={
-                        dispatch.status === 'COMPLETED' ? 'default' : 
-                        dispatch.status === 'CANCELLED' ? 'destructive' : 
-                        'secondary'
+                        dispatch.status === 'COMPLETED' ? 'default' :
+                          dispatch.status === 'CANCELLED' ? 'destructive' :
+                            'secondary'
                       }>
                         {dispatch.status}
                       </Badge>
@@ -273,7 +273,7 @@ export default function DashboardPage() {
       {/* Footer with stats */}
       <div className="rounded-lg border bg-gradient-to-r from-gray-50 to-gray-100 p-6">
         <p className="text-xs text-gray-600 text-center">
-          Dashboard automatically updates every 5 minutes. 
+          Dashboard automatically updates every 5 minutes.
           Last refresh: {lastUpdated.toLocaleTimeString()}
         </p>
       </div>

@@ -1899,3 +1899,3361 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
 [browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
 [browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
 [browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] Response validation failed for /api/dispatches: {
+  errors: {
+    fieldErrors: {
+      data: [
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m,
+        [32m'Invalid input: expected string, received null'[39m
+      ]
+    },
+    formErrors: []
+  },
+  received: {
+    data: [
+      {
+        completedAt: [32m'2026-06-13T16:29:32.024Z'[39m,
+        createdAt: [32m'2026-06-13T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv39000inktfp3inoodx'[39m,
+        notes: [32m'Urgent wound care dressing replacement.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-13T15:44:32.024Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.037Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-14T17:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-14T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv34000enktfpklkd5uv'[39m,
+        notes: [32m'Intensive physical rehabilitation session.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-14T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.279Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv38000hnktf2awt68xi'[39m,
+        notes: [32m'Hypertension check cancelled by patient request.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.036Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-15T16:44:32.024Z'[39m,
+        createdAt: [32m'2026-06-15T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv33000dnktfh0j7tbc9'[39m,
+        notes: [32m'Wound dressing replacement completed.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse2'[39m,
+          id: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+          name: [32m'فاطمة علي'[39m
+        },
+        nurseId: [32m'cmqgtbv2q0003nktflmolx30f'[39m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-15T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:20:18.596Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv31000cnktfv73zty44'[39m,
+        notes: [32m'Regular blood pressure monitoring visit.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'789 طريق حلوان، القاهرة'[39m,
+          condition: [32m'Hypertension monitoring'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+          name: [32m'ليلى أحمد'[39m,
+          notes: [32m'Patient requires home visits for hypertension monitoring'[39m,
+          phone: [32m'+201009876545'[39m
+        },
+        patientId: [32m'cmqgtbv2v0007nktfo0jzdnd5'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.231Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T04:44:32.024Z'[39m,
+        id: [32m'cmqgtbv3b000jnktfcmzoikmh'[39m,
+        notes: [32m'Urgent assistance required for physical therapy pain spike.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'654 شارع رمسيس، القاهرة'[39m,
+          condition: [32m'Physical therapy'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.024Z'[39m,
+          id: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+          name: [32m'سارة محمود'[39m,
+          notes: [32m'Patient requires home visits for physical therapy'[39m,
+          phone: [32m'+201009876547'[39m
+        },
+        patientId: [32m'cmqgtbv2w0009nktf1isg4xws'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-16T16:44:32.024Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.039Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T05:44:32.024Z'[39m,
+        id: [32m'cmqgtbv30000bnktfbr5vetru'[39m,
+        notes: [32m'Insulin injection and diabetes monitoring.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse1'[39m,
+          id: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+          name: [32m'عائشة أحمد'[39m
+        },
+        nurseId: [32m'cmqgtbv2o0002nktfzftxpfj5'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-16T17:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.578Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T07:44:32.024Z'[39m,
+        id: [32m'cmqgtbv37000gnktfpvlokutk'[39m,
+        notes: [32m'Dietary counseling and glucose check.'[39m,
+        nurse: {
+          avatar: [32m'https://api.dicebear.com/7.x/avataaars/svg?seed=nurse3'[39m,
+          id: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+          name: [32m'ياسمين حسن'[39m
+        },
+        nurseId: [32m'cmqgtbv2r0004nktfzzd8zomx'[39m,
+        patient: {
+          address: [32m'456 ميدان التحرير، الجيزة'[39m,
+          condition: [32m'Diabetes management'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.022Z'[39m,
+          id: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+          name: [32m'نور محمد'[39m,
+          notes: [32m'Patient requires home visits for diabetes management'[39m,
+          phone: [32m'+201009876544'[39m
+        },
+        patientId: [32m'cmqgtbv2u0006nktf8imiv28q'[39m,
+        priority: [32m'MEDIUM'[39m,
+        scheduledFor: [32m'2026-06-16T19:44:32.024Z'[39m,
+        status: [32m'ASSIGNED'[39m,
+        updatedAt: [32m'2026-06-16T15:44:32.035Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-17T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv2y000anktf8enuo9ee'[39m,
+        notes: [32m'Urgent checkup on post-operative vitals.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'URGENT'[39m,
+        scheduledFor: [32m'2026-06-17T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.835Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:53:14.720Z'[39m,
+        id: [32m'cmqgxxdy8000068tftgx22b3j'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:53:14.707Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:53:14.756Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T17:57:21.511Z'[39m,
+        id: [32m'cmqgy2odj0000wstf8ynf4u6b'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T17:57:21.501Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T17:57:21.528Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:10:51.138Z'[39m,
+        id: [32m'cmqgyk13600001gtfjvt0vt94'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:10:51.125Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:10:51.167Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:20:13.534Z'[39m,
+        id: [32m'cmqgyw31a0000vgtf1pb2dqg5'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:20:13.518Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:20:16.583Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:21:17.217Z'[39m,
+        id: [32m'cmqgyxg690000dstf9ygxt49y'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:21:17.207Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T18:21:17.227Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T18:23:04.750Z'[39m,
+        id: [32m'cmqgyzr5a00000ctfzss5n3u0'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T18:23:04.738Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T18:23:04.825Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:53:50.982Z'[39m,
+        id: [32m'cmqh28hhi0000rstftv44jcj4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:53:50.971Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:53:51.226Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T19:57:14.085Z'[39m,
+        id: [32m'cmqh2cu790000c4tf3xct7zyv'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T19:57:14.067Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T19:57:14.154Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T22:45:59.667Z'[39m,
+        id: [32m'cmqh8dv5e0000c8tfbg4gt2p4'[39m,
+        notes: [32m'Integration test dispatch note'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:45:59.646Z'[39m,
+        status: [32m'IN_PROGRESS'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.688Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:56:36.852Z'[39m,
+        createdAt: [32m'2026-06-16T22:56:36.842Z'[39m,
+        id: [32m'cmqh8risq0004iktfit8etux7'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8rism0002iktfecv4wp1n'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:56:36.839Z'[39m,
+          id: [32m'cmqh8risn0003iktf88t7am78'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8risn0003iktf88t7am78'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:56:36.840Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:56:36.852Z'[39m
+      },
+      {
+        completedAt: [32m'2026-06-16T22:57:13.190Z'[39m,
+        createdAt: [32m'2026-06-16T22:57:13.184Z'[39m,
+        id: [32m'cmqh8sau80004ewtf9gfrq3bl'[39m,
+        notes: [1mnull[22m,
+        nurse: {
+          avatar: [1mnull[22m,
+          id: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+          name: [32m'Test Nurse'[39m
+        },
+        nurseId: [32m'cmqh8sau20002ewtf70xqerb6'[39m,
+        patient: {
+          address: [32m'Address'[39m,
+          condition: [32m'Post-operative care'[39m,
+          createdAt: [32m'2026-06-16T22:57:13.181Z'[39m,
+          id: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+          name: [32m'Patient'[39m,
+          notes: [1mnull[22m,
+          phone: [32m'+201234567890'[39m
+        },
+        patientId: [32m'cmqh8sau50003ewtfsfz72590'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-17T22:57:13.182Z'[39m,
+        status: [32m'COMPLETED'[39m,
+        updatedAt: [32m'2026-06-16T22:57:13.190Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-19T03:44:32.024Z'[39m,
+        id: [32m'cmqgtbv35000fnktfm1zbc3kw'[39m,
+        notes: [32m'Routine recovery follow-up visit.'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'123 شارع النيل، القاهرة'[39m,
+          condition: [32m'Post-operative recovery'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.020Z'[39m,
+          id: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+          name: [32m'أحمد محمود'[39m,
+          notes: [32m'Patient requires home visits for post-operative recovery'[39m,
+          phone: [32m'+201009876543'[39m
+        },
+        patientId: [32m'cmqgtbv2s0005nktfneh4ftt6'[39m,
+        priority: [32m'LOW'[39m,
+        scheduledFor: [32m'2026-06-19T15:44:32.024Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T22:45:59.780Z'[39m
+      },
+      {
+        completedAt: [1mnull[22m,
+        createdAt: [32m'2026-06-16T21:47:05.764Z'[39m,
+        id: [32m'cmqh6a4dg000orstfr3gt94y7'[39m,
+        notes: [32m'ضضضضضضضضضضضضضضضضضضضض'[39m,
+        nurse: [1mnull[22m,
+        nurseId: [1mnull[22m,
+        patient: {
+          address: [32m'321 طريق الكورنيش، الإسكندرية'[39m,
+          condition: [32m'Wound care'[39m,
+          createdAt: [32m'2026-06-16T15:44:32.023Z'[39m,
+          id: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+          name: [32m'إبراهيم علي'[39m,
+          notes: [32m'Patient requires home visits for wound care'[39m,
+          phone: [32m'+201009876546'[39m
+        },
+        patientId: [32m'cmqgtbv2v0008nktfqf3w5qsw'[39m,
+        priority: [32m'HIGH'[39m,
+        scheduledFor: [32m'2026-06-19T22:48:00.000Z'[39m,
+        status: [32m'CANCELLED'[39m,
+        updatedAt: [32m'2026-06-16T21:47:28.791Z'[39m
+      }
+    ],
+    pagination: { limit: [33m1000[39m, page: [33m1[39m, pages: [33m1[39m, total: [33m22[39m }
+  }
+} 
+    at Object.error (app/lib/api/client.ts:31:55)
+    at apiCall (app/lib/api/client.ts:155:11)
+    at async fetchDispatches (app/components/kanban/KanbanBoard.tsx:41:22)
+  29 |   },
+  30 |   warn: (message: string, data?: unknown) => console.warn(message, data),
+> 31 |   error: (message: string, data?: unknown) => console.error(message, data),
+     |                                                       ^
+  32 | }
+  33 |
+  34 | // ============= REQUEST/RESPONSE LOGGING ============= (app/lib/api/client.ts:31:55)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
