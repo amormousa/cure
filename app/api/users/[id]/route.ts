@@ -1,78 +1,80 @@
 // app/api/users/[id]/route.ts
+// Thin controller — delegates to user service.
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
 import { UpdateUserSchema } from '@/lib/validations'
-import { getAuthUser } from '@/lib/auth'
+import { authorize } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
+import { ApiError } from '@/backend/utils/errors'
+import * as userService from '@/backend/services/user.service'
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+const log = createLogger('API:users/:id')
+
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser || authUser.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    const { user: authUser, errorResponse } = await authorize()
+    if (errorResponse) return errorResponse
+
+    const { id } = await context.params
+    const user = await userService.getUserById(id, authUser!.userId, authUser!.role)
+    return NextResponse.json({ data: user }, { status: 200 })
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
     }
+    log.error('GET /api/users/:id failed', error)
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
+    )
+  }
+}
 
-    const user = await prisma.user.findUnique({
-      where: { id: params.id },
-    })
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  try {
+    const { user: authUser, errorResponse } = await authorize(['ADMIN'])
+    if (errorResponse) return errorResponse
 
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
-    }
-
+    const { id } = await context.params
     const body = await req.json()
     const validated = UpdateUserSchema.safeParse(body)
 
     if (!validated.success) {
       return NextResponse.json(
-        { error: 'Validation failed', details: validated.error.issues },
-        { status: 422 }
+        { error: { code: 'VALIDATION_FAILED', message: 'Validation failed', details: validated.error.issues } },
+        { status: 422 },
       )
     }
 
-    const updated = await prisma.user.update({
-      where: { id: params.id },
-      data: {
-        name: validated.data.name,
-        role: validated.data.role,
-        isActive: validated.data.isActive,
-        phone: validated.data.phone || user.phone,
-      },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        role: true,
-        isActive: true,
-        isOnline: true,
-        avatar: true,
-        phone: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    })
-
-    // Create audit log
-    await prisma.auditLog.create({
-      data: {
-        userId: authUser.userId,
-        action: 'USER_UPDATED',
-        entityType: 'User',
-        entityId: user.id,
-        details: {
-          changedFields: Object.keys(validated.data),
-        },
-      },
-    })
-
-    return NextResponse.json(
-      { data: updated, message: 'User updated successfully' },
-      { status: 200 }
-    )
+    const updated = await userService.updateUser(id, validated.data, authUser!.userId)
+    return NextResponse.json({ data: updated, message: 'User updated successfully' }, { status: 200 })
   } catch (error) {
-    console.error('[PATCH /api/users/:id]', error)
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('PATCH /api/users/:id failed', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
+    )
+  }
+}
+
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  try {
+    const { user: authUser, errorResponse } = await authorize(['ADMIN'])
+    if (errorResponse) return errorResponse
+
+    const { id } = await context.params
+    const deleted = await userService.softDeleteUser(id, authUser!.userId)
+    return NextResponse.json({ data: deleted, message: 'User soft deleted successfully' }, { status: 200 })
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('DELETE /api/users/:id failed', error)
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
     )
   }
 }

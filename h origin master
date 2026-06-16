@@ -1,0 +1,49 @@
+warning: in the working copy of 'app/(auth)/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/(dashboard)/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/(dashboard)/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/analytics/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/auth/login/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/auth/logout/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/auth/me/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/dispatches/[id]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/dispatches/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/patients/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/users/[id]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/users/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/components/common/DataTable.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/lib/auth.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/lib/socket.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/lib/validations.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'middleware.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/schema.prisma', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/seed.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+ app/(auth)/login/page.tsx           |   20 [32m+[m[31m-[m
+ app/(dashboard)/layout.tsx          |   11 [32m+[m[31m-[m
+ app/(dashboard)/page.tsx            |  159 [32m+[m[31m-[m
+ app/api/analytics/route.ts          |  170 [32m+[m[31m-[m
+ app/api/auth/login/route.ts         |   40 [32m+[m[31m-[m
+ app/api/auth/logout/route.ts        |   11 [32m+[m[31m-[m
+ app/api/auth/me/route.ts            |   26 [32m+[m[31m-[m
+ app/api/dispatches/[id]/route.ts    |  171 [32m+[m[31m-[m
+ app/api/dispatches/route.ts         |  114 [32m+[m[31m-[m
+ app/api/patients/route.ts           |   84 [32m+[m[31m-[m
+ app/api/users/[id]/route.ts         |  112 [32m+[m[31m-[m
+ app/api/users/route.ts              |  129 [32m+[m[31m-[m
+ app/components/common/DataTable.tsx |   10 [32m+[m[31m-[m
+ app/globals.css                     |  132 [32m+[m[31m-[m
+ app/lib/auth.ts                     |   28 [32m+[m[31m-[m
+ app/lib/socket.ts                   |   44 [32m+[m
+ app/lib/validations.ts              |   13 [32m+[m[31m-[m
+ middleware.ts                       |   34 [32m+[m[31m-[m
+ package-lock.json                   | 4282 [32m+++++++++++++++++++++++++++++++++[m[31m--[m
+ package.json                        |   15 [32m+[m[31m-[m
+ prisma.config.ts                    |    1 [32m+[m
+ prisma/schema.prisma                |    1 [32m+[m
+ prisma/seed.ts                      |  272 [32m++[m[31m-[m
+ tsconfig.json                       |    1 [32m+[m
+ 24 files changed, 4956 insertions(+), 924 deletions(-)

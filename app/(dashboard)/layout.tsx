@@ -18,12 +18,14 @@ import {
   Shield,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
+import { SocketStatusBanner } from '@/app/components/common/SocketStatusBanner'
 
 interface AuthUser {
   id: string
   email: string
   name: string
-  role: 'ADMIN' | 'NURSE'
+  role: 'ADMIN' | 'NURSE' | 'DISPATCHER'
   avatar?: string
 }
 
@@ -273,9 +275,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto bg-slate-50 p-6">
-          {children}
+        <main className="flex-1 overflow-auto bg-slate-50 p-4 sm:p-6">
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
         </main>
+        <SocketStatusBanner />
       </div>
     </div>
   )

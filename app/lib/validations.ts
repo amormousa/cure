@@ -25,13 +25,13 @@ export const CreateUserSchema = z.object({
   email: z.string().email('Invalid email address'),
   name: z.string().min(2, 'Name must be at least 2 characters').max(60, 'Name must not exceed 60 characters'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
-  role: z.enum(['ADMIN', 'NURSE']),
+  role: z.enum(['ADMIN', 'NURSE', 'DISPATCHER']),
   phone: z.string().regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number').optional().or(z.literal('')),
 })
 
 export const UpdateUserSchema = z.object({
   name: z.string().min(2).max(60).optional(),
-  role: z.enum(['ADMIN', 'NURSE']).optional(),
+  role: z.enum(['ADMIN', 'NURSE', 'DISPATCHER']).optional(),
   isActive: z.boolean().optional(),
   phone: z.string().regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number').optional().or(z.literal('')),
 })
@@ -44,6 +44,13 @@ export const CreatePatientSchema = z.object({
   notes: z.string().optional(),
 })
 
+export const AISuggestSchema = z.object({
+  dispatchId: z.string().cuid('Invalid dispatch ID').optional(),
+  patientId: z.string().cuid('Invalid patient ID').optional(),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH', 'URGENT']).optional(),
+  scheduledFor: z.string().datetime('Invalid datetime').optional(),
+})
+
 // Type exports for forms and API
 export type LoginInput = z.infer<typeof LoginSchema>
 export type CreateDispatchInput = z.infer<typeof CreateDispatchSchema>
@@ -51,3 +58,5 @@ export type UpdateDispatchInput = z.infer<typeof UpdateDispatchSchema>
 export type CreateUserInput = z.infer<typeof CreateUserSchema>
 export type UpdateUserInput = z.infer<typeof UpdateUserSchema>
 export type CreatePatientInput = z.infer<typeof CreatePatientSchema>
+export type AISuggestInput = z.infer<typeof AISuggestSchema>
+

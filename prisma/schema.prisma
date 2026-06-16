@@ -74,6 +74,7 @@ model AuditLog {
 enum Role {
   ADMIN
   NURSE
+  DISPATCHER
 }
 
 enum DispatchStatus {

@@ -24,6 +24,7 @@
       "@/lib/*": ["app/lib/*"],
       "@/hooks/*": ["app/hooks/*"],
       "@/types": ["app/types/index.ts"],
+      "@/backend/*": ["backend/*"],
       "@/*": ["./*"]
     }
   },

@@ -1,3 +1,4 @@
+// app/(dashboard)/page.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -6,57 +7,68 @@ import { KPICard } from '@/app/components/dashboard/KPICard'
 import { NurseMatrix } from '@/app/components/dashboard/NurseMatrix'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { AlertCircle } from 'lucide-react'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/app/components/ui/table'
+import { Badge } from '@/app/components/ui/badge'
 
 interface KPIData {
-  activeDispatches: number
+  createdToday: number
   completedToday: number
-  availableNurses: number
+  onlineNurses: number
   urgentPending: number
+  dailySeries: any[]
 }
 
 export default function DashboardPage() {
   const router = useRouter()
   const [kpiData, setKpiData] = useState<KPIData | null>(null)
+  const [recentDispatches, setRecentDispatches] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchKPIData = async () => {
+    const fetchDashboardData = async () => {
       try {
-        const res = await fetch('/api/analytics')
-        if (!res.ok) {
-          if (res.status === 401) {
+        const [analyticsRes, dispatchesRes] = await Promise.all([
+          fetch('/api/analytics'),
+          fetch('/api/dispatches')
+        ])
+
+        if (!analyticsRes.ok) {
+          if (analyticsRes.status === 401) {
             router.push('/login')
             return
           }
           throw new Error('Failed to fetch KPI data')
         }
 
-        const result = await res.json()
-        const { data } = result
-
-        // Calculate KPIs from analytics data
-        const statusBreakdown = data.statusBreakdown || {}
-        const activeCount = (statusBreakdown.PENDING || 0) + (statusBreakdown.ASSIGNED || 0) + (statusBreakdown.IN_PROGRESS || 0)
-        const completedCount = data.completedToday || 0
-        const availableCount = data.availableNurses || 0
-        const urgentCount = data.urgentPending || 0
+        const analyticsResult = await analyticsRes.json()
+        const { data } = analyticsResult
 
         setKpiData({
-          activeDispatches: activeCount,
-          completedToday: completedCount,
-          availableNurses: availableCount,
-          urgentPending: urgentCount,
+          createdToday: data.createdToday || 0,
+          completedToday: data.completedToday || 0,
+          onlineNurses: data.onlineNurses || 0,
+          urgentPending: data.urgentPending || 0,
+          dailySeries: data.dailySeries || []
         })
+
+        if (dispatchesRes.ok) {
+          const dispatchesResult = await dispatchesRes.json()
+          // Sort by createdAt desc and take 10
+          const sorted = dispatchesResult.data.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          setRecentDispatches(sorted.slice(0, 10))
+        }
+
       } catch (err) {
-        console.error('Error fetching KPI data:', err)
+        console.error('Error fetching dashboard data:', err)
         setError(err instanceof Error ? err.message : 'Failed to load dashboard')
       } finally {
         setLoading(false)
       }
     }
 
-    fetchKPIData()
+    fetchDashboardData()
   }, [router])
 
   if (loading) {
@@ -79,6 +91,10 @@ export default function DashboardPage() {
     )
   }
 
+  const completionRate = kpiData?.createdToday 
+    ? ((kpiData.completedToday / kpiData.createdToday) * 100).toFixed(0) 
+    : '0'
+
   return (
     <div className="space-y-6 p-6">
       <div>
@@ -89,21 +105,21 @@ export default function DashboardPage() {
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <KPICard
-          title="Active Dispatches"
-          value={kpiData?.activeDispatches || 0}
-          description="Currently in progress or assigned"
+          title="Dispatches Today"
+          value={kpiData?.createdToday || 0}
+          description="Total assignments created today"
+          trend={{ value: 10, isPositive: true }}
+        />
+        <KPICard
+          title="Completion Rate"
+          value={`${completionRate}%`}
+          description={`${kpiData?.completedToday} of ${kpiData?.createdToday} completed`}
           trend={{ value: 5, isPositive: true }}
         />
         <KPICard
-          title="Completed Today"
-          value={kpiData?.completedToday || 0}
-          description="Successfully finished"
-          trend={{ value: 12, isPositive: true }}
-        />
-        <KPICard
-          title="Available Nurses"
-          value={kpiData?.availableNurses || 0}
-          description="Online and ready"
+          title="Online Nurses"
+          value={kpiData?.onlineNurses || 0}
+          description="Active staff members"
           trend={{ value: 2, isPositive: true }}
         />
         <KPICard
@@ -115,10 +131,81 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Nurse Utilization Matrix */}
-      <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">Nurse Utilization</h2>
-        <NurseMatrix />
+      {/* Charts & Nurse Matrix */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="rounded-lg border bg-white p-6 shadow-sm flex flex-col min-h-[350px]">
+          <h2 className="mb-4 text-xl font-semibold">30-Day Dispatch Trend</h2>
+          <div className="flex-1 w-full min-h-[250px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={kpiData?.dailySeries} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <Line type="monotone" dataKey="created" stroke="#4f46e5" strokeWidth={2} name="Created" dot={false} />
+                <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="date" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => new Date(val).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} />
+                <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+                <Tooltip 
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                  labelFormatter={(val) => new Date(val).toLocaleDateString()}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-6 shadow-sm overflow-hidden flex flex-col min-h-[350px]">
+          <h2 className="mb-4 text-xl font-semibold">Live Nurse Status</h2>
+          <div className="flex-1 overflow-y-auto">
+            <NurseMatrix />
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Dispatches */}
+      <div className="rounded-lg border bg-white shadow-sm">
+        <div className="border-b px-6 py-4">
+          <h2 className="text-xl font-semibold">Recent Dispatches</h2>
+        </div>
+        <div className="overflow-x-auto p-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Patient</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Priority</TableHead>
+                <TableHead>Assigned Nurse</TableHead>
+                <TableHead>Created At</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {recentDispatches.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center text-gray-500 py-8">
+                    No recent dispatches.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                recentDispatches.map((dispatch) => (
+                  <TableRow key={dispatch.id}>
+                    <TableCell className="font-medium">{dispatch.patient?.name}</TableCell>
+                    <TableCell>
+                      <Badge variant={dispatch.status === 'COMPLETED' ? 'default' : dispatch.status === 'CANCELLED' ? 'destructive' : 'secondary'}>
+                        {dispatch.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant={dispatch.priority === 'URGENT' ? 'destructive' : 'outline'}>
+                        {dispatch.priority}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{dispatch.nurse?.name || <span className="text-gray-400">Unassigned</span>}</TableCell>
+                    <TableCell className="text-sm text-gray-500">
+                      {new Date(dispatch.createdAt).toLocaleString()}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   )

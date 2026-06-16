@@ -2,37 +2,6 @@ import { Role, Priority, DispatchStatus } from '@prisma/client'
 import { prisma } from '../app/lib/prisma'
 import bcrypt from 'bcryptjs'
 
-const egyptianNames = [
-  'أحمد محمود',
-  'فاطمة علي',
-  'محمد حسن',
-  'نور محمد',
-  'ليلى أحمد',
-  'سارة محمود',
-  'إبراهيم علي',
-  'هناء حسن',
-]
-
-const conditions = [
-  'Post-operative recovery',
-  'Diabetes management',
-  'Hypertension monitoring',
-  'Wound care',
-  'Physical therapy',
-  'Medication administration',
-  'Vital signs monitoring',
-  'Pain management',
-]
-
-const addresses = [
-  '123 Nile Street, Cairo',
-  '456 Tahrir Square, Giza',
-  '789 Helwan Road, Cairo',
-  '321 Abbas Mahmoud, Alexandria',
-  '654 Ramses Street, Cairo',
-  '987 corniche, Alexandria',
-]
-
 async function main() {
   console.log('Starting seed...')
 
@@ -44,13 +13,18 @@ async function main() {
 
   console.log('Cleared existing data')
 
-  // Create admin users
-  const admin1 = await prisma.user.create({
+  // Hash passwords
+  const adminPassword = await bcrypt.hash('Admin@123', 10)
+  const dispatcherPassword = await bcrypt.hash('Disp@123', 10)
+  const nursePassword = await bcrypt.hash('Nurse@123', 10)
+
+  // 1. Create Admin
+  const admin = await prisma.user.create({
     data: {
       email: 'admin@cure.com',
-      name: 'Admin User',
-      password: await bcrypt.hash('password123', 10),
-      role: 'ADMIN',
+      name: 'System Administrator',
+      password: adminPassword,
+      role: Role.ADMIN,
       phone: '+201001234567',
       isActive: true,
       isOnline: true,
@@ -58,98 +32,220 @@ async function main() {
     },
   })
 
-  const admin2 = await prisma.user.create({
+  // 2. Create Dispatcher
+  const dispatcher = await prisma.user.create({
     data: {
-      email: 'manager@cure.com',
-      name: 'Operations Manager',
-      password: await bcrypt.hash('password123', 10),
-      role: 'ADMIN',
+      email: 'dispatcher@cure.com',
+      name: 'Operations Dispatcher',
+      password: dispatcherPassword,
+      role: Role.DISPATCHER,
       phone: '+201001234568',
       isActive: true,
       isOnline: true,
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=manager',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=dispatcher',
     },
   })
 
-  console.log('Created admin users')
-
-  // Create nurses
+  // 3. Create 3 Nurses
+  const nurseNames = ['عائشة أحمد', 'فاطمة علي', 'ياسمين حسن']
   const nurses = []
-  for (let i = 0; i < 5; i++) {
+
+  for (let i = 0; i < 3; i++) {
     const nurse = await prisma.user.create({
       data: {
         email: `nurse${i + 1}@cure.com`,
-        name: egyptianNames[i],
-        password: await bcrypt.hash('password123', 10),
-        role: 'NURSE',
-        phone: `+2010012345${67 + i}`,
+        name: nurseNames[i],
+        password: nursePassword,
+        role: Role.NURSE,
+        phone: `+20100123457${i}`,
         isActive: true,
-        isOnline: i % 2 === 0, // Alternate online/offline
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=nurse${i}`,
+        isOnline: i !== 1, // Nurse 1 and 3 online, Nurse 2 offline
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=nurse${i + 1}`,
       },
     })
     nurses.push(nurse)
   }
 
-  console.log(`Created ${nurses.length} nurses`)
+  console.log('Created Users: 1 Admin, 1 Dispatcher, 3 Nurses')
 
-  // Create patients
+  // 4. Create 5 Patients
+  const patientsData = [
+    { name: 'أحمد محمود', address: '123 شارع النيل، القاهرة', phone: '+201009876543', condition: 'Post-operative recovery' },
+    { name: 'نور محمد', address: '456 ميدان التحرير، الجيزة', phone: '+201009876544', condition: 'Diabetes management' },
+    { name: 'ليلى أحمد', address: '789 طريق حلوان، القاهرة', phone: '+201009876545', condition: 'Hypertension monitoring' },
+    { name: 'إبراهيم علي', address: '321 طريق الكورنيش، الإسكندرية', phone: '+201009876546', condition: 'Wound care' },
+    { name: 'سارة محمود', address: '654 شارع رمسيس، القاهرة', phone: '+201009876547', condition: 'Physical therapy' },
+  ]
+
   const patients = []
-  for (let i = 0; i < 10; i++) {
+  for (const p of patientsData) {
     const patient = await prisma.patient.create({
       data: {
-        name: egyptianNames[i % egyptianNames.length],
-        phone: `+2010098765${43 + i}`,
-        address: addresses[i % addresses.length],
-        condition: conditions[i % conditions.length],
-        notes: `Patient requires ${conditions[i % conditions.length].toLowerCase()}`,
+        name: p.name,
+        address: p.address,
+        phone: p.phone,
+        condition: p.condition,
+        notes: `Patient requires home visits for ${p.condition.toLowerCase()}`,
       },
     })
     patients.push(patient)
   }
 
-  console.log(`Created ${patients.length} patients`)
+  console.log('Created 5 Patients')
 
-  // Create dispatches
+  // 5. Create 10 Dispatches
   const now = new Date()
-  const statuses: DispatchStatus[] = ['PENDING', 'ASSIGNED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED']
-  const priorities: Priority[] = ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
+  
+  const dispatchesData = [
+    {
+      patientIdx: 0,
+      status: DispatchStatus.PENDING,
+      priority: Priority.URGENT,
+      scheduledFor: new Date(now.getTime() + 24 * 60 * 60 * 1000), // tomorrow
+      nurseIdx: null,
+      notes: 'Urgent checkup on post-operative vitals.',
+    },
+    {
+      patientIdx: 1,
+      status: DispatchStatus.ASSIGNED,
+      priority: Priority.HIGH,
+      scheduledFor: new Date(now.getTime() + 2 * 60 * 60 * 1000), // in 2 hours
+      nurseIdx: 0, // Nurse 1
+      notes: 'Insulin injection and diabetes monitoring.',
+    },
+    {
+      patientIdx: 2,
+      status: DispatchStatus.IN_PROGRESS,
+      priority: Priority.MEDIUM,
+      scheduledFor: now,
+      nurseIdx: 2, // Nurse 3
+      notes: 'Regular blood pressure monitoring visit.',
+    },
+    {
+      patientIdx: 3,
+      status: DispatchStatus.COMPLETED,
+      priority: Priority.LOW,
+      scheduledFor: new Date(now.getTime() - 24 * 60 * 60 * 1000), // yesterday
+      completedAt: new Date(now.getTime() - 23 * 60 * 60 * 1000),
+      nurseIdx: 1, // Nurse 2
+      notes: 'Wound dressing replacement completed.',
+    },
+    {
+      patientIdx: 4,
+      status: DispatchStatus.COMPLETED,
+      priority: Priority.HIGH,
+      scheduledFor: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+      completedAt: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000),
+      nurseIdx: 0, // Nurse 1
+      notes: 'Intensive physical rehabilitation session.',
+    },
+    {
+      patientIdx: 0,
+      status: DispatchStatus.PENDING,
+      priority: Priority.LOW,
+      scheduledFor: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000), // in 3 days
+      nurseIdx: null,
+      notes: 'Routine recovery follow-up visit.',
+    },
+    {
+      patientIdx: 1,
+      status: DispatchStatus.ASSIGNED,
+      priority: Priority.MEDIUM,
+      scheduledFor: new Date(now.getTime() + 4 * 60 * 60 * 1000), // in 4 hours
+      nurseIdx: 2, // Nurse 3
+      notes: 'Dietary counseling and glucose check.',
+    },
+    {
+      patientIdx: 2,
+      status: DispatchStatus.CANCELLED,
+      priority: Priority.HIGH,
+      scheduledFor: new Date(now.getTime() - 24 * 60 * 60 * 1000),
+      nurseIdx: 1, // Nurse 2
+      notes: 'Hypertension check cancelled by patient request.',
+    },
+    {
+      patientIdx: 3,
+      status: DispatchStatus.COMPLETED,
+      priority: Priority.URGENT,
+      scheduledFor: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000),
+      completedAt: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000 + 45 * 60 * 1000),
+      nurseIdx: 0, // Nurse 1
+      notes: 'Urgent wound care dressing replacement.',
+    },
+    {
+      patientIdx: 4,
+      status: DispatchStatus.IN_PROGRESS,
+      priority: Priority.URGENT,
+      scheduledFor: new Date(now.getTime() + 60 * 60 * 1000), // in 1 hour
+      nurseIdx: 2, // Nurse 3
+      notes: 'Urgent assistance required for physical therapy pain spike.',
+    },
+  ]
 
   const dispatches = []
-  for (let i = 0; i < 30; i++) {
-    const status = statuses[i % statuses.length]
+  for (const d of dispatchesData) {
     const dispatch = await prisma.dispatch.create({
       data: {
-        patientId: patients[i % patients.length].id,
-        status: status,
-        priority: priorities[Math.floor(Math.random() * priorities.length)],
-        scheduledFor: new Date(now.getTime() + Math.random() * 7 * 24 * 60 * 60 * 1000), // Random time within 7 days
-        nurseId: status !== 'PENDING' ? nurses[Math.floor(Math.random() * nurses.length)].id : null,
-        notes: `Dispatch for ${conditions[i % conditions.length]}`,
-        completedAt: status === 'COMPLETED' ? new Date(now.getTime() - Math.random() * 7 * 24 * 60 * 60 * 1000) : null,
-        createdAt: new Date(now.getTime() - Math.random() * 7 * 24 * 60 * 60 * 1000),
+        patientId: patients[d.patientIdx].id,
+        status: d.status,
+        priority: d.priority,
+        scheduledFor: d.scheduledFor,
+        nurseId: d.nurseIdx !== null ? nurses[d.nurseIdx].id : null,
+        notes: d.notes,
+        completedAt: d.completedAt || null,
+        createdAt: new Date(d.scheduledFor.getTime() - 12 * 60 * 60 * 1000), // Created 12h before scheduled
       },
     })
     dispatches.push(dispatch)
   }
 
-  console.log(`Created ${dispatches.length} dispatches`)
+  console.log('Created 10 Dispatches')
 
-  // Create audit logs
-  for (let i = 0; i < 20; i++) {
-    await prisma.auditLog.create({
-      data: {
-        userId: admin1.id,
-        action: ['DISPATCH_CREATED', 'DISPATCH_STATUS_CHANGED', 'DISPATCH_ASSIGNED'][Math.floor(Math.random() * 3)],
-        entityType: 'Dispatch',
-        entityId: dispatches[Math.floor(Math.random() * dispatches.length)].id,
-        details: { action: 'system', timestamp: new Date() },
-      },
-    })
-  }
+  // 6. Create Audit Logs
+  await prisma.auditLog.create({
+    data: {
+      userId: admin.id,
+      action: 'USER_CREATED',
+      entityType: 'User',
+      entityId: dispatcher.id,
+      details: { role: 'DISPATCHER', email: dispatcher.email },
+    },
+  })
 
-  console.log('Created audit logs')
+  await prisma.auditLog.create({
+    data: {
+      userId: dispatcher.id,
+      action: 'DISPATCH_CREATED',
+      entityType: 'Dispatch',
+      entityId: dispatches[0].id,
+      dispatchId: dispatches[0].id,
+      details: { patientId: dispatches[0].patientId, priority: 'URGENT' },
+    },
+  })
 
+  await prisma.auditLog.create({
+    data: {
+      userId: dispatcher.id,
+      action: 'DISPATCH_ASSIGNED',
+      entityType: 'Dispatch',
+      entityId: dispatches[1].id,
+      dispatchId: dispatches[1].id,
+      details: { nurseId: nurses[0].id },
+    },
+  })
+
+  await prisma.auditLog.create({
+    data: {
+      userId: nurses[1].id,
+      action: 'DISPATCH_STATUS_CHANGED',
+      entityType: 'Dispatch',
+      entityId: dispatches[3].id,
+      dispatchId: dispatches[3].id,
+      details: { before: 'IN_PROGRESS', after: 'COMPLETED' },
+    },
+  })
+
+  console.log('Created Audit Logs')
   console.log('Seed completed successfully!')
 }
 

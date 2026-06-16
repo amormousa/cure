@@ -2,20 +2,28 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from './app/lib/auth'
 
-const publicRoutes = ['/login', '/']
-const adminOnlyRoutes = ['/admin', '/admin/users']
-const protectedRoutes = ['/dashboard']
+const publicRoutes = ['/login', '/api/auth']
+
+const roleAccessMap: Record<string, string[]> = {
+  '/admin': ['ADMIN'],
+  '/analytics': ['ADMIN'],
+  '/operations': ['ADMIN', 'DISPATCHER'],
+}
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Allow public routes
-  if (publicRoutes.some((route) => pathname.startsWith(route))) {
+  if (pathname === '/' || publicRoutes.some((route) => pathname.startsWith(route))) {
     // Redirect authenticated users away from login
-    if (pathname === '/login') {
+    if (pathname.startsWith('/login')) {
       const token = request.cookies.get('auth-token')?.value
-      if (token && verifyToken(token)) {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
+      if (token) {
+        const decoded = verifyToken(token)
+        if (decoded) {
+          const fallback = decoded.role === 'DISPATCHER' ? '/operations' : (decoded.role === 'ADMIN' ? '/admin' : '/dashboard')
+          return NextResponse.redirect(new URL(fallback, request.url))
+        }
       }
     }
     return NextResponse.next()
@@ -32,10 +40,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  // Check authorization for admin routes
-  if (adminOnlyRoutes.some((route) => pathname.startsWith(route))) {
-    if (decoded.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
+  // Check authorization based on roleAccessMap
+  for (const [route, allowedRoles] of Object.entries(roleAccessMap)) {
+    if (pathname.startsWith(route)) {
+      if (!allowedRoles.includes(decoded.role)) {
+        const fallback = decoded.role === 'DISPATCHER' ? '/operations' : '/dashboard'
+        return NextResponse.redirect(new URL(fallback, request.url))
+      }
+      break;
     }
   }
 

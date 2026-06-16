@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [email, setEmail] = useState('admin@cure.com')
-  const [password, setPassword] = useState('password123')
+  const [password, setPassword] = useState('Admin@123')
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -27,13 +27,20 @@ export default function LoginPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        setError(data.error || 'Login failed')
+        setError(data.error?.message || 'Login failed')
         setLoading(false)
         return
       }
 
-      // Redirect to dashboard
-      router.replace('/dashboard')
+      // Redirect based on role
+      const role = data.data?.user?.role;
+      if (role === 'ADMIN') {
+        router.replace('/admin')
+      } else if (role === 'DISPATCHER') {
+        router.replace('/operations')
+      } else {
+        router.replace('/dashboard')
+      }
     } catch (err) {
       setError('An error occurred. Please try again.')
       setLoading(false)
@@ -93,8 +100,9 @@ export default function LoginPage() {
 
           <div className="mt-6 space-y-2 rounded-md bg-blue-50 p-4 text-sm text-blue-700">
             <p className="font-semibold">Demo Credentials:</p>
-            <p>Admin: admin@cure.com</p>
-            <p>Password: password123</p>
+            <p>Admin: admin@cure.com / Admin@123</p>
+            <p>Dispatcher: dispatcher@cure.com / Disp@123</p>
+            <p>Nurse: nurse1@cure.com / Nurse@123</p>
           </div>
         </div>
       </div>

@@ -146,12 +146,10 @@ export function DataTable<T extends Record<string, any>>({
                         {col.header}
                         {col.sortable && col.accessorKey && (
                           <span className="text-gray-400">
-                            {isSorted ? (
-                              sortConfig.direction === 'asc' ? (
-                                <ChevronUp className="h-4 w-4 text-indigo-600" />
-                              ) : (
-                                <ChevronDown className="h-4 w-4 text-indigo-600" />
-                              )
+                            {isSorted && sortConfig?.direction === 'asc' ? (
+                              <ChevronUp className="h-4 w-4 text-indigo-600" />
+                            ) : isSorted ? (
+                              <ChevronDown className="h-4 w-4 text-indigo-600" />
                             ) : (
                               <ChevronDown className="h-4 w-4 opacity-50" />
                             )}
