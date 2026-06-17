@@ -5,11 +5,7 @@ import { prisma } from '@/lib/prisma'
 import { createLogger } from '@/backend/utils/logger'
 import { Errors } from '@/backend/utils/errors'
 import { emitSocketEvent } from '@/backend/lib/socket'
-import type {
-  DispatchWithRelations,
-  DispatchDetail,
-  PaginationMeta,
-} from '@/backend/types/models'
+import type { PaginationMeta } from '@/backend/types/models'
 
 const log = createLogger('DispatchService')
 
@@ -139,26 +135,57 @@ export interface UpdateDispatchData {
   completedAt?: string | null
 }
 
-export async function updateDispatch(id: string, data: UpdateDispatchData, userId: string) {
+export async function updateDispatch(
+  id: string,
+  data: UpdateDispatchData,
+  userId: string,
+  authRole: 'ADMIN' | 'NURSE' | 'DISPATCHER',
+) {
   const dispatch = await prisma.dispatch.findUnique({ where: { id } })
   if (!dispatch) throw Errors.notFound('Dispatch')
 
-  // Verify nurse if provided
-  if (data.nurseId) {
-    const nurse = await prisma.user.findUnique({ where: { id: data.nurseId } })
-    if (!nurse || nurse.role !== 'NURSE' || !nurse.isActive) throw Errors.notFound('Active nurse')
+  if (authRole === 'NURSE') {
+    // Nurse can only update: status/notes/completedAt
+    if (data.nurseId !== undefined) {
+      throw Errors.forbidden('Cannot change nurse assignment')
+    }
+
+    // Nurse can only update their own dispatch
+    if (dispatch.nurseId !== userId) {
+      throw Errors.forbidden('Not your assigned dispatch')
+    }
+  } else {
+    // Verify nurse if provided (Admin/Dispatcher flow)
+    if (data.nurseId !== undefined && data.nurseId !== null) {
+      const nurse = await prisma.user.findUnique({ where: { id: data.nurseId } })
+      if (!nurse || nurse.role !== 'NURSE' || !nurse.isActive) throw Errors.notFound('Active nurse')
+    }
   }
 
-  const action = data.status ? 'DISPATCH_STATUS_CHANGED' : 'DISPATCH_UPDATED'
+  const action =
+    data.status !== undefined || data.completedAt !== undefined
+      ? 'DISPATCH_STATUS_CHANGED'
+      : 'DISPATCH_ASSIGNED'
+
+  const completedAtValue =
+    data.completedAt === null
+      ? undefined
+      : data.completedAt
+        ? new Date(data.completedAt)
+        : undefined
+
   const updated = await prisma.$transaction(async (tx) => {
     const result = await tx.dispatch.update({
       where: { id },
       data: {
-        status: data.status,
-        nurseId: data.nurseId,
-        notes: data.notes,
-        completedAt: data.completedAt === null ? null : data.completedAt ? new Date(data.completedAt) : undefined,
+        ...(data.status !== undefined ? { status: data.status } : {}),
+        ...(data.notes !== undefined ? { notes: data.notes } : {}),
+        ...(completedAtValue !== undefined ? { completedAt: completedAtValue } : {}),
+        ...(data.notes === undefined ? {} : {}), // keep object stable for strict TS
         updatedAt: new Date(),
+        ...(authRole !== 'NURSE' && data.nurseId !== undefined && data.nurseId !== null
+          ? { nurseId: data.nurseId }
+          : {}),
       },
       include: DISPATCH_INCLUDE,
     })
@@ -175,9 +202,9 @@ export async function updateDispatch(id: string, data: UpdateDispatchData, userI
         details: {
           before: dispatch,
           after: result,
-          changedFields: Object.keys(data).filter(
-            (key) => (data as Record<string, unknown>)[key] !== (dispatch as Record<string, unknown>)[key],
-          ),
+          changedFields: Object.keys(data).filter((key) => {
+            return (data as Record<string, unknown>)[key] !== (dispatch as Record<string, unknown>)[key]
+          }),
         },
       },
     })
@@ -185,14 +212,18 @@ export async function updateDispatch(id: string, data: UpdateDispatchData, userI
     return result
   })
 
-  // Socket events
-  if (data.status) {
+  const isStatusLikeUpdate = data.status !== undefined || data.completedAt !== undefined
+
+  if (isStatusLikeUpdate) {
     await emitSocketEvent('dispatch:status_changed', {
-      id: updated.id, status: updated.status, nurseId: updated.nurseId,
+      id: updated.id,
+      status: updated.status,
+      nurseId: updated.nurseId,
     })
   } else if (data.nurseId !== undefined) {
     await emitSocketEvent('dispatch:nurse_assigned', {
-      id: updated.id, nurseId: updated.nurseId,
+      id: updated.id,
+      nurseId: updated.nurseId,
     })
   }
 
@@ -229,7 +260,9 @@ export async function cancelDispatch(id: string, userId: string) {
   })
 
   await emitSocketEvent('dispatch:status_changed', {
-    id: cancelled.id, status: 'CANCELLED', nurseId: cancelled.nurseId,
+    id: cancelled.id,
+    status: 'CANCELLED',
+    nurseId: cancelled.nurseId,
   })
 
   log.info('Dispatch cancelled', { id })

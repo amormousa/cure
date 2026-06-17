@@ -31,7 +31,7 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
 
 export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const { user: authUser, errorResponse } = await authorize()
+    const { user: authUser, errorResponse } = await authorize(['ADMIN', 'DISPATCHER', 'NURSE'])
     if (errorResponse) return errorResponse
 
     const { id } = await context.params
@@ -45,7 +45,12 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
       )
     }
 
-    const updated = await dispatchService.updateDispatch(id, validated.data, authUser!.userId)
+    const updated = await dispatchService.updateDispatch(
+      id,
+      validated.data,
+      authUser!.userId,
+      authUser!.role,
+    )
     return NextResponse.json({ data: updated, message: 'Dispatch updated' }, { status: 200 })
   } catch (error) {
     if (error instanceof ApiError) {

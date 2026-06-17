@@ -6,6 +6,7 @@ import { signToken } from '@/lib/auth'
 import { createLogger } from '@/backend/utils/logger'
 import bcrypt from 'bcryptjs'
 
+
 const log = createLogger('API:auth/login')
 
 const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
@@ -75,6 +76,7 @@ export async function POST(req: NextRequest) {
       role: user.role,
     })
 
+
     // Set cookie
     const response = NextResponse.json(
       {
@@ -104,6 +106,17 @@ export async function POST(req: NextRequest) {
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
+    })
+
+    await prisma.auditLog.create({
+      data: {
+        userId: user.id,
+        action: 'LOGIN',
+        entityType: 'Auth',
+        entityId: user.id,
+        newValue: { userId: user.id, role: user.role },
+        details: { ip },
+      },
     })
 
     return response
