@@ -69,11 +69,6 @@ export function PerformanceMetrics({ statusBreakdown, priorityBreakdown }: Perfo
                 dataKey="count"
                 radius={[8, 8, 0, 0]}
                 fill="#4f46e5"
-                shape={
-                  <rect
-                    fill={(props: any) => STATUS_COLORS[props.payload?.name as keyof typeof STATUS_COLORS] || '#4f46e5'}
-                  />
-                }
               >
                 {statusData.map((entry, index) => (
                   <Cell key={index} fill={STATUS_COLORS[entry.name as keyof typeof STATUS_COLORS]} />
@@ -98,7 +93,7 @@ export function PerformanceMetrics({ statusBreakdown, priorityBreakdown }: Perfo
                 outerRadius={100}
                 paddingAngle={2}
                 dataKey="count"
-                label={({ name, count }) => `${name}: ${count}`}
+                label={({ name, value }) => `${name}: ${value}`}
                 labelLine={false}
               >
                 {priorityData.map((entry, index) => (

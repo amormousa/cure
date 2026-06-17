@@ -56,6 +56,8 @@ export default function UsersPage() {
         setUsers(
           result.data.data.map((u) => ({
             ...u,
+            phone: u.phone ?? null,
+            avatar: u.avatar ?? undefined,
             isActive: u.isActive ?? true,
             isOnline: u.isOnline ?? false,
           }))

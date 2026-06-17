@@ -174,6 +174,8 @@ export const userApi = {
     password: string
     role: string
     phone?: string
+    departmentId?: string | null
+    specializationIds?: string[]
   }) =>
     apiCall('/api/users', schemas.UserSingleResponseSchema, {
       method: 'POST',
@@ -188,6 +190,8 @@ export const userApi = {
       role?: string
       isActive?: boolean
       phone?: string
+      departmentId?: string | null
+      specializationIds?: string[]
     }
   ) =>
     apiCall(`/api/users/${id}`, schemas.UserSingleResponseSchema, {
@@ -198,6 +202,72 @@ export const userApi = {
 
   delete: async (id: string) =>
     apiCall(`/api/users/${id}`, schemas.UserSingleResponseSchema, {
+      method: 'DELETE',
+      cache: false,
+    }),
+}
+
+// ============= ADMIN ENTITIES =============
+
+export const departmentApi = {
+  list: async (params?: { includeInactive?: boolean }) => {
+    const query = new URLSearchParams()
+    if (params?.includeInactive !== undefined) query.append('includeInactive', String(params.includeInactive))
+    const endpoint = query.toString() ? `/api/departments?${query.toString()}` : '/api/departments'
+    return apiCall(endpoint, schemas.DepartmentListResponseSchema)
+  },
+
+  get: async (id: string) =>
+    apiCall(`/api/departments/${id}`, schemas.DepartmentSingleResponseSchema),
+
+  create: async (data: { name: string; description?: string | null; isActive?: boolean }) =>
+    apiCall('/api/departments', schemas.DepartmentSingleResponseSchema, {
+      method: 'POST',
+      body: data,
+      cache: false,
+    }),
+
+  update: async (id: string, data: { name?: string; description?: string | null; isActive?: boolean }) =>
+    apiCall(`/api/departments/${id}`, schemas.DepartmentSingleResponseSchema, {
+      method: 'PATCH',
+      body: data,
+      cache: false,
+    }),
+
+  delete: async (id: string) =>
+    apiCall(`/api/departments/${id}`, schemas.DepartmentSingleResponseSchema, {
+      method: 'DELETE',
+      cache: false,
+    }),
+}
+
+export const specializationApi = {
+  list: async (params?: { includeInactive?: boolean }) => {
+    const query = new URLSearchParams()
+    if (params?.includeInactive !== undefined) query.append('includeInactive', String(params.includeInactive))
+    const endpoint = query.toString() ? `/api/specializations?${query.toString()}` : '/api/specializations'
+    return apiCall(endpoint, schemas.SpecializationListResponseSchema)
+  },
+
+  get: async (id: string) =>
+    apiCall(`/api/specializations/${id}`, schemas.SpecializationSingleResponseSchema),
+
+  create: async (data: { name: string; description?: string | null; isActive?: boolean }) =>
+    apiCall('/api/specializations', schemas.SpecializationSingleResponseSchema, {
+      method: 'POST',
+      body: data,
+      cache: false,
+    }),
+
+  update: async (id: string, data: { name?: string; description?: string | null; isActive?: boolean }) =>
+    apiCall(`/api/specializations/${id}`, schemas.SpecializationSingleResponseSchema, {
+      method: 'PATCH',
+      body: data,
+      cache: false,
+    }),
+
+  delete: async (id: string) =>
+    apiCall(`/api/specializations/${id}`, schemas.SpecializationSingleResponseSchema, {
       method: 'DELETE',
       cache: false,
     }),
@@ -225,4 +295,6 @@ export type {
   DispatchStatus,
   NurseSuggestion,
   Analytics,
+  Department,
+  Specialization,
 } from './schemas'

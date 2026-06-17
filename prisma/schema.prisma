@@ -6,22 +6,10 @@ datasource db {
   provider = "postgresql"
 }
 
-// ════════════════════════════════════════════════════════════════
-// ENUMS
-// ════════════════════════════════════════════════════════════════
-
 enum Role {
   ADMIN
-  DISPATCHER
   NURSE
-  SUPERVISOR
-}
-
-enum UserStatus {
-  ACTIVE
-  INACTIVE
-  SUSPENDED
-  ON_LEAVE
+  DISPATCHER
 }
 
 enum DispatchStatus {
@@ -30,7 +18,6 @@ enum DispatchStatus {
   IN_PROGRESS
   COMPLETED
   CANCELLED
-  RESCHEDULED
 }
 
 enum Priority {
@@ -40,376 +27,127 @@ enum Priority {
   URGENT
 }
 
-enum ShiftType {
-  MORNING
-  AFTERNOON
-  NIGHT
-  ON_CALL
-}
-
-enum ServiceType {
-  CHECKUP
-  VACCINATION
-  MEDICATION
-  WOUND_CARE
-  PHYSICAL_THERAPY
-  EMERGENCY
-  OTHER
-}
-
-enum PatientStatus {
-  ACTIVE
-  INACTIVE
-  DISCHARGED
-  TRANSFERRED
-}
-
-enum FeedbackRating {
-  POOR
-  FAIR
-  GOOD
-  EXCELLENT
-}
-
-// ════════════════════════════════════════════════════════════════
-// DEPARTMENTS & SPECIALIZATIONS
-// ════════════════════════════════════════════════════════════════
-
 model Department {
   id          String   @id @default(cuid())
   name        String   @unique
   description String?
-  head_id     String?
-  location    String?
-  phone       String?
-  active      Boolean  @default(true)
+  isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  head   User?  @relation("DepartmentHead", fields: [head_id], references: [id], onDelete: SetNull)
-  users  User[]
-  shifts Shift[]
+  users User[]
 
-  @@index([head_id])
-  @@index([active])
+  @@index([isActive])
+  @@index([name])
 }
 
 model Specialization {
   id          String   @id @default(cuid())
   name        String   @unique
   description String?
+  isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  nurses UserSpecialization[]
+  users UserSpecialization[]
 
+  @@index([isActive])
   @@index([name])
-}
-
-// ════════════════════════════════════════════════════════════════
-// LOCATION & ZONES
-// ════════════════════════════════════════════════════════════════
-
-model Location {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  address   String
-  latitude  Float?
-  longitude Float?
-  zone      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  patients   Patient[]
-  dispatches Dispatch[]
-
-  @@index([zone])
-  @@index([name])
-}
-
-// ════════════════════════════════════════════════════════════════
-// USERS & AUTHENTICATION
-// ════════════════════════════════════════════════════════════════
-
-model User {
-  id              String    @id @default(cuid())
-  email           String    @unique
-  password        String
-  name            String
-  phone           String?   @unique
-  role            Role      @default(NURSE)
-  status          UserStatus @default(ACTIVE)
-  avatar          String?
-  designation     String?
-  department_id   String?
-  supervisor_id   String?
-  address         String?
-  emergency_contact String?
-  isOnline        Boolean   @default(false)
-  lastLogin       DateTime?
-  lastActive      DateTime  @default(now())
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  // Relations
-  department         Department?      @relation(fields: [department_id], references: [id], onDelete: SetNull)
-  supervisor         User?            @relation("Supervision", fields: [supervisor_id], references: [id], onDelete: SetNull)
-  subordinates       User[]           @relation("Supervision")
-  departmentHead     Department[]     @relation("DepartmentHead")
-  specializations    UserSpecialization[]
-  dispatches         Dispatch[]       @relation("AssignedNurse")
-  supervisedDispatches Dispatch[]    @relation("Supervisor")
-  auditLogs          AuditLog[]
-  activityLogs       ActivityLog[]
-  shifts             UserShift[]
-  notifications      Notification[]
-  feedbacks          Feedback[]       @relation("ReceivedFeedback")
-  givenFeedbacks     Feedback[]       @relation("GivenFeedback")
-
-  @@index([email])
-  @@index([role])
-  @@index([status])
-  @@index([department_id])
-  @@index([supervisor_id])
-  @@index([lastActive])
 }
 
 model UserSpecialization {
-  user_id             String
-  specialization_id   String
-  years_of_experience Int      @default(0)
-  verified            Boolean  @default(false)
-  createdAt           DateTime @default(now())
+  userId           String
+  specializationId String
+  yearsExperience  Int      @default(0)
+  createdAt        DateTime @default(now())
 
-  user            User            @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  specialization  Specialization  @relation(fields: [specialization_id], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialization Specialization @relation(fields: [specializationId], references: [id], onDelete: Cascade)
 
-  @@id([user_id, specialization_id])
-  @@index([specialization_id])
+  @@id([userId, specializationId])
+  @@index([specializationId])
 }
 
-// ════════════════════════════════════════════════════════════════
-// SHIFTS & SCHEDULING
-// ════════════════════════════════════════════════════════════════
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  password     String
+  role         Role     @default(NURSE)
+  isActive     Boolean  @default(true)
+  isOnline     Boolean  @default(false)
+  avatar       String?
+  phone        String?
+  departmentId String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-model Shift {
-  id            String    @id @default(cuid())
-  name          String
-  type          ShiftType
-  start_time    String    // HH:mm format
-  end_time      String    // HH:mm format
-  department_id String
-  max_nurses    Int       @default(10)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  department      Department?          @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  specializations UserSpecialization[]
+  dispatches      Dispatch[]           @relation("AssignedNurse")
+  auditLogs       AuditLog[]
 
-  department Department?  @relation(fields: [department_id], references: [id], onDelete: Cascade)
-  userShifts UserShift[]
-
-  @@index([department_id])
-  @@index([type])
+  @@index([role])
+  @@index([isActive])
+  @@index([departmentId])
 }
-
-model UserShift {
-  id            String    @id @default(cuid())
-  user_id       String
-  shift_id      String
-  start_date    DateTime
-  end_date      DateTime?
-  is_active     Boolean   @default(true)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  user  User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  shift Shift  @relation(fields: [shift_id], references: [id], onDelete: Cascade)
-
-  @@index([user_id])
-  @@index([shift_id])
-  @@index([start_date])
-  @@unique([user_id, shift_id, start_date])
-}
-
-// ════════════════════════════════════════════════════════════════
-// PATIENTS
-// ════════════════════════════════════════════════════════════════
 
 model Patient {
-  id                  String    @id @default(cuid())
-  mrn                 String    @unique // Medical Record Number
-  name                String
-  date_of_birth       DateTime?
-  gender              String?
-  blood_type          String?
-  phone               String?
-  address             String?
-  location_id         String?
-  email               String?
-  emergency_contact   String?
-  medical_history     String?
-  allergies           String?
-  chronic_conditions  String?
-  current_medications String?
-  status              PatientStatus @default(ACTIVE)
-  notes               String?
-  admitted_date       DateTime  @default(now())
-  discharged_date     DateTime?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  phone       String
+  condition   String
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 
-  // Relations
-  location   Location?   @relation(fields: [location_id], references: [id], onDelete: SetNull)
   dispatches Dispatch[]
 
-  @@index([mrn])
   @@index([name])
-  @@index([status])
-  @@index([location_id])
-  @@index([date_of_birth])
+  @@index([phone])
 }
 
-// ════════════════════════════════════════════════════════════════
-// DISPATCHES & WORK ORDERS
-// ════════════════════════════════════════════════════════════════
-
 model Dispatch {
-  id              String    @id @default(cuid())
-  dispatch_number String    @unique @default(cuid()) // Human-readable ID
-  patient_id      String
-  service_type    ServiceType @default(CHECKUP)
-  status          DispatchStatus @default(PENDING)
-  priority        Priority  @default(MEDIUM)
-  assigned_nurse_id String?
-  supervisor_id   String?
-  location_id     String?
-  scheduled_date  DateTime
-  scheduled_time  String?   // HH:mm format
-  assigned_date   DateTime?
-  start_time      DateTime?
-  completion_time DateTime?
-  estimated_duration Int?   // minutes
-  actual_duration Int?      // minutes
-  notes           String?
-  instructions    String?
-  contact_person  String?
-  contact_phone   String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id           String         @id @default(cuid())
+  patientId    String
+  patient      Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  status       DispatchStatus @default(PENDING)
+  priority     Priority       @default(MEDIUM)
+  scheduledFor DateTime
+  nurseId      String?
+  nurse        User?          @relation("AssignedNurse", fields: [nurseId], references: [id], onDelete: SetNull)
+  notes        String?
+  completedAt  DateTime?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 
-  // Relations
-  patient          Patient     @relation(fields: [patient_id], references: [id], onDelete: Cascade)
-  assigned_nurse   User?       @relation("AssignedNurse", fields: [assigned_nurse_id], references: [id], onDelete: SetNull)
-  supervisor       User?       @relation("Supervisor", fields: [supervisor_id], references: [id], onDelete: SetNull)
-  location         Location?   @relation(fields: [location_id], references: [id], onDelete: SetNull)
-  auditLogs        AuditLog[]
-  activityLog      ActivityLog[]
-  feedback         Feedback?
+  auditLogs AuditLog[]
 
   @@index([status])
   @@index([priority])
-  @@index([assigned_nurse_id])
-  @@index([supervisor_id])
-  @@index([scheduled_date])
+  @@index([nurseId])
+  @@index([patientId])
+  @@index([scheduledFor])
   @@index([createdAt])
-  @@index([location_id])
-  @@index([patient_id])
-  @@index([service_type])
 }
-
-// ════════════════════════════════════════════════════════════════
-// FEEDBACK & QUALITY
-// ════════════════════════════════════════════════════════════════
-
-model Feedback {
-  id              String    @id @default(cuid())
-  dispatch_id     String    @unique
-  nurse_id        String
-  given_by_id     String?
-  rating          FeedbackRating @default(GOOD)
-  timeliness      Int?      @db.SmallInt // 1-5
-  professionalism Int?      @db.SmallInt // 1-5
-  knowledge       Int?      @db.SmallInt // 1-5
-  communication   Int?      @db.SmallInt // 1-5
-  quality         Int?      @db.SmallInt // 1-5
-  comments        String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  dispatch  Dispatch   @relation(fields: [dispatch_id], references: [id], onDelete: Cascade)
-  nurse     User       @relation("ReceivedFeedback", fields: [nurse_id], references: [id], onDelete: Cascade)
-  given_by  User?      @relation("GivenFeedback", fields: [given_by_id], references: [id], onDelete: SetNull)
-
-  @@index([nurse_id])
-  @@index([given_by_id])
-  @@index([dispatch_id])
-}
-
-// ════════════════════════════════════════════════════════════════
-// LOGGING & AUDIT
-// ════════════════════════════════════════════════════════════════
 
 model AuditLog {
-  id          String    @id @default(cuid())
-  user_id     String
-  action      String    // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
-  entity_type String    // User, Dispatch, Patient, etc.
-  entity_id   String
-  old_values  Json?
-  new_values  Json?
-  ip_address  String?
-  user_agent  String?
-  changes     String?
-  dispatch_id String?
-  createdAt   DateTime  @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action     String
+  entityType String
+  entityId   String
+  previousValue Json?
+  newValue   Json?
+  details    Json?
+  createdAt  DateTime @default(now())
+  dispatchId String?
+  dispatch   Dispatch? @relation(fields: [dispatchId], references: [id], onDelete: Cascade)
 
-  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  dispatch  Dispatch? @relation(fields: [dispatch_id], references: [id], onDelete: Cascade)
-
-  @@index([user_id])
-  @@index([entity_type])
-  @@index([entity_id])
-  @@index([createdAt])
-  @@index([action])
-  @@index([dispatch_id])
-}
-
-model ActivityLog {
-  id              String    @id @default(cuid())
-  user_id         String
-  dispatch_id     String?
-  action          String    // DISPATCH_ASSIGNED, DISPATCH_STARTED, DISPATCH_COMPLETED, etc.
-  description     String?
-  timestamp       DateTime  @default(now())
-  metadata        Json?
-  location        String?
-  device_info     String?
-
-  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  dispatch  Dispatch? @relation(fields: [dispatch_id], references: [id], onDelete: Cascade)
-
-  @@index([user_id])
-  @@index([dispatch_id])
-  @@index([timestamp])
-  @@index([action])
-}
-
-// ════════════════════════════════════════════════════════════════
-// NOTIFICATIONS & ALERTS
-// ════════════════════════════════════════════════════════════════
-
-model Notification {
-  id          String    @id @default(cuid())
-  user_id     String
-  title       String
-  message     String
-  type        String    // INFO, WARNING, ERROR, SUCCESS
-  data        Json?
-  read_at     DateTime?
-  action_url  String?
-  createdAt   DateTime  @default(now())
-
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@index([user_id])
-  @@index([read_at])
+  @@index([userId])
+  @@index([entityType])
+  @@index([entityId])
   @@index([createdAt])
 }

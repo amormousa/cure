@@ -24,6 +24,8 @@ export const CreateUserSchema = z.object({
   role: z.enum(['ADMIN', 'NURSE', 'DISPATCHER']).default('NURSE'),
   phone: z.string().optional(),
   avatar: z.string().url().optional(),
+  departmentId: z.string().cuid().optional().nullable(),
+  specializationIds: z.array(z.string().cuid()).optional(),
 })
 export type CreateUserInput = z.infer<typeof CreateUserSchema>
 
@@ -35,6 +37,8 @@ export const UpdateUserSchema = z.object({
   phone: z.string().optional().nullable(),
   avatar: z.string().url().optional().nullable(),
   isActive: z.boolean().optional(),
+  departmentId: z.string().cuid().optional().nullable(),
+  specializationIds: z.array(z.string().cuid()).optional(),
 })
 export type UpdateUserInput = z.infer<typeof UpdateUserSchema>
 
@@ -93,3 +97,25 @@ export const AISuggestSchema = z.object({
   dispatchId: z.string().cuid().optional(),
 })
 export type AISuggestInput = z.infer<typeof AISuggestSchema>
+
+// Departments
+export const CreateDepartmentSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  description: z.string().max(500).optional().nullable(),
+  isActive: z.boolean().optional(),
+})
+export type CreateDepartmentInput = z.infer<typeof CreateDepartmentSchema>
+
+export const UpdateDepartmentSchema = CreateDepartmentSchema.partial()
+export type UpdateDepartmentInput = z.infer<typeof UpdateDepartmentSchema>
+
+// Specializations
+export const CreateSpecializationSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  description: z.string().max(500).optional().nullable(),
+  isActive: z.boolean().optional(),
+})
+export type CreateSpecializationInput = z.infer<typeof CreateSpecializationSchema>
+
+export const UpdateSpecializationSchema = CreateSpecializationSchema.partial()
+export type UpdateSpecializationInput = z.infer<typeof UpdateSpecializationSchema>

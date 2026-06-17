@@ -1,0 +1,2 @@
+-- Baseline for the existing PostgreSQL schema that was already in production/dev use.
+-- This migration is intentionally empty and is marked as applied with Prisma Migrate.

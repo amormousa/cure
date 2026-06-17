@@ -27,6 +27,8 @@ export const CreateUserSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters'),
   role: z.enum(['ADMIN', 'NURSE', 'DISPATCHER']),
   phone: z.string().regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number').optional().or(z.literal('')),
+  departmentId: z.string().cuid('Invalid department ID').optional().nullable(),
+  specializationIds: z.array(z.string().cuid('Invalid specialization ID')).optional(),
 })
 
 export const UpdateUserSchema = z.object({
@@ -34,6 +36,8 @@ export const UpdateUserSchema = z.object({
   role: z.enum(['ADMIN', 'NURSE', 'DISPATCHER']).optional(),
   isActive: z.boolean().optional(),
   phone: z.string().regex(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Invalid phone number').optional().or(z.literal('')),
+  departmentId: z.string().cuid('Invalid department ID').optional().nullable(),
+  specializationIds: z.array(z.string().cuid('Invalid specialization ID')).optional(),
 })
 
 export const CreatePatientSchema = z.object({
@@ -68,3 +72,24 @@ export type UpdateUserInput = z.infer<typeof UpdateUserSchema>
 export type CreatePatientInput = z.infer<typeof CreatePatientSchema>
 export type UpdatePatientInput = z.infer<typeof UpdatePatientSchema>
 export type AISuggestInput = z.infer<typeof AISuggestSchema>
+
+export const CreateDepartmentSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  description: z.string().max(500).optional().nullable(),
+  isActive: z.boolean().optional(),
+})
+
+export const UpdateDepartmentSchema = CreateDepartmentSchema.partial()
+
+export const CreateSpecializationSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  description: z.string().max(500).optional().nullable(),
+  isActive: z.boolean().optional(),
+})
+
+export const UpdateSpecializationSchema = CreateSpecializationSchema.partial()
+
+export type CreateDepartmentInput = z.infer<typeof CreateDepartmentSchema>
+export type UpdateDepartmentInput = z.infer<typeof UpdateDepartmentSchema>
+export type CreateSpecializationInput = z.infer<typeof CreateSpecializationSchema>
+export type UpdateSpecializationInput = z.infer<typeof UpdateSpecializationSchema>

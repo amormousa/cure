@@ -32,28 +32,29 @@ export interface CreatePatientData {
 }
 
 export async function createPatient(data: CreatePatientData, userId: string) {
-  const patient = await prisma.patient.create({
-    data: {
-      name: data.name,
-      address: data.address,
-      phone: data.phone,
-      condition: data.condition,
-      notes: data.notes || null,
-    },
-  })
-
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action: 'PATIENT_CREATED',
-      entityType: 'Patient',
-      entityId: patient.id,
-      details: {
-        name: patient.name,
-        phone: patient.phone,
-        condition: patient.condition,
+  const patient = await prisma.$transaction(async (tx) => {
+    const created = await tx.patient.create({
+      data: {
+        name: data.name,
+        address: data.address,
+        phone: data.phone,
+        condition: data.condition,
+        notes: data.notes || null,
       },
-    },
+    })
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action: 'PATIENT_CREATED',
+        entityType: 'Patient',
+        entityId: created.id,
+        newValue: created,
+        details: { after: created },
+      },
+    })
+
+    return created
   })
 
   log.info('Patient created', { id: patient.id })
@@ -96,19 +97,25 @@ export async function updatePatient(id: string, data: UpdatePatientData, userId:
     throw Errors.notFound('Patient')
   }
 
-  const patient = await prisma.patient.update({
-    where: { id },
-    data,
-  })
+  const patient = await prisma.$transaction(async (tx) => {
+    const updated = await tx.patient.update({
+      where: { id },
+      data,
+    })
 
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action: 'PATIENT_UPDATED',
-      entityType: 'Patient',
-      entityId: id,
-      details: { before: existing, after: patient },
-    },
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action: 'PATIENT_UPDATED',
+        entityType: 'Patient',
+        entityId: id,
+        previousValue: existing,
+        newValue: updated,
+        details: { before: existing, after: updated, changedFields: Object.keys(data) },
+      },
+    })
+
+    return updated
   })
 
   log.info('Patient updated', { id })
@@ -122,16 +129,21 @@ export async function deletePatient(id: string, userId: string) {
     throw Errors.notFound('Patient')
   }
 
-  const deleted = await prisma.patient.delete({ where: { id } })
+  const deleted = await prisma.$transaction(async (tx) => {
+    const result = await tx.patient.delete({ where: { id } })
 
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action: 'PATIENT_DELETED',
-      entityType: 'Patient',
-      entityId: id,
-      details: { name: existing.name },
-    },
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action: 'PATIENT_DELETED',
+        entityType: 'Patient',
+        entityId: id,
+        previousValue: existing,
+        details: { before: existing },
+      },
+    })
+
+    return result
   })
 
   log.info('Patient deleted', { id })

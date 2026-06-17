@@ -100,26 +100,30 @@ export async function createDispatch(data: CreateDispatchData, userId: string) {
   })
   if (!patient) throw Errors.notFound('Patient')
 
-  const dispatch = await prisma.dispatch.create({
-    data: {
-      patientId: data.patientId,
-      priority: data.priority,
-      scheduledFor: new Date(data.scheduledFor),
-      notes: data.notes,
-    },
-    include: DISPATCH_INCLUDE,
-  })
+  const dispatch = await prisma.$transaction(async (tx) => {
+    const created = await tx.dispatch.create({
+      data: {
+        patientId: data.patientId,
+        priority: data.priority,
+        scheduledFor: new Date(data.scheduledFor),
+        notes: data.notes,
+      },
+      include: DISPATCH_INCLUDE,
+    })
 
-  // Audit log
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action: 'DISPATCH_CREATED',
-      entityType: 'Dispatch',
-      entityId: dispatch.id,
-      dispatchId: dispatch.id,
-      details: dispatch,
-    },
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action: 'DISPATCH_CREATED',
+        entityType: 'Dispatch',
+        entityId: created.id,
+        dispatchId: created.id,
+        newValue: created,
+        details: { after: created },
+      },
+    })
+
+    return created
   })
 
   await emitSocketEvent('dispatch:created', dispatch)
@@ -142,38 +146,43 @@ export async function updateDispatch(id: string, data: UpdateDispatchData, userI
   // Verify nurse if provided
   if (data.nurseId) {
     const nurse = await prisma.user.findUnique({ where: { id: data.nurseId } })
-    if (!nurse) throw Errors.notFound('Nurse')
+    if (!nurse || nurse.role !== 'NURSE' || !nurse.isActive) throw Errors.notFound('Active nurse')
   }
 
-  const updated = await prisma.dispatch.update({
-    where: { id },
-    data: {
-      status: data.status,
-      nurseId: data.nurseId,
-      notes: data.notes,
-      completedAt: data.completedAt ? new Date(data.completedAt) : undefined,
-      updatedAt: new Date(),
-    },
-    include: DISPATCH_INCLUDE,
-  })
-
-  // Audit log
   const action = data.status ? 'DISPATCH_STATUS_CHANGED' : 'DISPATCH_UPDATED'
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action,
-      entityType: 'Dispatch',
-      entityId: dispatch.id,
-      dispatchId: dispatch.id,
-      details: {
-        before: dispatch,
-        after: updated,
-        changedFields: Object.keys(data).filter(
-          (key) => (data as Record<string, unknown>)[key] !== (dispatch as Record<string, unknown>)[key],
-        ),
+  const updated = await prisma.$transaction(async (tx) => {
+    const result = await tx.dispatch.update({
+      where: { id },
+      data: {
+        status: data.status,
+        nurseId: data.nurseId,
+        notes: data.notes,
+        completedAt: data.completedAt === null ? null : data.completedAt ? new Date(data.completedAt) : undefined,
+        updatedAt: new Date(),
       },
-    },
+      include: DISPATCH_INCLUDE,
+    })
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action,
+        entityType: 'Dispatch',
+        entityId: dispatch.id,
+        dispatchId: dispatch.id,
+        previousValue: dispatch,
+        newValue: result,
+        details: {
+          before: dispatch,
+          after: result,
+          changedFields: Object.keys(data).filter(
+            (key) => (data as Record<string, unknown>)[key] !== (dispatch as Record<string, unknown>)[key],
+          ),
+        },
+      },
+    })
+
+    return result
   })
 
   // Socket events
@@ -196,20 +205,27 @@ export async function cancelDispatch(id: string, userId: string) {
   const dispatch = await prisma.dispatch.findUnique({ where: { id } })
   if (!dispatch) throw Errors.notFound('Dispatch')
 
-  const cancelled = await prisma.dispatch.update({
-    where: { id },
-    data: { status: 'CANCELLED' },
-    include: DISPATCH_INCLUDE,
-  })
+  const cancelled = await prisma.$transaction(async (tx) => {
+    const result = await tx.dispatch.update({
+      where: { id },
+      data: { status: 'CANCELLED' },
+      include: DISPATCH_INCLUDE,
+    })
 
-  await prisma.auditLog.create({
-    data: {
-      userId,
-      action: 'DISPATCH_CANCELLED',
-      entityType: 'Dispatch',
-      entityId: dispatch.id,
-      dispatchId: dispatch.id,
-    },
+    await tx.auditLog.create({
+      data: {
+        userId,
+        action: 'DISPATCH_CANCELLED',
+        entityType: 'Dispatch',
+        entityId: dispatch.id,
+        dispatchId: dispatch.id,
+        previousValue: dispatch,
+        newValue: result,
+        details: { before: dispatch, after: result },
+      },
+    })
+
+    return result
   })
 
   await emitSocketEvent('dispatch:status_changed', {

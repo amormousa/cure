@@ -11,7 +11,7 @@ const log = createLogger('API:dispatches/:id')
 
 export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const { user: authUser, errorResponse } = await authorize()
+    const { user: authUser, errorResponse } = await authorize(['ADMIN'])
     if (errorResponse) return errorResponse
 
     const { id } = await context.params

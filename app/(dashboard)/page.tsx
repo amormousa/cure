@@ -28,6 +28,21 @@ interface AnalyticsData {
   nursePerformance?: any[]
 }
 
+const emptyStatusBreakdown = {
+  PENDING: 0,
+  ASSIGNED: 0,
+  IN_PROGRESS: 0,
+  COMPLETED: 0,
+  CANCELLED: 0,
+}
+
+const emptyPriorityBreakdown = {
+  LOW: 0,
+  MEDIUM: 0,
+  HIGH: 0,
+  URGENT: 0,
+}
+
 export default function DashboardPage() {
   const router = useRouter()
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
@@ -60,8 +75,8 @@ export default function DashboardPage() {
         urgentPending: data.urgentPending || 0,
         completionRate: data.completionRate || 0,
         dailySeries: data.dailySeries || [],
-        statusBreakdown: data.statusBreakdown,
-        priorityBreakdown: data.priorityBreakdown,
+        statusBreakdown: { ...emptyStatusBreakdown, ...data.statusBreakdown },
+        priorityBreakdown: { ...emptyPriorityBreakdown, ...data.priorityBreakdown },
         nursePerformance: data.nursePerformance || [],
       })
 

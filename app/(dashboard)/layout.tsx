@@ -16,6 +16,8 @@ import {
   ChevronRight,
   Activity,
   Shield,
+  Building2,
+  Stethoscope,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
@@ -87,6 +89,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       name: 'Users',
       href: '/admin/nurses',
       icon: Users,
+      exact: false,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Departments',
+      href: '/admin/departments',
+      icon: Building2,
+      exact: false,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Specializations',
+      href: '/admin/specializations',
+      icon: Stethoscope,
       exact: false,
       roles: ['ADMIN'],
     },

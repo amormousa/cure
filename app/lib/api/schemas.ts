@@ -27,8 +27,37 @@ export const UserSchema = z.object({
   isOnline: z.boolean().optional(),
   avatar: z.string().nullable().optional(),
   phone: z.string().nullable().optional(),
+  departmentId: z.string().nullable().optional(),
   createdAt: z.string(),
   updatedAt: z.string().optional(),
+})
+
+export const DepartmentSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string().nullable().optional(),
+  isActive: z.boolean(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  _count: z.object({ users: z.number() }).optional(),
+})
+
+export const SpecializationSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string().nullable().optional(),
+  isActive: z.boolean(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  _count: z.object({ users: z.number() }).optional(),
+})
+
+export const UserSpecializationSchema = z.object({
+  userId: z.string(),
+  specializationId: z.string(),
+  yearsExperience: z.number(),
+  createdAt: z.string(),
+  specialization: SpecializationSchema.optional(),
 })
 
 export const PatientSchema = z.object({
@@ -122,6 +151,8 @@ export const PatientSingleResponseSchema = z.object({
 
 export const UserListResponseSchema = z.object({
   data: z.array(UserSchema.extend({
+    department: DepartmentSchema.nullable().optional(),
+    specializations: z.array(UserSpecializationSchema).optional(),
     _count: z.object({
       dispatches: z.number(),
     }).optional(),
@@ -132,6 +163,8 @@ export const UserListResponseSchema = z.object({
 
 export const UserSingleResponseSchema = z.object({
   data: UserSchema.extend({
+    department: DepartmentSchema.nullable().optional(),
+    specializations: z.array(UserSpecializationSchema).optional(),
     dispatches: z.array(
       DispatchSchema.extend({
         patient: PatientSchema,
@@ -191,8 +224,30 @@ export const AISuggestResponseSchema = z.object({
   message: z.string().optional(),
 })
 
+export const DepartmentListResponseSchema = z.object({
+  data: z.array(DepartmentSchema),
+  message: z.string().optional(),
+})
+
+export const DepartmentSingleResponseSchema = z.object({
+  data: DepartmentSchema,
+  message: z.string().optional(),
+})
+
+export const SpecializationListResponseSchema = z.object({
+  data: z.array(SpecializationSchema),
+  message: z.string().optional(),
+})
+
+export const SpecializationSingleResponseSchema = z.object({
+  data: SpecializationSchema,
+  message: z.string().optional(),
+})
+
 // ============= TYPE EXPORTS =============
 export type User = z.infer<typeof UserSchema>
+export type Department = z.infer<typeof DepartmentSchema>
+export type Specialization = z.infer<typeof SpecializationSchema>
 export type Patient = z.infer<typeof PatientSchema>
 export type Dispatch = z.infer<typeof DispatchSchema>
 export type DispatchDetail = z.infer<typeof DispatchDetailSchema>

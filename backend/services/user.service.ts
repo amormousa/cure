@@ -19,6 +19,11 @@ export const SAFE_USER_SELECT = {
   isOnline: true,
   avatar: true,
   phone: true,
+  departmentId: true,
+  department: true,
+  specializations: {
+    include: { specialization: true },
+  },
   createdAt: true,
   updatedAt: true,
 } as const
@@ -92,6 +97,8 @@ export interface CreateUserData {
   password: string
   role: 'ADMIN' | 'NURSE' | 'DISPATCHER'
   phone?: string
+  departmentId?: string | null
+  specializationIds?: string[]
 }
 
 export async function createUser(data: CreateUserData, adminUserId: string) {
@@ -102,26 +109,37 @@ export async function createUser(data: CreateUserData, adminUserId: string) {
   const seedName = encodeURIComponent(data.name)
   const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedName}`
 
-  const user = await prisma.user.create({
-    data: {
-      email: data.email,
-      name: data.name,
-      password: hashedPassword,
-      role: data.role,
-      phone: data.phone || null,
-      avatar,
-    },
-    select: SAFE_USER_SELECT,
-  })
+  const user = await prisma.$transaction(async (tx) => {
+    const created = await tx.user.create({
+      data: {
+        email: data.email,
+        name: data.name,
+        password: hashedPassword,
+        role: data.role,
+        phone: data.phone || null,
+        departmentId: data.departmentId ?? null,
+        avatar,
+        specializations: {
+          create: (data.specializationIds ?? []).map((specializationId) => ({
+            specializationId,
+          })),
+        },
+      },
+      select: SAFE_USER_SELECT,
+    })
 
-  await prisma.auditLog.create({
-    data: {
-      userId: adminUserId,
-      action: 'USER_CREATED',
-      entityType: 'User',
-      entityId: user.id,
-      details: { email: user.email, name: user.name, role: user.role },
-    },
+    await tx.auditLog.create({
+      data: {
+        userId: adminUserId,
+        action: 'USER_CREATED',
+        entityType: 'User',
+        entityId: created.id,
+        newValue: created,
+        details: { after: created },
+      },
+    })
+
+    return created
   })
 
   log.info('User created', { id: user.id, role: user.role })
@@ -134,35 +152,57 @@ export interface UpdateUserData {
   role?: 'ADMIN' | 'NURSE' | 'DISPATCHER'
   isActive?: boolean
   phone?: string
+  departmentId?: string | null
+  specializationIds?: string[]
 }
 
 export async function updateUser(id: string, data: UpdateUserData, adminUserId: string) {
-  const user = await prisma.user.findUnique({ where: { id } })
+  const user = await prisma.user.findUnique({
+    where: { id },
+    include: { specializations: true, department: true },
+  })
   if (!user) throw Errors.notFound('User')
 
-  const updated = await prisma.user.update({
-    where: { id },
-    data: {
-      name: data.name,
-      role: data.role,
-      isActive: data.isActive,
-      phone: data.phone || user.phone,
-    },
-    select: SAFE_USER_SELECT,
-  })
+  const updated = await prisma.$transaction(async (tx) => {
+    if (data.specializationIds) {
+      await tx.userSpecialization.deleteMany({ where: { userId: id } })
+      if (data.specializationIds.length > 0) {
+        await tx.userSpecialization.createMany({
+          data: data.specializationIds.map((specializationId) => ({ userId: id, specializationId })),
+          skipDuplicates: true,
+        })
+      }
+    }
 
-  await prisma.auditLog.create({
-    data: {
-      userId: adminUserId,
-      action: 'USER_UPDATED',
-      entityType: 'User',
-      entityId: user.id,
-      details: {
-        before: { name: user.name, role: user.role, isActive: user.isActive, phone: user.phone },
-        after: { name: updated.name, role: updated.role, isActive: updated.isActive, phone: updated.phone },
-        changedFields: Object.keys(data),
+    const result = await tx.user.update({
+      where: { id },
+      data: {
+        name: data.name,
+        role: data.role,
+        isActive: data.isActive,
+        phone: data.phone === undefined ? undefined : data.phone || null,
+        departmentId: data.departmentId === undefined ? undefined : data.departmentId,
       },
-    },
+      select: SAFE_USER_SELECT,
+    })
+
+    await tx.auditLog.create({
+      data: {
+        userId: adminUserId,
+        action: 'USER_UPDATED',
+        entityType: 'User',
+        entityId: user.id,
+        previousValue: user,
+        newValue: result,
+        details: {
+          before: user,
+          after: result,
+          changedFields: Object.keys(data),
+        },
+      },
+    })
+
+    return result
   })
 
   log.info('User updated', { id })
@@ -174,26 +214,30 @@ export async function softDeleteUser(id: string, adminUserId: string) {
   const user = await prisma.user.findUnique({ where: { id } })
   if (!user) throw Errors.notFound('User')
 
-  const deleted = await prisma.user.update({
-    where: { id },
-    data: { isActive: false },
-    select: SAFE_USER_SELECT,
-  })
+  const deleted = await prisma.$transaction(async (tx) => {
+    const result = await tx.user.update({
+      where: { id },
+      data: { isActive: false },
+      select: SAFE_USER_SELECT,
+    })
 
-  await prisma.auditLog.create({
-    data: {
-      userId: adminUserId,
-      action: 'USER_DELETED',
-      entityType: 'User',
-      entityId: user.id,
-      details: {
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        isActiveBefore: user.isActive,
-        isActiveAfter: false,
+    await tx.auditLog.create({
+      data: {
+        userId: adminUserId,
+        action: 'USER_DELETED',
+        entityType: 'User',
+        entityId: user.id,
+        previousValue: user,
+        newValue: result,
+        details: {
+          before: user,
+          after: result,
+          changedFields: ['isActive'],
+        },
       },
-    },
+    })
+
+    return result
   })
 
   log.info('User soft-deleted', { id })

@@ -143,7 +143,15 @@ export async function generateOptimizationRecommendations() {
     prisma.dispatch.findMany({
       where: { createdAt: { gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) } },
     }),
-    prisma.user.findMany({ where: { role: 'NURSE', isActive: true } }),
+    prisma.user.findMany({
+      where: { role: 'NURSE', isActive: true },
+      include: {
+        dispatches: {
+          where: { status: { in: ['ASSIGNED', 'IN_PROGRESS'] } },
+          select: { id: true },
+        },
+      },
+    }),
     prisma.patient.findMany(),
   ])
 
