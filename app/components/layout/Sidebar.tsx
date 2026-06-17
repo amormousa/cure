@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, ClipboardList, BarChart3, Users, Building2, Stethoscope, Settings, X } from 'lucide-react'
+import { LayoutDashboard, ClipboardList, BarChart3, Users, Building2, Stethoscope, Settings, HeartPulse, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface SidebarProps {
@@ -30,8 +30,14 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
     },
     {
       name: 'Analytics',
-      href: '/analytics',
+      href: '/admin/analytics',
       icon: BarChart3,
+      roles: ['ADMIN', 'DISPATCHER'],
+    },
+    {
+      name: 'Nurses',
+      href: '/admin/nurses',
+      icon: HeartPulse,
       roles: ['ADMIN', 'DISPATCHER'],
     },
     {

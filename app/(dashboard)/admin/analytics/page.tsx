@@ -1,17 +1,19 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area,
 } from 'recharts'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
-import { analyticsApi, authApi, type FullAnalytics } from '@/app/lib/api/endpoints'
+import { analyticsApi, userApi, type FullAnalytics } from '@/app/lib/api/endpoints'
+import { Switch } from '@/app/components/ui/switch'
+import { Badge } from '@/app/components/ui/badge'
 import {
   BarChart3, TrendingUp, TrendingDown, Users, Activity, Briefcase, HeartPulse,
   Clock, AlertTriangle, CheckCircle, Calendar, Zap, Brain, ArrowUp, ArrowDown,
-  Target, Eye, RefreshCw, Download, Moon, Sun, Filter, ChevronDown
+  Target, Eye, RefreshCw, Download, Moon, Sun, Filter, ChevronDown,
+  Stethoscope, UserCheck, UserX, Search
 } from 'lucide-react'
 
 // Color palette
@@ -203,14 +205,27 @@ function SkeletonChart() {
   )
 }
 
+type NurseRow = {
+  id: string
+  name: string
+  email: string
+  phone: string | null
+  isActive: boolean
+  isOnline: boolean
+  _count?: { dispatches: number }
+}
+
 export default function AnalyticsPage() {
-  const router = useRouter()
   const [data, setData] = useState<FullAnalytics | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [dateRange, setDateRange] = useState('30d')
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
+  const [activeTab, setActiveTab] = useState<'overview' | 'nurses'>('overview')
+  const [nurses, setNurses] = useState<NurseRow[]>([])
+  const [nursesLoading, setNursesLoading] = useState(false)
+  const [nurseSearch, setNurseSearch] = useState('')
 
   const fetchData = useCallback(async (showRefresh = false) => {
     if (showRefresh) setIsRefreshing(true)
@@ -218,19 +233,8 @@ export default function AnalyticsPage() {
     setError('')
 
     try {
-      // Check authentication first before fetching analytics
-      const authResult = await authApi.getMe()
-      if (!authResult.ok || !authResult.data) {
-        router.replace('/login')
-        return
-      }
-
       const result = await analyticsApi.getFull()
       if (!result.ok || !result.data?.data) {
-        if (result.status === 401) {
-          router.replace('/login')
-          return
-        }
         const detail = result.error?.details
           ? ` (${JSON.stringify(result.error.details)})`
           : ''
@@ -246,11 +250,51 @@ export default function AnalyticsPage() {
       setLoading(false)
       setIsRefreshing(false)
     }
-  }, [router])
+  }, [])
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
+
+  const fetchNurses = useCallback(async () => {
+    setNursesLoading(true)
+    try {
+      const result = await userApi.list({ role: 'NURSE' })
+      if (result.ok && result.data) {
+        setNurses(
+          result.data.data.map((u) => ({
+            id: u.id,
+            name: u.name,
+            email: u.email,
+            phone: u.phone ?? null,
+            isActive: u.isActive ?? true,
+            isOnline: u.isOnline ?? false,
+            _count: u._count,
+          }))
+        )
+      }
+    } finally {
+      setNursesLoading(false)
+    }
+  }, [])
+
+  const toggleNurseStatus = useCallback(async (id: string, currentActive: boolean) => {
+    const nextStatus = !currentActive
+    try {
+      const result = await userApi.update(id, { isActive: nextStatus })
+      if (result.ok) {
+        setNurses(prev => prev.map(n => n.id === id ? { ...n, isActive: nextStatus } : n))
+      }
+    } catch (e) {
+      console.error('Failed to toggle nurse status:', e)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (activeTab === 'nurses' && nurses.length === 0) {
+      fetchNurses()
+    }
+  }, [activeTab, nurses.length, fetchNurses])
 
   // Auto-refresh every 30 seconds
   useEffect(() => {
@@ -365,6 +409,32 @@ export default function AnalyticsPage() {
         </div>
       )}
 
+      {/* Tab Navigation */}
+      <div className="flex gap-1 rounded-xl border border-gray-200 bg-white/80 p-1 shadow-sm backdrop-blur-sm w-fit">
+        <button
+          onClick={() => setActiveTab('overview')}
+          className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            activeTab === 'overview'
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
+        >
+          <BarChart3 className="h-4 w-4" />
+          Overview
+        </button>
+        <button
+          onClick={() => setActiveTab('nurses')}
+          className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            activeTab === 'nurses'
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
+        >
+          <Stethoscope className="h-4 w-4" />
+          Nurses
+        </button>
+      </div>
+
       {loading ? (
         <div className="space-y-6">
           {/* KPI Skeletons */}
@@ -391,6 +461,7 @@ export default function AnalyticsPage() {
           </button>
         </div>
       ) : data ? (
+        activeTab === 'overview' ? (
         <>
           {/* Executive KPIs Section */}
           <section className="space-y-4">
@@ -681,7 +752,149 @@ export default function AnalyticsPage() {
             </div>
           </section>
         </>
-      ) : null}
+        ) : (
+        <div className="space-y-6">
+          {/* Nurses Tab Header */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-600/25">
+                <Stethoscope className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">Nurse Analytics</h2>
+                <p className="text-sm text-gray-500">Workforce performance and status</p>
+              </div>
+            </div>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search nurses..."
+                value={nurseSearch}
+                onChange={(e) => setNurseSearch(e.target.value)}
+                className="rounded-xl border border-gray-200 bg-white/80 py-2 pl-10 pr-4 text-sm shadow-sm backdrop-blur-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+              />
+            </div>
+          </div>
+
+          {/* Nurse KPIs */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <KPICard
+              title="Total Nurses"
+              value={data.users.total}
+              icon={Users}
+              color={COLORS.primary}
+            />
+            <KPICard
+              title="Active Nurses"
+              value={data.users.active}
+              icon={UserCheck}
+              color={COLORS.success}
+            />
+            <KPICard
+              title="Online Now"
+              value={data.realTime.onlineNurses}
+              icon={Activity}
+              color={COLORS.warning}
+            />
+            <KPICard
+              title="Inactive"
+              value={data.users.inactive}
+              icon={UserX}
+              color={COLORS.danger}
+            />
+          </div>
+
+          {/* Performance Chart */}
+          {data.dashboard.nursePerformance.length > 0 && (
+            <div className="rounded-2xl border border-gray-100 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+              <h3 className="mb-4 font-bold text-gray-900">Nurse Performance</h3>
+              <ResponsiveContainer width="100%" height={280}>
+                <BarChart data={data.dashboard.nursePerformance}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+                  <XAxis dataKey="nurseName" tick={{ fontSize: 11, fill: '#94a3b8' }} />
+                  <YAxis tick={{ fontSize: 11, fill: '#94a3b8' }} allowDecimals={false} />
+                  <Tooltip
+                    contentStyle={{ borderRadius: '12px', border: '1px solid #e2e8f0', fontSize: '12px' }}
+                  />
+                  <Legend />
+                  <Bar dataKey="completed" name="Completed Tasks" fill={COLORS.primary} radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {/* Nurses Table */}
+          <div className="overflow-x-auto rounded-xl border border-gray-100 bg-white/80 shadow-sm backdrop-blur-sm">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600">Name</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600 hidden sm:table-cell">Email</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600 hidden md:table-cell">Phone</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600">Tasks</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600 hidden sm:table-cell">Presence</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-600">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {nursesLoading ? (
+                  <tr>
+                    <td colSpan={6} className="px-4 py-12 text-center">
+                      <LoadingSpinner className="mx-auto h-6 w-6 text-indigo-600" />
+                    </td>
+                  </tr>
+                ) : nurses.filter(n =>
+                    n.name.toLowerCase().includes(nurseSearch.toLowerCase()) ||
+                    n.email.toLowerCase().includes(nurseSearch.toLowerCase())
+                  ).length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-4 py-12 text-center text-gray-500">
+                      <UserX className="mx-auto mb-2 h-8 w-8 text-gray-400" />
+                      <p className="font-medium">No nurses found</p>
+                    </td>
+                  </tr>
+                ) : (
+                  nurses
+                    .filter(n =>
+                      n.name.toLowerCase().includes(nurseSearch.toLowerCase()) ||
+                      n.email.toLowerCase().includes(nurseSearch.toLowerCase())
+                    )
+                    .map((nurse) => (
+                    <tr key={nurse.id} className="border-b border-gray-50 transition-colors hover:bg-gray-50/50">
+                      <td className="px-4 py-3 font-medium text-gray-900">{nurse.name}</td>
+                      <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">{nurse.email}</td>
+                      <td className="px-4 py-3 text-gray-600 hidden md:table-cell">{nurse.phone || '-'}</td>
+                      <td className="px-4 py-3">
+                        <Badge variant="secondary">{nurse._count?.dispatches || 0}</Badge>
+                      </td>
+                      <td className="px-4 py-3 hidden sm:table-cell">
+                        {nurse.isOnline ? (
+                          <span className="flex items-center gap-1.5 text-sm text-green-600">
+                            <span className="h-2 w-2 rounded-full bg-green-500" />
+                            Online
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-1.5 text-sm text-gray-500">
+                            <span className="h-2 w-2 rounded-full bg-gray-400" />
+                            Offline
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <Switch checked={nurse.isActive} onCheckedChange={() => toggleNurseStatus(nurse.id, nurse.isActive)} />
+                          <span className="text-xs text-gray-500">{nurse.isActive ? 'Active' : 'Inactive'}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )) : null}
     </div>
   )
 }

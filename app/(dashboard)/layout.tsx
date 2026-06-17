@@ -18,7 +18,7 @@ import {
   Building2,
   Stethoscope,
   Settings,
-  ClipboardList,
+  ClipboardList, HeartPulse,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
@@ -82,8 +82,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     },
     {
       name: 'Analytics',
-      href: '/analytics',
+      href: '/admin/analytics',
       icon: BarChart3,
+      exact: false,
+      roles: ['ADMIN', 'DISPATCHER'],
+    },
+    {
+      name: 'Nurses',
+      href: '/admin/nurses',
+      icon: HeartPulse,
       exact: false,
       roles: ['ADMIN', 'DISPATCHER'],
     },

@@ -58,11 +58,14 @@ export default function NursesPage() {
     fetchNurses()
   }, [])
 
-  const toggleStatus = async (id: string, currentStatus: boolean) => {
+  const toggleStatus = async (id: string) => {
+    const current = nurses.find(n => n.id === id)
+    if (!current) return
+    const nextStatus = !current.isActive
     try {
-      const result = await userApi.update(id, { isActive: !currentStatus })
+      const result = await userApi.update(id, { isActive: nextStatus })
       if (result.ok) {
-        setNurses(nurses.map(n => n.id === id ? { ...n, isActive: !currentStatus } : n))
+        setNurses(prev => prev.map(n => n.id === id ? { ...n, isActive: nextStatus } : n))
       }
     } catch (e) {
       console.error(e)
@@ -200,7 +203,7 @@ export default function NursesPage() {
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <Switch checked={nurse.isActive} onCheckedChange={() => toggleStatus(nurse.id, nurse.isActive)} />
+                      <Switch checked={nurse.isActive} onCheckedChange={() => toggleStatus(nurse.id)} />
                       <span className="hidden text-sm text-gray-500 sm:inline">{nurse.isActive ? 'Active' : 'Inactive'}</span>
                     </div>
                   </TableCell>
