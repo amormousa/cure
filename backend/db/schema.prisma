@@ -56,8 +56,8 @@ model Dispatch {
 
 model AuditLog {
   id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
   action      String   // e.g. "STATUS_CHANGED", "NURSE_ASSIGNED"
   entityType  String   // e.g. "Dispatch"
   entityId    String

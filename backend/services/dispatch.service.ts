@@ -2,6 +2,7 @@
 // Business logic for Dispatch CRUD, separated from HTTP routing.
 
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 import { createLogger } from '@/backend/utils/logger'
 import { Errors } from '@/backend/utils/errors'
 import { emitSocketEvent } from '@/backend/lib/socket'
@@ -22,6 +23,22 @@ const DISPATCH_DETAIL_INCLUDE = {
     orderBy: { createdAt: 'desc' as const },
   },
 } as const
+
+// ─── Audit-log user resolution ──────────────────────────
+/** Walk a list of candidate user IDs; return the first that exists in the DB, or null. */
+async function resolveAuditUserId(
+  tx: Prisma.TransactionClient,
+  ...candidates: (string | null | undefined)[]
+): Promise<string | null> {
+  const seen = new Set<string>()
+  for (const id of candidates) {
+    if (!id || seen.has(id)) continue
+    seen.add(id)
+    const user = await tx.user.findUnique({ where: { id }, select: { id: true } })
+    if (user) return user.id
+  }
+  return null
+}
 
 // ─── List ──────────────────────────────────────────────
 export interface ListDispatchesParams {
@@ -190,9 +207,11 @@ export async function updateDispatch(
       include: DISPATCH_INCLUDE,
     })
 
+    // Resolve a valid user for audit log (nullable — FK accepts null)
+    const auditUserId = await resolveAuditUserId(tx, userId, data.nurseId || dispatch.nurseId)
     await tx.auditLog.create({
       data: {
-        userId,
+        userId: auditUserId,
         action,
         entityType: 'Dispatch',
         entityId: dispatch.id,
@@ -243,9 +262,10 @@ export async function cancelDispatch(id: string, userId: string) {
       include: DISPATCH_INCLUDE,
     })
 
+    const auditUserId = await resolveAuditUserId(tx, userId, dispatch.nurseId)
     await tx.auditLog.create({
       data: {
-        userId,
+        userId: auditUserId,
         action: 'DISPATCH_CANCELLED',
         entityType: 'Dispatch',
         entityId: dispatch.id,
