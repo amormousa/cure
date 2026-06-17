@@ -72,20 +72,20 @@ function priorityColor(priority: string) {
     case 'URGENT': return 'text-rose-400 bg-rose-500/10 border-rose-500/20'
     case 'HIGH': return 'text-orange-400 bg-orange-500/10 border-orange-500/20'
     case 'MEDIUM': return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20'
-    default: return 'text-slate-400 bg-slate-500/10 border-slate-500/20'
+    default:   return 'text-[var(--cure-text-muted)] bg-[var(--cure-bg-card)]/10 border-[var(--cure-border)]'
   }
 }
 
 const ChartTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-slate-900/90 backdrop-blur-md p-3 shadow-xl text-xs">
-      <p className="text-slate-400 mb-2">{label}</p>
+    <div className="rounded-lg border border-[var(--cure-border)] bg-[var(--cure-bg-elevated)] backdrop-blur-md p-3 shadow-xl text-xs">
+      <p className="text-[var(--cure-text-muted)] mb-2">{label}</p>
       {payload.map((entry: any, idx: number) => (
         <div key={idx} className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full" style={{ background: entry.color }} />
-          <span className="text-slate-300">{entry.name}:</span>
-          <span className="font-semibold text-slate-100">{entry.value}</span>
+          <span className="text-[var(--cure-text)]">{entry.name}:</span>
+          <span className="font-semibold text-[var(--cure-text)]">{entry.value}</span>
         </div>
       ))}
     </div>
@@ -178,10 +178,10 @@ export default function DashboardPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-8 text-center max-w-md">
           <AlertTriangle className="mx-auto mb-4 h-8 w-8 text-rose-400" />
-          <h2 className="mb-2 font-semibold text-slate-100">Error loading dashboard</h2>
-          <p className="text-sm text-slate-400 mb-4">{error}</p>
+          <h2 className="mb-2 font-semibold text-[var(--cure-text)]">Error loading dashboard</h2>
+          <p className="text-sm text-[var(--cure-text-muted)] mb-4">{error}</p>
           <button onClick={() => { setLoading(true); setError(null); fetchData() }}
-            className="rounded-lg border border-white/[0.06] bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-slate-700 transition">
+            className="rounded-lg border border-[var(--cure-border)] bg-[var(--cure-bg-card)] px-4 py-2 text-sm font-medium text-[var(--cure-text)] hover:bg-[var(--cure-bg-elevated)] transition">
             Try again
           </button>
         </div>
@@ -194,13 +194,13 @@ export default function DashboardPage() {
       {/* ── Header ─────────────────────────────── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-slate-100">Smart Dashboard</h1>
-          <p className="text-sm text-slate-500 mt-1">Real-time operational overview with live data</p>
+          <h1 className="text-xl font-bold text-[var(--cure-text)]">Smart Dashboard</h1>
+          <p className="text-sm text-[var(--cure-text-dim)] mt-1">Real-time operational overview with live data</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-slate-600">Updated {lastUpdated.toLocaleTimeString()}</span>
+          <span className="text-xs text-[var(--cure-text-dim)]">Updated {lastUpdated.toLocaleTimeString()}</span>
           <button onClick={() => { setLoading(true); fetchData() }}
-            className="inline-flex items-center gap-2 rounded-lg border border-white/[0.06] bg-slate-800/50 px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-700/50 transition">
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--cure-border)] bg-[var(--cure-bg-elevated)] px-3 py-2 text-sm font-medium text-[var(--cure-text)] hover:bg-[var(--cure-bg-card)] transition">
             <RefreshCw className="h-3.5 w-3.5" />
             Refresh
           </button>
@@ -245,7 +245,7 @@ export default function DashboardPage() {
         <div className="rounded-xl border border-indigo-500/10 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 p-5">
           <div className="flex items-center gap-2 mb-4">
             <Shield className="h-4 w-4 text-indigo-400" />
-            <h2 className="text-sm font-semibold text-slate-100">AI-Powered Insights</h2>
+            <h2 className="text-sm font-semibold text-[var(--cure-text)]">AI-Powered Insights</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {data.insights.map(insight => (
@@ -262,8 +262,8 @@ export default function DashboardPage() {
                 )}>
                   {insight.type}
                 </span>
-                <h4 className="text-sm font-medium text-slate-200 mt-2">{insight.title}</h4>
-                <p className="text-xs text-slate-500 mt-1">{insight.description}</p>
+                <h4 className="text-sm font-medium text-[var(--cure-text)] mt-2">{insight.title}</h4>
+                <p className="text-xs text-[var(--cure-text-dim)] mt-1">{insight.description}</p>
               </div>
             ))}
           </div>
@@ -273,14 +273,14 @@ export default function DashboardPage() {
       {/* ── Charts ──────────────────────────────── */}
       <div className="grid gap-5 lg:grid-cols-3">
         {/* Daily Series Line Chart */}
-        <div className="lg:col-span-2 rounded-xl border border-white/[0.06] bg-slate-900/40 backdrop-blur-sm p-5">
+        <div className="lg:col-span-2 rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)] backdrop-blur-sm p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-100">30-Day Dispatch Trend</h3>
+            <h3 className="text-sm font-semibold text-[var(--cure-text)]">30-Day Dispatch Trend</h3>
             <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1.5 text-xs text-slate-500">
+              <span className="flex items-center gap-1.5 text-xs text-[var(--cure-text-dim)]">
                 <span className="h-2 w-2 rounded-full bg-indigo-500" /> Created
               </span>
-              <span className="flex items-center gap-1.5 text-xs text-slate-500">
+              <span className="flex items-center gap-1.5 text-xs text-[var(--cure-text-dim)]">
                 <span className="h-2 w-2 rounded-full bg-emerald-500" /> Completed
               </span>
             </div>
@@ -288,9 +288,9 @@ export default function DashboardPage() {
           <div className="h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data.dailySeries}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="date" tick={{ fill: '#71717a', fontSize: 11 }} tickFormatter={(v) => v.slice(5)} axisLine={false} tickLine={false} />
-                <YAxis allowDecimals={false} tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--cure-border-subtle)" />
+                <XAxis dataKey="date" tick={{ fill: 'var(--cure-text-dim)', fontSize: 11 }} tickFormatter={(v) => v.slice(5)} axisLine={false} tickLine={false} />
+                <YAxis allowDecimals={false} tick={{ fill: 'var(--cure-text-dim)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<ChartTooltip />} />
                 <Line type="monotone" dataKey="created" stroke="#6366f1" strokeWidth={2} dot={false} activeDot={{ r: 4, fill: '#6366f1' }} name="Created" />
                 <Line type="monotone" dataKey="completed" stroke="#10b981" strokeWidth={2} dot={false} activeDot={{ r: 4, fill: '#10b981' }} name="Completed" />
@@ -302,8 +302,8 @@ export default function DashboardPage() {
         {/* Status Breakdown Pie + Priority Bar */}
         <div className="space-y-5">
           {/* Status donut */}
-          <div className="rounded-xl border border-white/[0.06] bg-slate-900/40 backdrop-blur-sm p-5">
-            <h3 className="text-sm font-semibold text-slate-100 mb-3">Status Distribution</h3>
+          <div className="rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)] backdrop-blur-sm p-5">
+            <h3 className="text-sm font-semibold text-[var(--cure-text)] mb-3">Status Distribution</h3>
             <div className="h-[180px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -318,7 +318,7 @@ export default function DashboardPage() {
             </div>
             <div className="flex flex-wrap justify-center gap-3 mt-2">
               {statusChartData.map(s => (
-                <span key={s.name} className="flex items-center gap-1 text-[11px] text-slate-500">
+                <span key={s.name} className="flex items-center gap-1 text-[11px] text-[var(--cure-text-dim)]">
                   <span className="h-2 w-2 rounded-full" style={{ background: STATUS_COLORS[s.name] }} />
                   {s.name} ({s.value})
                 </span>
@@ -327,14 +327,14 @@ export default function DashboardPage() {
           </div>
 
           {/* Priority bar */}
-          <div className="rounded-xl border border-white/[0.06] bg-slate-900/40 backdrop-blur-sm p-5">
-            <h3 className="text-sm font-semibold text-slate-100 mb-3">Priority Breakdown</h3>
+          <div className="rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)] backdrop-blur-sm p-5">
+            <h3 className="text-sm font-semibold text-[var(--cure-text)] mb-3">Priority Breakdown</h3>
             <div className="h-[120px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={priorityChartData} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <YAxis type="category" dataKey="name" tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} width={60} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--cure-border-subtle)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: 'var(--cure-text-dim)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis type="category" dataKey="name" tick={{ fill: 'var(--cure-text-dim)', fontSize: 11 }} axisLine={false} tickLine={false} width={60} />
                   <Tooltip content={<ChartTooltip />} />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]} maxBarSize={20}>
                     {priorityChartData.map((entry) => (
@@ -351,28 +351,28 @@ export default function DashboardPage() {
       {/* ── Task Feed + Activity Feed ────────────── */}
       <div className="grid gap-5 lg:grid-cols-2">
         {/* Task Feed */}
-        <div className="rounded-xl border border-white/[0.06] bg-slate-900/40 backdrop-blur-sm p-5">
+        <div className="rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)] backdrop-blur-sm p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-100">Recent Tasks</h3>
-            <Clock className="h-3.5 w-3.5 text-slate-600" />
+            <h3 className="text-sm font-semibold text-[var(--cure-text)]">Recent Tasks</h3>
+            <Clock className="h-3.5 w-3.5 text-[var(--cure-text-dim)]" />
           </div>
           {recentDispatches.length === 0 ? (
-            <p className="text-sm text-slate-600 text-center py-6">No recent dispatches</p>
+            <p className="text-sm text-[var(--cure-text-dim)] text-center py-6">No recent dispatches</p>
           ) : (
             <div className="space-y-1">
               {recentDispatches.map((d: any) => (
-                <div key={d.id} className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-slate-800/30">
+                <div key={d.id} className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-[var(--cure-border-subtle)]">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-slate-200 truncate">{d.patient?.name || 'Unknown'}</span>
+                      <span className="text-sm font-medium text-[var(--cure-text)] truncate">{d.patient?.name || 'Unknown'}</span>
                       <span className={cn('text-[10px] font-semibold px-1.5 py-0.5 rounded border', statusColor(d.status))}>{d.status}</span>
                       <span className={cn('text-[10px] font-semibold px-1.5 py-0.5 rounded border', priorityColor(d.priority))}>{d.priority}</span>
                     </div>
-                    <p className="text-xs text-slate-600 mt-0.5">
+                    <p className="text-xs text-[var(--cure-text-dim)] mt-0.5">
                       {d.nurse?.name || 'Unassigned'} · {new Date(d.createdAt).toLocaleString()}
                     </p>
                   </div>
-                  <ChevronRight className="h-4 w-4 text-slate-700 shrink-0" />
+                  <ChevronRight className="h-4 w-4 text-[var(--cure-text-dim)] shrink-0" />
                 </div>
               ))}
             </div>
@@ -388,34 +388,34 @@ export default function DashboardPage() {
 
       {/* ── Nurse Performance ────────────────────── */}
       {data.nursePerformance.length > 0 && (
-        <div className="rounded-xl border border-white/[0.06] bg-slate-900/40 backdrop-blur-sm p-5">
+        <div className="rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)] backdrop-blur-sm p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-100">Top Performing Nurses</h3>
-            <TrendingUp className="h-4 w-4 text-slate-500" />
+            <h3 className="text-sm font-semibold text-[var(--cure-text)]">Top Performing Nurses</h3>
+            <TrendingUp className="h-4 w-4 text-[var(--cure-text-dim)]" />
           </div>
           <div className="space-y-2">
             {data.nursePerformance.slice(0, 5).map((nurse, idx) => (
-              <div key={nurse.nurseId} className="flex items-center gap-4 rounded-lg px-4 py-3 bg-slate-800/20">
+              <div key={nurse.nurseId} className="flex items-center gap-4 rounded-lg px-4 py-3 bg-[var(--cure-bg-alt)]">
                 <span className={cn(
                   'flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold',
                   idx === 0 ? 'bg-amber-500/20 text-amber-400' :
-                  idx === 1 ? 'bg-slate-400/20 text-slate-300' :
+                  idx === 1 ? 'bg-[var(--cure-bg-alt)]/50 text-[var(--cure-text-muted)]' :
                   idx === 2 ? 'bg-orange-500/20 text-orange-400' :
-                  'bg-slate-700/50 text-slate-500'
+                  'bg-[var(--cure-bg-card)] text-[var(--cure-text-dim)]'
                 )}>{idx + 1}</span>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-200">{nurse.nurseName}</p>
+                  <p className="text-sm font-medium text-[var(--cure-text)]">{nurse.nurseName}</p>
                   <div className="flex items-center gap-3 mt-1">
-                    <span className="text-xs text-slate-500">{nurse.completed} completed</span>
-                    <span className="text-xs text-slate-500">Avg {nurse.avgTime}h</span>
+                    <span className="text-xs text-[var(--cure-text-dim)]">{nurse.completed} completed</span>
+                    <span className="text-xs text-[var(--cure-text-dim)]">Avg {nurse.avgTime}h</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-24 h-1.5 rounded-full bg-slate-700 overflow-hidden">
+                  <div className="w-24 h-1.5 rounded-full bg-[var(--cure-bg-elevated)] overflow-hidden">
                     <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-indigo-400"
                       style={{ width: `${Math.min(100, (nurse.completed / (data.nursePerformance[0]?.completed || 1)) * 100)}%` }} />
                   </div>
-                  <span className="text-xs font-semibold text-slate-400 w-8 text-right">
+                  <span className="text-xs font-semibold text-[var(--cure-text-muted)] w-8 text-right">
                     {data.nursePerformance[0]?.completed ? Math.round((nurse.completed / data.nursePerformance[0].completed) * 100) : 0}%
                   </span>
                 </div>
@@ -426,8 +426,8 @@ export default function DashboardPage() {
       )}
 
       {/* ── Footer ──────────────────────────────── */}
-      <div className="rounded-xl border border-white/[0.06] bg-slate-900/20 p-4">
-        <p className="text-xs text-slate-600 text-center">
+      <div className="rounded-xl border border-[var(--cure-border)] bg-[var(--cure-bg-card)]/50 p-4">
+        <p className="text-xs text-[var(--cure-text-dim)] text-center">
           Data refreshes automatically. Last updated: {lastUpdated.toLocaleTimeString()}
         </p>
       </div>
