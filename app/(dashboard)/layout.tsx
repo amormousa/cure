@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
+import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { SocketStatusBanner } from '@/app/components/common/SocketStatusBanner'
 import { authApi } from '@/app/lib/api/endpoints'
 
@@ -117,25 +118,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   ]
 
   const filteredItems = navItems.filter((item) =>
-    user ? item.roles.includes(user.role) : false
+    // Show all items if user data is not yet loaded (e.g., during initial fetch)
+    // This ensures the sidebar is populated for unauthenticated or loading states.
+    !user || item.roles.includes(user.role)
   )
 
   const isActive = (href: string, exact: boolean) =>
     exact ? pathname === href : pathname.startsWith(href)
 
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-slate-950">
-        <div className="flex flex-col items-center gap-4">
-          <div className="relative">
-            <div className="h-16 w-16 animate-spin rounded-full border-4 border-indigo-900 border-t-indigo-400" />
-            <Activity className="absolute inset-0 m-auto h-6 w-6 text-indigo-400" />
-          </div>
-          <p className="text-sm font-medium text-slate-400">Loading CURE Portal…</p>
-        </div>
-      </div>
-    )
-  }
+  // Loading overlay – keep layout and sidebar visible while fetching user data
+  const loadingOverlay = loading ? (
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-950 bg-opacity-75">
+      <LoadingSpinner />
+    </div>
+  ) : null
 
   const initials = user?.name
     .split(' ')

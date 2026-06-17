@@ -196,7 +196,7 @@ function SkeletonChart() {
       <div className="mb-4 h-4 w-32 rounded bg-gray-200" />
       <div className="flex h-64 items-end gap-2">
         {[...Array(7)].map((_, i) => (
-          <div key={i} className="flex-1 rounded-t bg-gray-200" style={{ height: `${Math.random() * 60 + 20}%` }} />
+          <div key={i} className="flex-1 rounded-t bg-gray-200" style={{ height: `${i * 10 + 20}%` }} />
         ))}
       </div>
     </div>
