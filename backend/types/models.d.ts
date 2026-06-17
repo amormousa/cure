@@ -161,6 +161,13 @@ export interface AnalyticsResponse {
   statusBreakdown: StatusBreakdown
   priorityBreakdown: PriorityBreakdown
   nursePerformance: NursePerformance[]
+  kpiTrends: {
+    createdToday: number
+    completionRate: number
+    onlineNurses: number
+    availableNurses: number
+    urgentPending: number
+  }
 }
 
 // ─── JWT / Auth ────────────────────────────────────────

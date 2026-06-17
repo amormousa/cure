@@ -70,5 +70,15 @@ export const advancedApi = {
 
   // Optimization recommendations
   getRecommendations: async () =>
-    apiCall('/api/recommendations', z.object({ data: z.array(z.string()) })),
+    apiCall(
+      '/api/recommendations',
+      z.object({
+        data: z.object({
+          generatedAt: z.string(),
+          totalRecommendations: z.number(),
+          recommendations: z.array(z.string()),
+          priority: z.string(),
+        }),
+      }),
+    ),
 }

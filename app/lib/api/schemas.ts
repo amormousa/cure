@@ -99,6 +99,19 @@ export const AuditLogSchema = z.object({
   dispatchId: z.string().nullable().optional(),
 })
 
+export const NotificationSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  type: z.enum(['INFO', 'SUCCESS', 'WARNING', 'ERROR']),
+  title: z.string(),
+  message: z.string(),
+  entityType: z.string().nullable().optional(),
+  entityId: z.string().nullable().optional(),
+  readAt: z.string().nullable().optional(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+})
+
 export const DispatchDetailSchema = DispatchSchema.extend({
   auditLogs: z.array(AuditLogSchema),
 })
@@ -208,6 +221,13 @@ export const AnalyticsResponseSchema = z.object({
         completed: z.number(),
       })
     ),
+    kpiTrends: z.object({
+      createdToday: z.number(),
+      completionRate: z.number(),
+      onlineNurses: z.number(),
+      availableNurses: z.number(),
+      urgentPending: z.number(),
+    }),
   }),
   message: z.string().optional(),
 })
@@ -244,6 +264,16 @@ export const SpecializationSingleResponseSchema = z.object({
   message: z.string().optional(),
 })
 
+export const NotificationListResponseSchema = z.object({
+  data: z.array(NotificationSchema),
+  message: z.string().optional(),
+})
+
+export const NotificationSingleResponseSchema = z.object({
+  data: NotificationSchema,
+  message: z.string().optional(),
+})
+
 // ============= TYPE EXPORTS =============
 export type User = z.infer<typeof UserSchema>
 export type Department = z.infer<typeof DepartmentSchema>
@@ -252,6 +282,7 @@ export type Patient = z.infer<typeof PatientSchema>
 export type Dispatch = z.infer<typeof DispatchSchema>
 export type DispatchDetail = z.infer<typeof DispatchDetailSchema>
 export type AuditLog = z.infer<typeof AuditLogSchema>
+export type Notification = z.infer<typeof NotificationSchema>
 export type Pagination = z.infer<typeof PaginationSchema>
 export type DispatchStatus = z.infer<typeof DispatchStatusEnum>
 export type Priority = z.infer<typeof PriorityEnum>

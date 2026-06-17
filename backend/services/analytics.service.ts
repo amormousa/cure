@@ -19,16 +19,21 @@ export async function getAnalytics(range: string): Promise<AnalyticsResponse> {
   const toDate = new Date()
   const fromDate = new Date(toDate.getTime() - days * 24 * 60 * 60 * 1000)
   fromDate.setHours(0, 0, 0, 0)
+  const previousFromDate = new Date(fromDate.getTime() - days * 24 * 60 * 60 * 1000)
 
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
   // KPI queries in parallel
-  const [allDispatches, completedTodayCount, allNurses, urgentPendingCount, createdTodayCount] =
+  const [allDispatches, previousDispatches, completedTodayCount, allNurses, urgentPendingCount, createdTodayCount] =
     await Promise.all([
       prisma.dispatch.findMany({
         where: { createdAt: { gte: fromDate, lte: toDate } },
         include: { nurse: { select: { id: true, name: true } } },
+      }),
+      prisma.dispatch.findMany({
+        where: { createdAt: { gte: previousFromDate, lt: fromDate } },
+        select: { status: true, priority: true },
       }),
       prisma.dispatch.count({
         where: { status: 'COMPLETED', completedAt: { gte: today } },
@@ -132,6 +137,13 @@ export async function getAnalytics(range: string): Promise<AnalyticsResponse> {
   const completedInRange = allDispatches.filter((d) => d.status === 'COMPLETED').length
   const completionRate = totalInRange > 0 ? Math.round((completedInRange / totalInRange) * 100) : 0
   const urgentDispatchesCount = allDispatches.filter((d) => d.priority === 'URGENT').length
+  const previousCompleted = previousDispatches.filter((d) => d.status === 'COMPLETED').length
+  const previousCompletionRate = previousDispatches.length > 0 ? Math.round((previousCompleted / previousDispatches.length) * 100) : 0
+  const previousUrgent = previousDispatches.filter((d) => d.priority === 'URGENT').length
+  const trendPercent = (current: number, previous: number) => {
+    if (previous === 0) return current > 0 ? 100 : 0
+    return Math.round(((current - previous) / previous) * 100)
+  }
 
   log.info('Analytics computed', { range, totalInRange })
 
@@ -150,5 +162,12 @@ export async function getAnalytics(range: string): Promise<AnalyticsResponse> {
     statusBreakdown,
     priorityBreakdown,
     nursePerformance,
+    kpiTrends: {
+      createdToday: trendPercent(createdTodayCount, Math.round(previousDispatches.length / days)),
+      completionRate: completionRate - previousCompletionRate,
+      onlineNurses: 0,
+      availableNurses: 0,
+      urgentPending: trendPercent(urgentPendingCount, previousUrgent),
+    },
   }
 }

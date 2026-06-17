@@ -3494,3 +3494,1805 @@ Unknown field `departmentId` for select statement on model `User`. Available opt
  GET /admin/nurses 200 in 231ms (next.js: 21ms, proxy.ts: 17ms, application-code: 193ms)
  GET /admin/nurses 200 in 414ms (next.js: 168ms, proxy.ts: 48ms, application-code: 198ms)
  GET /admin/nurses 200 in 98ms (next.js: 11ms, proxy.ts: 10ms, application-code: 77ms)
+ GET / 200 in 209ms (next.js: 17ms, proxy.ts: 5ms, application-code: 187ms)
+ GET /login 200 in 400ms (next.js: 147ms, proxy.ts: 1931µs, application-code: 251ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."password", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ POST /api/auth/login 200 in 596ms (next.js: 254ms, proxy.ts: 5ms, application-code: 337ms)
+ GET /admin/nurses 200 in 477ms (next.js: 3ms, proxy.ts: 4ms, application-code: 470ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 178ms (next.js: 121ms, proxy.ts: 4ms, application-code: 52ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 567ms (next.js: 414ms, proxy.ts: 3ms, application-code: 150ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 214ms (next.js: 36ms, proxy.ts: 20ms, application-code: 158ms)
+○ Compiling /admin/departments ...
+ GET /operations/kanban 200 in 1596ms (next.js: 605ms, proxy.ts: 28ms, application-code: 963ms)
+ GET /operations/kanban 200 in 1840ms (next.js: 67ms, proxy.ts: 23ms, application-code: 1750ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:21:40.685Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 1896ms (next.js: 1708ms, proxy.ts: 21ms, application-code: 167ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:21:40.836Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 146ms (next.js: 68ms, proxy.ts: 3ms, application-code: 75ms)
+ GET /admin/departments 200 in 7.8s (next.js: 7.5s, proxy.ts: 4ms, application-code: 305ms)
+ GET /admin/departments 200 in 190ms (next.js: 22ms, proxy.ts: 15ms, application-code: 153ms)
+ GET / 200 in 96ms (next.js: 7ms, proxy.ts: 6ms, application-code: 83ms)
+ GET /admin/nurses 200 in 692ms (next.js: 18ms, proxy.ts: 3ms, application-code: 670ms)
+ GET /admin/nurses 200 in 749ms (next.js: 127ms, proxy.ts: 3ms, application-code: 619ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 37ms (next.js: 12ms, proxy.ts: 2ms, application-code: 23ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 16ms (next.js: 3ms, proxy.ts: 3ms, application-code: 11ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 19ms (next.js: 6ms, proxy.ts: 5ms, application-code: 8ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 12ms (next.js: 3ms, proxy.ts: 3ms, application-code: 6ms)
+ GET /admin/departments 200 in 25ms (next.js: 4ms, proxy.ts: 3ms, application-code: 18ms)
+ GET /api/departments 500 in 2.0s (next.js: 1986ms, proxy.ts: 4ms, application-code: 47ms)
+ GET /api/departments 500 in 52ms (next.js: 12ms, proxy.ts: 11ms, application-code: 28ms)
+○ Compiling /admin/specializations ...
+ GET /admin/specializations 200 in 6.5s (next.js: 5.9s, proxy.ts: 5ms, application-code: 542ms)
+ GET /admin/specializations 200 in 235ms (next.js: 30ms, proxy.ts: 31ms, application-code: 173ms)
+ GET /admin/specializations 200 in 123ms (next.js: 28ms, proxy.ts: 10ms, application-code: 85ms)
+ GET /admin/specializations 200 in 122ms (next.js: 54ms, proxy.ts: 13ms, application-code: 55ms)
+ GET /api/specializations 500 in 344ms (next.js: 330ms, proxy.ts: 2ms, application-code: 12ms)
+ GET /api/specializations 500 in 14ms (next.js: 3ms, proxy.ts: 3ms, application-code: 8ms)
+ GET / 200 in 255ms (next.js: 162ms, proxy.ts: 3ms, application-code: 90ms)
+ GET /admin/nurses 200 in 184ms (next.js: 3ms, proxy.ts: 3ms, application-code: 179ms)
+ GET /admin/nurses 200 in 171ms (next.js: 2ms, proxy.ts: 2ms, application-code: 166ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 90ms (next.js: 9ms, proxy.ts: 3ms, application-code: 77ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 20ms (next.js: 9ms, proxy.ts: 3ms, application-code: 9ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 43ms (next.js: 12ms, proxy.ts: 7ms, application-code: 24ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 16ms (next.js: 4ms, proxy.ts: 3ms, application-code: 9ms)
+ GET /operations/kanban 200 in 33ms (next.js: 3ms, proxy.ts: 2ms, application-code: 27ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:06.278Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 256ms (next.js: 42ms, proxy.ts: 6ms, application-code: 208ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:06.313Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 31ms (next.js: 4ms, proxy.ts: 5ms, application-code: 21ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:16.047Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 28ms (next.js: 8ms, proxy.ts: 4ms, application-code: 17ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:26.037Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 22ms (next.js: 4ms, proxy.ts: 3ms, application-code: 15ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:36.035Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 17ms (next.js: 3ms, proxy.ts: 4ms, application-code: 11ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:47.198Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 220ms (next.js: 3ms, proxy.ts: 8ms, application-code: 209ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:22:57.022Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 48ms (next.js: 7ms, proxy.ts: 8ms, application-code: 33ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:23:07.012Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 49ms (next.js: 11ms, proxy.ts: 6ms, application-code: 32ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:23:17.010Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 41ms (next.js: 6ms, proxy.ts: 2ms, application-code: 32ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:23:27.277Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 197ms (next.js: 5ms, proxy.ts: 2ms, application-code: 190ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:23:37.011Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 43ms (next.js: 8ms, proxy.ts: 6ms, application-code: 29ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+[32m[INFO][0m 2026-06-17T00:24:14.437Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 142ms (next.js: 2ms, proxy.ts: 2ms, application-code: 137ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:24:16.065Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 48ms (next.js: 6ms, proxy.ts: 6ms, application-code: 36ms)
+ POST /api/auth/logout 200 in 76ms (next.js: 48ms, proxy.ts: 3ms, application-code: 24ms)
+ GET /login 200 in 26ms (next.js: 4ms, proxy.ts: 4ms, application-code: 18ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."password", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ POST /api/auth/login 200 in 142ms (next.js: 4ms, proxy.ts: 5ms, application-code: 133ms)
+ GET /admin/nurses 200 in 25ms (next.js: 5ms, proxy.ts: 4ms, application-code: 16ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 14ms (next.js: 2ms, proxy.ts: 2ms, application-code: 10ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 23ms (next.js: 1585µs, proxy.ts: 1638µs, application-code: 20ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 21ms (next.js: 9ms, proxy.ts: 5ms, application-code: 7ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 17ms (next.js: 3ms, proxy.ts: 3ms, application-code: 12ms)
+ GET /admin/nurses 200 in 13ms (next.js: 4ms, proxy.ts: 3ms, application-code: 6ms)
+ GET /admin/nurses 200 in 19ms (next.js: 3ms, proxy.ts: 3ms, application-code: 13ms)
+ GET /admin/nurses 200 in 14ms (next.js: 5ms, proxy.ts: 4ms, application-code: 6ms)
+ GET /admin/nurses 200 in 18ms (next.js: 3ms, proxy.ts: 3ms, application-code: 11ms)
+ GET /analytics 200 in 259ms (next.js: 152ms, proxy.ts: 2ms, application-code: 105ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35)) OFFSET $36
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:24:29.942Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":21}
+ GET /api/analytics?range=7d 200 in 164ms (next.js: 51ms, proxy.ts: 3ms, application-code: 110ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35)) OFFSET $36
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:24:29.972Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":21}
+ GET /api/analytics?range=7d 200 in 24ms (next.js: 1714µs, proxy.ts: 2ms, application-code: 20ms)
+ GET /admin/nurses 200 in 19ms (next.js: 2ms, proxy.ts: 3ms, application-code: 14ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 17ms (next.js: 2ms, proxy.ts: 2ms, application-code: 12ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 10ms (next.js: 1989µs, proxy.ts: 1971µs, application-code: 6ms)
+ GET /operations/kanban 200 in 28ms (next.js: 5ms, proxy.ts: 3ms, application-code: 20ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:24:36.215Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 23ms (next.js: 2ms, proxy.ts: 2ms, application-code: 18ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21) OFFSET $22
+[32m[INFO][0m 2026-06-17T00:24:36.236Z [DispatchService] Listed dispatches {"total":21,"page":1}
+ GET /api/dispatches 200 in 20ms (next.js: 1804µs, proxy.ts: 2ms, application-code: 16ms)
+ GET /admin/nurses 200 in 22ms (next.js: 4ms, proxy.ts: 4ms, application-code: 14ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 21ms (next.js: 3ms, proxy.ts: 3ms, application-code: 15ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 13ms (next.js: 3ms, proxy.ts: 2ms, application-code: 7ms)
+ GET /admin/departments 200 in 19ms (next.js: 3ms, proxy.ts: 3ms, application-code: 13ms)
+ GET /api/departments 500 in 16ms (next.js: 9ms, proxy.ts: 2ms, application-code: 5ms)
+ GET /api/departments 500 in 9ms (next.js: 3ms, proxy.ts: 2ms, application-code: 4ms)
+✓ Compiled in 427ms
+ GET /admin/departments 200 in 1490ms (next.js: 214ms, proxy.ts: 111ms, application-code: 1165ms)
+ GET /admin/nurses 200 in 1491ms (next.js: 550ms, proxy.ts: 116ms, application-code: 826ms)
+ GET /admin/departments 200 in 710ms (next.js: 44ms, proxy.ts: 11ms, application-code: 655ms)
+ GET /admin/nurses 200 in 698ms (next.js: 126ms, proxy.ts: 13ms, application-code: 559ms)
+ GET /admin/departments 200 in 573ms (next.js: 64ms, proxy.ts: 98ms, application-code: 411ms)
+ GET /admin/nurses 200 in 473ms (next.js: 283ms, proxy.ts: 31ms, application-code: 160ms)
+ GET /admin/departments 200 in 1061ms (next.js: 171ms, proxy.ts: 341ms, application-code: 549ms)
+ GET /admin/nurses 200 in 1062ms (next.js: 271ms, proxy.ts: 343ms, application-code: 448ms)
+ GET /admin/departments 200 in 589ms (next.js: 20ms, proxy.ts: 9ms, application-code: 560ms)
+ GET /admin/nurses 200 in 590ms (next.js: 87ms, proxy.ts: 7ms, application-code: 496ms)
+ GET /admin/departments 200 in 445ms (next.js: 18ms, proxy.ts: 18ms, application-code: 408ms)
+ GET /admin/departments 200 in 442ms (next.js: 87ms, proxy.ts: 18ms, application-code: 337ms)
+ GET /admin/departments 200 in 1111ms (next.js: 23ms, proxy.ts: 14ms, application-code: 1074ms)
+ GET /admin/departments 200 in 1108ms (next.js: 104ms, proxy.ts: 16ms, application-code: 988ms)
+ GET /admin/departments 200 in 1102ms (next.js: 31ms, proxy.ts: 12ms, application-code: 1059ms)
+ GET /admin/departments 200 in 1091ms (next.js: 139ms, proxy.ts: 10ms, application-code: 942ms)
+ GET /admin/departments 200 in 1007ms (next.js: 659ms, proxy.ts: 20ms, application-code: 327ms)
+ GET /admin/departments 200 in 1014ms (next.js: 242ms, proxy.ts: 16ms, application-code: 755ms)
+ GET /admin/departments 200 in 586ms (next.js: 21ms, proxy.ts: 14ms, application-code: 551ms)
+ GET /admin/departments 200 in 583ms (next.js: 100ms, proxy.ts: 15ms, application-code: 468ms)
+ GET /admin/departments 200 in 408ms (next.js: 31ms, proxy.ts: 7ms, application-code: 371ms)
+ GET /admin/departments 200 in 568ms (next.js: 118ms, proxy.ts: 16ms, application-code: 434ms)
+ GET /admin/departments 200 in 556ms (next.js: 101ms, proxy.ts: 16ms, application-code: 439ms)
+ GET /admin/departments 200 in 552ms (next.js: 171ms, proxy.ts: 18ms, application-code: 364ms)
+ GET /admin/departments 200 in 564ms (next.js: 19ms, proxy.ts: 13ms, application-code: 532ms)
+ GET /admin/departments 200 in 564ms (next.js: 91ms, proxy.ts: 13ms, application-code: 460ms)
+ GET /admin/departments 200 in 526ms (next.js: 15ms, proxy.ts: 10ms, application-code: 501ms)
+ GET /admin/departments 200 in 527ms (next.js: 50ms, proxy.ts: 85ms, application-code: 392ms)
+ GET /admin/departments 200 in 505ms (next.js: 92ms, proxy.ts: 17ms, application-code: 397ms)
+ GET /admin/departments 200 in 512ms (next.js: 175ms, proxy.ts: 14ms, application-code: 323ms)
+ GET /admin/departments 200 in 360ms (next.js: 18ms, proxy.ts: 11ms, application-code: 332ms)
+ GET /admin/departments 200 in 360ms (next.js: 67ms, proxy.ts: 12ms, application-code: 281ms)
+ GET /admin/departments 200 in 523ms (next.js: 13ms, proxy.ts: 8ms, application-code: 502ms)
+ GET /admin/departments 200 in 648ms (next.js: 34ms, proxy.ts: 9ms, application-code: 604ms)
+ GET /admin/departments 200 in 737ms (next.js: 112ms, proxy.ts: 14ms, application-code: 611ms)
+ GET /admin/departments 200 in 735ms (next.js: 197ms, proxy.ts: 16ms, application-code: 523ms)
+ GET /admin/departments 200 in 551ms (next.js: 101ms, proxy.ts: 19ms, application-code: 432ms)
+ GET /admin/departments 200 in 547ms (next.js: 148ms, proxy.ts: 72ms, application-code: 327ms)
+ GET /admin/departments 200 in 590ms (next.js: 20ms, proxy.ts: 10ms, application-code: 560ms)
+ GET /admin/departments 200 in 501ms (next.js: 32ms, proxy.ts: 11ms, application-code: 458ms)
+ GET /admin/departments 200 in 574ms (next.js: 113ms, proxy.ts: 14ms, application-code: 447ms)
+ GET /admin/departments 200 in 573ms (next.js: 104ms, proxy.ts: 103ms, application-code: 366ms)
+ GET /admin/departments 200 in 478ms (next.js: 20ms, proxy.ts: 88ms, application-code: 370ms)
+ GET /admin/departments 200 in 477ms (next.js: 91ms, proxy.ts: 89ms, application-code: 297ms)
+ GET /admin/departments 200 in 563ms (next.js: 18ms, proxy.ts: 9ms, application-code: 537ms)
+ GET /admin/departments 200 in 601ms (next.js: 25ms, proxy.ts: 85ms, application-code: 492ms)
+ GET /admin/departments 200 in 602ms (next.js: 106ms, proxy.ts: 85ms, application-code: 411ms)
+ GET /admin/departments 200 in 608ms (next.js: 36ms, proxy.ts: 83ms, application-code: 489ms)
+ GET /admin/departments 200 in 605ms (next.js: 98ms, proxy.ts: 167ms, application-code: 341ms)
+ GET /admin/departments 200 in 612ms (next.js: 181ms, proxy.ts: 9ms, application-code: 422ms)
+ GET /admin/departments 200 in 570ms (next.js: 18ms, proxy.ts: 10ms, application-code: 542ms)
+ GET /admin/departments 200 in 562ms (next.js: 19ms, proxy.ts: 89ms, application-code: 454ms)
+ GET /admin/departments 200 in 481ms (next.js: 24ms, proxy.ts: 14ms, application-code: 443ms)
+ GET /admin/departments 200 in 483ms (next.js: 96ms, proxy.ts: 14ms, application-code: 373ms)
+ GET /admin/departments 200 in 405ms (next.js: 95ms, proxy.ts: 13ms, application-code: 297ms)
+ GET /admin/departments 200 in 412ms (next.js: 20ms, proxy.ts: 13ms, application-code: 380ms)
+ GET /admin/departments 200 in 651ms (next.js: 26ms, proxy.ts: 6ms, application-code: 618ms)
+ GET /admin/departments 200 in 648ms (next.js: 98ms, proxy.ts: 11ms, application-code: 539ms)
+ GET /admin/departments 200 in 675ms (next.js: 28ms, proxy.ts: 87ms, application-code: 561ms)
+ GET /admin/departments 200 in 643ms (next.js: 103ms, proxy.ts: 11ms, application-code: 529ms)
+ GET /admin/departments 200 in 658ms (next.js: 127ms, proxy.ts: 114ms, application-code: 417ms)
+ GET /admin/departments 200 in 665ms (next.js: 32ms, proxy.ts: 111ms, application-code: 523ms)
+ GET /admin/departments 200 in 936ms (next.js: 30ms, proxy.ts: 15ms, application-code: 891ms)
+ GET /admin/departments 200 in 933ms (next.js: 173ms, proxy.ts: 14ms, application-code: 746ms)
+ GET /admin/departments 200 in 863ms (next.js: 123ms, proxy.ts: 15ms, application-code: 726ms)
+ GET /admin/departments 200 in 778ms (next.js: 145ms, proxy.ts: 11ms, application-code: 622ms)
+ GET /admin/departments 200 in 828ms (next.js: 112ms, proxy.ts: 18ms, application-code: 699ms)
+ GET /admin/departments 200 in 827ms (next.js: 253ms, proxy.ts: 19ms, application-code: 555ms)
+ GET /admin/departments 200 in 578ms (next.js: 19ms, proxy.ts: 9ms, application-code: 550ms)
+ GET /admin/departments 200 in 582ms (next.js: 25ms, proxy.ts: 97ms, application-code: 460ms)
+ GET /admin/departments 200 in 489ms (next.js: 103ms, proxy.ts: 9ms, application-code: 377ms)
+ GET /admin/departments 200 in 581ms (next.js: 114ms, proxy.ts: 87ms, application-code: 380ms)
+ GET /admin/departments 200 in 490ms (next.js: 97ms, proxy.ts: 13ms, application-code: 380ms)
+ GET /admin/nurses 200 in 558ms (next.js: 90ms, proxy.ts: 90ms, application-code: 378ms)
+ GET /admin/nurses 200 in 518ms (next.js: 24ms, proxy.ts: 11ms, application-code: 484ms)
+ GET /admin/nurses 200 in 511ms (next.js: 23ms, proxy.ts: 92ms, application-code: 396ms)
+ GET /admin/nurses 200 in 513ms (next.js: 98ms, proxy.ts: 16ms, application-code: 399ms)
+ GET /admin/nurses 200 in 512ms (next.js: 92ms, proxy.ts: 84ms, application-code: 336ms)
+ GET /admin/nurses 200 in 561ms (next.js: 84ms, proxy.ts: 14ms, application-code: 463ms)
+ GET /admin/nurses 200 in 484ms (next.js: 66ms, proxy.ts: 7ms, application-code: 411ms)
+ GET /admin/nurses 200 in 618ms (next.js: 13ms, proxy.ts: 8ms, application-code: 597ms)
+ GET /admin/nurses 200 in 558ms (next.js: 24ms, proxy.ts: 12ms, application-code: 522ms)
+ GET /admin/nurses 200 in 686ms (next.js: 107ms, proxy.ts: 7ms, application-code: 572ms)
+ GET /admin/nurses 200 in 735ms (next.js: 137ms, proxy.ts: 11ms, application-code: 587ms)
+ GET /admin/nurses 200 in 709ms (next.js: 100ms, proxy.ts: 13ms, application-code: 597ms)
+ GET /admin/nurses 200 in 707ms (next.js: 110ms, proxy.ts: 91ms, application-code: 506ms)
+ GET /admin/nurses 200 in 532ms (next.js: 18ms, proxy.ts: 15ms, application-code: 498ms)
+ GET /admin/nurses 200 in 536ms (next.js: 35ms, proxy.ts: 12ms, application-code: 489ms)
+ GET /admin/nurses 200 in 614ms (next.js: 138ms, proxy.ts: 15ms, application-code: 461ms)
+ GET /admin/nurses 200 in 570ms (next.js: 35ms, proxy.ts: 92ms, application-code: 443ms)
+ GET /admin/nurses 200 in 485ms (next.js: 98ms, proxy.ts: 18ms, application-code: 368ms)
+ GET /admin/nurses 200 in 481ms (next.js: 170ms, proxy.ts: 15ms, application-code: 295ms)
+ GET /admin/nurses 200 in 450ms (next.js: 15ms, proxy.ts: 11ms, application-code: 425ms)
+ GET /admin/nurses 200 in 524ms (next.js: 19ms, proxy.ts: 10ms, application-code: 495ms)
+ GET /admin/nurses 200 in 596ms (next.js: 28ms, proxy.ts: 87ms, application-code: 481ms)
+ GET /admin/nurses 200 in 595ms (next.js: 76ms, proxy.ts: 89ms, application-code: 429ms)
+ GET /admin/nurses 200 in 509ms (next.js: 135ms, proxy.ts: 13ms, application-code: 360ms)
+ GET /admin/nurses 200 in 507ms (next.js: 209ms, proxy.ts: 14ms, application-code: 283ms)
+ GET /admin/nurses 200 in 405ms (next.js: 13ms, proxy.ts: 8ms, application-code: 384ms)
+ GET /admin/nurses 200 in 498ms (next.js: 19ms, proxy.ts: 10ms, application-code: 469ms)
+ GET /admin/nurses 200 in 572ms (next.js: 25ms, proxy.ts: 85ms, application-code: 462ms)
+ GET /admin/nurses 200 in 567ms (next.js: 36ms, proxy.ts: 87ms, application-code: 444ms)
+ GET /admin/nurses 200 in 483ms (next.js: 101ms, proxy.ts: 13ms, application-code: 369ms)
+ GET /admin/nurses 200 in 481ms (next.js: 180ms, proxy.ts: 14ms, application-code: 287ms)
+ GET /admin/nurses 200 in 574ms (next.js: 17ms, proxy.ts: 7ms, application-code: 551ms)
+ GET /admin/nurses 200 in 528ms (next.js: 26ms, proxy.ts: 9ms, application-code: 493ms)
+ GET /admin/nurses 200 in 613ms (next.js: 104ms, proxy.ts: 9ms, application-code: 500ms)
+ GET /admin/nurses 200 in 626ms (next.js: 28ms, proxy.ts: 101ms, application-code: 497ms)
+ GET /admin/nurses 200 in 626ms (next.js: 105ms, proxy.ts: 101ms, application-code: 420ms)
+ GET /admin/nurses 200 in 550ms (next.js: 179ms, proxy.ts: 22ms, application-code: 349ms)
+ GET /admin/nurses 200 in 794ms (next.js: 18ms, proxy.ts: 12ms, application-code: 765ms)
+ GET /admin/nurses 200 in 828ms (next.js: 16ms, proxy.ts: 92ms, application-code: 720ms)
+ GET /admin/nurses 200 in 661ms (next.js: 50ms, proxy.ts: 12ms, application-code: 599ms)
+✓ Compiled in 576ms
+ GET /admin/nurses 200 in 1740ms (next.js: 728ms, proxy.ts: 437ms, application-code: 575ms)
+ GET /admin/nurses 200 in 1750ms (next.js: 589ms, proxy.ts: 435ms, application-code: 725ms)
+ GET /admin/nurses 200 in 1353ms (next.js: 787ms, proxy.ts: 78ms, application-code: 488ms)
+ GET /admin/nurses 200 in 1178ms (next.js: 761ms, proxy.ts: 8ms, application-code: 409ms)
+ GET /admin/nurses 200 in 1145ms (next.js: 814ms, proxy.ts: 10ms, application-code: 321ms)
+ GET /admin/nurses 200 in 1476ms (next.js: 16ms, proxy.ts: 871ms, application-code: 589ms)
+ GET /admin/nurses 200 in 625ms (next.js: 54ms, proxy.ts: 26ms, application-code: 545ms)
+ GET /admin/nurses 200 in 621ms (next.js: 138ms, proxy.ts: 25ms, application-code: 458ms)
+ GET /admin/nurses 200 in 617ms (next.js: 218ms, proxy.ts: 26ms, application-code: 372ms)
+ GET /admin/nurses 200 in 617ms (next.js: 306ms, proxy.ts: 30ms, application-code: 280ms)
+ GET /admin/nurses 200 in 614ms (next.js: 377ms, proxy.ts: 35ms, application-code: 201ms)
+ GET /admin/nurses 200 in 714ms (next.js: 15ms, proxy.ts: 11ms, application-code: 689ms)
+ GET /admin/nurses 200 in 741ms (next.js: 37ms, proxy.ts: 18ms, application-code: 686ms)
+ GET /admin/nurses 200 in 742ms (next.js: 117ms, proxy.ts: 18ms, application-code: 607ms)
+ GET /admin/nurses 200 in 745ms (next.js: 208ms, proxy.ts: 18ms, application-code: 519ms)
+ GET /admin/nurses 200 in 750ms (next.js: 332ms, proxy.ts: 24ms, application-code: 394ms)
+ GET /admin/nurses 200 in 736ms (next.js: 454ms, proxy.ts: 13ms, application-code: 269ms)
+ GET /admin/nurses 200 in 873ms (next.js: 14ms, proxy.ts: 9ms, application-code: 850ms)
+ GET /admin/nurses 200 in 1059ms (next.js: 75ms, proxy.ts: 16ms, application-code: 967ms)
+ GET /admin/nurses 200 in 1060ms (next.js: 416ms, proxy.ts: 20ms, application-code: 624ms)
+ GET /admin/nurses 200 in 1044ms (next.js: 480ms, proxy.ts: 23ms, application-code: 542ms)
+ GET /admin/nurses 200 in 1052ms (next.js: 537ms, proxy.ts: 33ms, application-code: 482ms)
+ GET /admin/nurses 200 in 1051ms (next.js: 586ms, proxy.ts: 40ms, application-code: 426ms)
+ GET /admin/departments 200 in 553ms (next.js: 221ms, proxy.ts: 7ms, application-code: 325ms)
+ GET /admin/departments 200 in 288ms (next.js: 89ms, proxy.ts: 17ms, application-code: 182ms)
+ GET /admin/nurses 200 in 296ms (next.js: 23ms, proxy.ts: 13ms, application-code: 260ms)
+ GET /admin/nurses 200 in 107ms (next.js: 16ms, proxy.ts: 8ms, application-code: 83ms)
+ GET /admin/departments 200 in 639ms (next.js: 252ms, proxy.ts: 46ms, application-code: 341ms)
+ GET /admin/nurses 200 in 646ms (next.js: 162ms, proxy.ts: 43ms, application-code: 440ms)
+ GET /admin/nurses 200 in 289ms (next.js: 15ms, proxy.ts: 6ms, application-code: 269ms)
+ GET /admin/departments 200 in 402ms (next.js: 72ms, proxy.ts: 7ms, application-code: 323ms)
+ GET /admin/nurses 200 in 286ms (next.js: 18ms, proxy.ts: 12ms, application-code: 256ms)
+ GET /admin/nurses 200 in 283ms (next.js: 59ms, proxy.ts: 12ms, application-code: 212ms)
+ GET /admin/nurses 200 in 527ms (next.js: 58ms, proxy.ts: 12ms, application-code: 457ms)
+ GET /admin/nurses 200 in 534ms (next.js: 14ms, proxy.ts: 11ms, application-code: 509ms)
+ GET /admin/nurses 200 in 424ms (next.js: 17ms, proxy.ts: 10ms, application-code: 396ms)
+ GET /admin/nurses 200 in 425ms (next.js: 94ms, proxy.ts: 10ms, application-code: 322ms)
+ GET /admin/nurses 200 in 687ms (next.js: 22ms, proxy.ts: 15ms, application-code: 650ms)
+ GET /admin/nurses 200 in 685ms (next.js: 96ms, proxy.ts: 17ms, application-code: 572ms)
+ GET /admin/nurses 200 in 814ms (next.js: 32ms, proxy.ts: 15ms, application-code: 767ms)
+ GET /admin/nurses 200 in 813ms (next.js: 187ms, proxy.ts: 16ms, application-code: 611ms)
+ GET /admin/nurses 200 in 395ms (next.js: 21ms, proxy.ts: 14ms, application-code: 360ms)
+ GET /admin/nurses 200 in 396ms (next.js: 90ms, proxy.ts: 16ms, application-code: 291ms)
+ GET /admin/nurses 200 in 408ms (next.js: 20ms, proxy.ts: 12ms, application-code: 376ms)
+ GET /admin/nurses 200 in 561ms (next.js: 91ms, proxy.ts: 15ms, application-code: 455ms)
+ GET /admin/nurses 200 in 563ms (next.js: 24ms, proxy.ts: 13ms, application-code: 527ms)
+ GET /admin/nurses 200 in 562ms (next.js: 99ms, proxy.ts: 14ms, application-code: 449ms)
+ GET /admin/nurses 200 in 479ms (next.js: 23ms, proxy.ts: 94ms, application-code: 362ms)
+ GET /admin/nurses 200 in 395ms (next.js: 91ms, proxy.ts: 14ms, application-code: 290ms)
+ GET /admin/nurses 200 in 577ms (next.js: 25ms, proxy.ts: 15ms, application-code: 537ms)
+ GET /admin/nurses 200 in 584ms (next.js: 94ms, proxy.ts: 19ms, application-code: 471ms)
+ GET /admin/nurses 200 in 608ms (next.js: 17ms, proxy.ts: 10ms, application-code: 581ms)
+ GET /admin/departments 200 in 607ms (next.js: 97ms, proxy.ts: 9ms, application-code: 501ms)
+ GET /admin/departments 200 in 537ms (next.js: 22ms, proxy.ts: 110ms, application-code: 405ms)
+ GET /admin/departments 200 in 440ms (next.js: 93ms, proxy.ts: 16ms, application-code: 330ms)
+ GET /admin/departments 200 in 513ms (next.js: 27ms, proxy.ts: 10ms, application-code: 477ms)
+ GET /admin/departments 200 in 615ms (next.js: 94ms, proxy.ts: 11ms, application-code: 510ms)
+ GET /admin/departments 200 in 431ms (next.js: 22ms, proxy.ts: 12ms, application-code: 398ms)
+ GET /admin/departments 200 in 429ms (next.js: 81ms, proxy.ts: 12ms, application-code: 337ms)
+ GET /admin/departments 200 in 448ms (next.js: 22ms, proxy.ts: 12ms, application-code: 415ms)
+ GET /admin/departments 200 in 453ms (next.js: 117ms, proxy.ts: 15ms, application-code: 321ms)
+ GET /admin/departments 200 in 661ms (next.js: 15ms, proxy.ts: 9ms, application-code: 637ms)
+ GET /admin/departments 200 in 683ms (next.js: 97ms, proxy.ts: 17ms, application-code: 569ms)
+ GET /admin/departments 200 in 523ms (next.js: 21ms, proxy.ts: 13ms, application-code: 488ms)
+ GET /admin/departments 200 in 520ms (next.js: 115ms, proxy.ts: 15ms, application-code: 391ms)
+ GET /admin/departments 200 in 753ms (next.js: 49ms, proxy.ts: 209ms, application-code: 494ms)
+ GET /admin/departments 200 in 539ms (next.js: 138ms, proxy.ts: 15ms, application-code: 386ms)
+ GET /admin/departments 200 in 779ms (next.js: 24ms, proxy.ts: 13ms, application-code: 742ms)
+ GET /admin/departments 200 in 776ms (next.js: 109ms, proxy.ts: 14ms, application-code: 653ms)
+ GET /admin/departments 200 in 601ms (next.js: 66ms, proxy.ts: 12ms, application-code: 523ms)
+ GET /admin/departments 200 in 600ms (next.js: 157ms, proxy.ts: 54ms, application-code: 388ms)
+ GET /admin/departments 200 in 666ms (next.js: 50ms, proxy.ts: 18ms, application-code: 598ms)
+ GET /admin/departments 200 in 662ms (next.js: 102ms, proxy.ts: 43ms, application-code: 517ms)
+ GET /admin/departments 200 in 608ms (next.js: 24ms, proxy.ts: 14ms, application-code: 570ms)
+ GET /admin/departments 200 in 605ms (next.js: 103ms, proxy.ts: 15ms, application-code: 487ms)
+ GET /admin/departments 200 in 410ms (next.js: 87ms, proxy.ts: 15ms, application-code: 307ms)
+ GET /admin/departments 200 in 419ms (next.js: 16ms, proxy.ts: 17ms, application-code: 386ms)
+ GET /admin/departments 200 in 621ms (next.js: 104ms, proxy.ts: 13ms, application-code: 504ms)
+ GET /admin/departments 200 in 628ms (next.js: 19ms, proxy.ts: 13ms, application-code: 595ms)
+ GET /admin/departments 200 in 644ms (next.js: 102ms, proxy.ts: 12ms, application-code: 530ms)
+ GET /admin/nurses 200 in 652ms (next.js: 22ms, proxy.ts: 12ms, application-code: 619ms)
+ GET /admin/nurses 200 in 460ms (next.js: 28ms, proxy.ts: 15ms, application-code: 417ms)
+ GET /admin/departments 200 in 456ms (next.js: 105ms, proxy.ts: 19ms, application-code: 333ms)
+ GET /admin/departments 200 in 381ms (next.js: 24ms, proxy.ts: 17ms, application-code: 340ms)
+ GET /admin/departments 200 in 384ms (next.js: 86ms, proxy.ts: 19ms, application-code: 279ms)
+ GET /admin/departments 200 in 538ms (next.js: 8ms, proxy.ts: 13ms, application-code: 517ms)
+ GET /admin/departments 200 in 546ms (next.js: 86ms, proxy.ts: 11ms, application-code: 449ms)
+ GET /admin/departments 200 in 394ms (next.js: 23ms, proxy.ts: 13ms, application-code: 358ms)
+ GET /admin/departments 200 in 405ms (next.js: 117ms, proxy.ts: 14ms, application-code: 274ms)
+ GET /admin/departments 200 in 448ms (next.js: 25ms, proxy.ts: 79ms, application-code: 344ms)
+ GET /admin/departments 200 in 476ms (next.js: 90ms, proxy.ts: 9ms, application-code: 377ms)
+ GET /admin/departments 200 in 498ms (next.js: 20ms, proxy.ts: 13ms, application-code: 464ms)
+ GET /admin/departments 200 in 496ms (next.js: 94ms, proxy.ts: 13ms, application-code: 389ms)
+ GET /admin/departments 200 in 424ms (next.js: 17ms, proxy.ts: 78ms, application-code: 328ms)
+ GET /admin/departments 200 in 356ms (next.js: 69ms, proxy.ts: 13ms, application-code: 273ms)
+ GET /admin/departments 200 in 420ms (next.js: 12ms, proxy.ts: 5ms, application-code: 403ms)
+ GET /admin/departments 200 in 580ms (next.js: 116ms, proxy.ts: 5ms, application-code: 459ms)
+ GET /admin/departments 200 in 563ms (next.js: 22ms, proxy.ts: 13ms, application-code: 527ms)
+ GET /admin/departments 200 in 560ms (next.js: 119ms, proxy.ts: 15ms, application-code: 426ms)
+ GET /admin/departments 200 in 473ms (next.js: 99ms, proxy.ts: 15ms, application-code: 360ms)
+ GET /admin/departments 200 in 471ms (next.js: 171ms, proxy.ts: 15ms, application-code: 285ms)
+ GET /admin/departments 200 in 370ms (next.js: 19ms, proxy.ts: 8ms, application-code: 342ms)
+ GET /admin/departments 200 in 464ms (next.js: 12ms, proxy.ts: 86ms, application-code: 366ms)
+ GET /admin/departments 200 in 473ms (next.js: 21ms, proxy.ts: 10ms, application-code: 442ms)
+ GET /admin/departments 200 in 511ms (next.js: 111ms, proxy.ts: 12ms, application-code: 388ms)
+ GET /admin/departments 200 in 439ms (next.js: 70ms, proxy.ts: 12ms, application-code: 357ms)
+ GET /admin/departments 200 in 435ms (next.js: 112ms, proxy.ts: 10ms, application-code: 314ms)
+ GET /admin/departments 200 in 626ms (next.js: 22ms, proxy.ts: 9ms, application-code: 596ms)
+ GET /admin/departments 200 in 619ms (next.js: 86ms, proxy.ts: 9ms, application-code: 524ms)
+ GET /admin/departments 200 in 416ms (next.js: 38ms, proxy.ts: 9ms, application-code: 368ms)
+ GET /admin/departments 200 in 565ms (next.js: 120ms, proxy.ts: 8ms, application-code: 436ms)
+ GET /admin/departments 200 in 561ms (next.js: 183ms, proxy.ts: 13ms, application-code: 365ms)
+ GET /admin/departments 200 in 570ms (next.js: 177ms, proxy.ts: 102ms, application-code: 291ms)
+ GET /admin/departments 200 in 660ms (next.js: 89ms, proxy.ts: 7ms, application-code: 564ms)
+ GET /admin/departments 200 in 677ms (next.js: 23ms, proxy.ts: 11ms, application-code: 642ms)
+ GET /admin/departments 200 in 495ms (next.js: 23ms, proxy.ts: 10ms, application-code: 462ms)
+ GET /admin/departments 200 in 483ms (next.js: 105ms, proxy.ts: 11ms, application-code: 368ms)
+ GET /admin/departments 200 in 474ms (next.js: 115ms, proxy.ts: 75ms, application-code: 285ms)
+ GET /admin/departments 200 in 395ms (next.js: 236ms, proxy.ts: 10ms, application-code: 149ms)
+ GET /admin/departments 200 in 758ms (next.js: 68ms, proxy.ts: 24ms, application-code: 666ms)
+ GET /admin/departments 200 in 759ms (next.js: 180ms, proxy.ts: 28ms, application-code: 551ms)
+ GET /admin/nurses 200 in 756ms (next.js: 450ms, proxy.ts: 33ms, application-code: 273ms)
+ GET /admin/nurses 200 in 754ms (next.js: 527ms, proxy.ts: 36ms, application-code: 191ms)
+ GET /admin/nurses 200 in 751ms (next.js: 574ms, proxy.ts: 37ms, application-code: 140ms)
+ GET /admin/nurses 200 in 747ms (next.js: 633ms, proxy.ts: 41ms, application-code: 73ms)
+ GET /admin/nurses 200 in 344ms (next.js: 41ms, proxy.ts: 17ms, application-code: 287ms)
+ GET /admin/nurses 200 in 346ms (next.js: 95ms, proxy.ts: 18ms, application-code: 233ms)
+ GET /admin/nurses 200 in 345ms (next.js: 144ms, proxy.ts: 19ms, application-code: 182ms)
+ GET /admin/nurses 200 in 343ms (next.js: 188ms, proxy.ts: 18ms, application-code: 137ms)
+ GET /admin/nurses 200 in 340ms (next.js: 263ms, proxy.ts: 24ms, application-code: 53ms)
+ GET /admin/nurses 200 in 344ms (next.js: 230ms, proxy.ts: 19ms, application-code: 94ms)
+ GET /admin/nurses 200 in 370ms (next.js: 24ms, proxy.ts: 14ms, application-code: 332ms)
+ GET /admin/nurses 200 in 372ms (next.js: 67ms, proxy.ts: 14ms, application-code: 291ms)
+ GET /admin/nurses 200 in 369ms (next.js: 149ms, proxy.ts: 15ms, application-code: 205ms)
+ GET /admin/nurses 200 in 372ms (next.js: 110ms, proxy.ts: 14ms, application-code: 247ms)
+ GET /admin/nurses 200 in 367ms (next.js: 274ms, proxy.ts: 16ms, application-code: 77ms)
+ GET /admin/nurses 200 in 370ms (next.js: 194ms, proxy.ts: 15ms, application-code: 161ms)
+ GET /admin/nurses 200 in 364ms (next.js: 19ms, proxy.ts: 13ms, application-code: 332ms)
+ GET /admin/nurses 200 in 371ms (next.js: 64ms, proxy.ts: 13ms, application-code: 294ms)
+ GET /admin/nurses 200 in 368ms (next.js: 97ms, proxy.ts: 14ms, application-code: 258ms)
+ GET /admin/nurses 200 in 367ms (next.js: 142ms, proxy.ts: 14ms, application-code: 211ms)
+ GET /admin/nurses 200 in 367ms (next.js: 196ms, proxy.ts: 15ms, application-code: 156ms)
+ GET /admin/nurses 200 in 366ms (next.js: 259ms, proxy.ts: 15ms, application-code: 92ms)
+ GET /admin/nurses 200 in 343ms (next.js: 22ms, proxy.ts: 13ms, application-code: 307ms)
+ GET /admin/nurses 200 in 345ms (next.js: 68ms, proxy.ts: 13ms, application-code: 264ms)
+ GET /admin/nurses 200 in 344ms (next.js: 122ms, proxy.ts: 14ms, application-code: 208ms)
+ GET /admin/nurses 200 in 344ms (next.js: 170ms, proxy.ts: 14ms, application-code: 161ms)
+ GET /admin/nurses 200 in 345ms (next.js: 217ms, proxy.ts: 15ms, application-code: 113ms)
+ GET /admin/nurses 200 in 345ms (next.js: 261ms, proxy.ts: 15ms, application-code: 68ms)
+ GET /admin/nurses 200 in 379ms (next.js: 59ms, proxy.ts: 9ms, application-code: 312ms)
+ GET /admin/nurses 200 in 381ms (next.js: 108ms, proxy.ts: 8ms, application-code: 265ms)
+ GET /admin/nurses 200 in 382ms (next.js: 158ms, proxy.ts: 9ms, application-code: 216ms)
+ GET /admin/nurses 200 in 387ms (next.js: 178ms, proxy.ts: 43ms, application-code: 166ms)
+ GET /admin/nurses 200 in 380ms (next.js: 216ms, proxy.ts: 39ms, application-code: 125ms)
+ GET /admin/nurses 200 in 387ms (next.js: 264ms, proxy.ts: 40ms, application-code: 82ms)
+ GET /admin/nurses 200 in 336ms (next.js: 26ms, proxy.ts: 9ms, application-code: 302ms)
+ GET /admin/nurses 200 in 338ms (next.js: 72ms, proxy.ts: 11ms, application-code: 256ms)
+ GET /admin/nurses 200 in 340ms (next.js: 117ms, proxy.ts: 12ms, application-code: 211ms)
+ GET /admin/nurses 200 in 338ms (next.js: 170ms, proxy.ts: 9ms, application-code: 160ms)
+ GET /admin/nurses 200 in 338ms (next.js: 217ms, proxy.ts: 11ms, application-code: 110ms)
+ GET /admin/nurses 200 in 337ms (next.js: 214ms, proxy.ts: 52ms, application-code: 71ms)
+ GET /admin/nurses 200 in 273ms (next.js: 28ms, proxy.ts: 6ms, application-code: 239ms)
+ GET /admin/nurses 200 in 274ms (next.js: 69ms, proxy.ts: 8ms, application-code: 197ms)
+ GET /admin/nurses 200 in 261ms (next.js: 141ms, proxy.ts: 11ms, application-code: 109ms)
+ GET /admin/nurses 200 in 255ms (next.js: 194ms, proxy.ts: 8ms, application-code: 54ms)
+ GET /analytics 200 in 273ms (next.js: 166ms, proxy.ts: 6ms, application-code: 102ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39)) OFFSET $40
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" < $2) OFFSET $3
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:34:05.464Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":25}
+ GET /api/analytics?range=7d 200 in 340ms (next.js: 139ms, proxy.ts: 10ms, application-code: 190ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" < $2) OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39)) OFFSET $40
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:34:05.495Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":25}
+ GET /api/analytics?range=7d 200 in 30ms (next.js: 3ms, proxy.ts: 4ms, application-code: 23ms)
+ GET /operations/kanban 200 in 361ms (next.js: 275ms, proxy.ts: 5ms, application-code: 81ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+[32m[INFO][0m 2026-06-17T00:34:13.203Z [DispatchService] Listed dispatches {"total":25,"page":1}
+ GET /api/dispatches 200 in 271ms (next.js: 235ms, proxy.ts: 5ms, application-code: 31ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE 1=1 ORDER BY "public"."Dispatch"."scheduledFor" ASC LIMIT $1 OFFSET $2
+prisma:query SELECT "public"."User"."id", "public"."User"."name", "public"."User"."avatar" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT "public"."Patient"."id", "public"."Patient"."name", "public"."Patient"."address", "public"."Patient"."phone", "public"."Patient"."condition", "public"."Patient"."notes", "public"."Patient"."createdAt" FROM "public"."Patient" WHERE "public"."Patient"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+[32m[INFO][0m 2026-06-17T00:34:13.220Z [DispatchService] Listed dispatches {"total":25,"page":1}
+ GET /api/dispatches 200 in 15ms (next.js: 3ms, proxy.ts: 3ms, application-code: 9ms)
+ GET /admin/nurses 200 in 61ms (next.js: 4ms, proxy.ts: 3ms, application-code: 54ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 404ms (next.js: 355ms, proxy.ts: 16ms, application-code: 32ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 34ms (next.js: 10ms, proxy.ts: 6ms, application-code: 19ms)
+ GET /admin/departments 200 in 82ms (next.js: 12ms, proxy.ts: 6ms, application-code: 64ms)
+ GET /api/departments 500 in 46ms (next.js: 40ms, proxy.ts: 1892µs, application-code: 5ms)
+ GET /api/departments 500 in 9ms (next.js: 1528µs, proxy.ts: 1715µs, application-code: 6ms)
+ GET /admin/specializations 200 in 246ms (next.js: 132ms, proxy.ts: 4ms, application-code: 110ms)
+ GET /api/specializations 500 in 40ms (next.js: 24ms, proxy.ts: 1997µs, application-code: 14ms)
+ GET /api/specializations 500 in 7ms (next.js: 1402µs, proxy.ts: 1600µs, application-code: 4ms)
+ GET /admin/departments 200 in 33ms (next.js: 7ms, proxy.ts: 5ms, application-code: 21ms)
+ GET /api/departments 500 in 17ms (next.js: 1996µs, proxy.ts: 3ms, application-code: 12ms)
+ GET /api/departments 500 in 13ms (next.js: 4ms, proxy.ts: 2ms, application-code: 7ms)
+ GET /admin/specializations 200 in 28ms (next.js: 6ms, proxy.ts: 4ms, application-code: 18ms)
+ GET /api/specializations 500 in 14ms (next.js: 3ms, proxy.ts: 1831µs, application-code: 9ms)
+ GET /api/specializations 500 in 8ms (next.js: 3ms, proxy.ts: 1893µs, application-code: 4ms)
+ GET /admin/nurses 200 in 27ms (next.js: 6ms, proxy.ts: 3ms, application-code: 18ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 17ms (next.js: 2ms, proxy.ts: 2ms, application-code: 13ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 12ms (next.js: 1863µs, proxy.ts: 2ms, application-code: 8ms)
+ GET /analytics 200 in 24ms (next.js: 5ms, proxy.ts: 5ms, application-code: 14ms)
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" < $2) OFFSET $3
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39)) OFFSET $40
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:45:42.710Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":25}
+ GET /api/analytics?range=7d 200 in 81ms (next.js: 2ms, proxy.ts: 3ms, application-code: 76ms)
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" < $2) OFFSET $3
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."createdAt" >= $1 AND "public"."Dispatch"."createdAt" <= $2) OFFSET $3
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE "public"."Dispatch"."createdAt" >= $1 OFFSET $2) AS "sub"
+prisma:query SELECT COUNT(*) AS "_count$_all" FROM (SELECT "public"."Dispatch"."id" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."priority" = CAST($2::text AS "public"."Priority")) OFFSET $3) AS "sub"
+prisma:query SELECT "public"."User"."id", "public"."User"."isOnline" FROM "public"."User" WHERE ("public"."User"."role" = CAST($1::text AS "public"."Role") AND "public"."User"."isActive" = $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25) OFFSET $26
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."nurseId" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" IN (CAST($1::text AS "public"."DispatchStatus"),CAST($2::text AS "public"."DispatchStatus")) AND "public"."Dispatch"."nurseId" IN ($3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39)) OFFSET $40
+prisma:query SELECT "public"."Dispatch"."id", "public"."Dispatch"."patientId", "public"."Dispatch"."status"::text, "public"."Dispatch"."priority"::text, "public"."Dispatch"."scheduledFor", "public"."Dispatch"."nurseId", "public"."Dispatch"."notes", "public"."Dispatch"."completedAt", "public"."Dispatch"."createdAt", "public"."Dispatch"."updatedAt" FROM "public"."Dispatch" WHERE ("public"."Dispatch"."status" = CAST($1::text AS "public"."DispatchStatus") AND "public"."Dispatch"."completedAt" >= $2) OFFSET $3
+prisma:query SELECT "public"."User"."id", "public"."User"."name" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8
+[32m[INFO][0m 2026-06-17T00:45:42.730Z [AnalyticsService] Analytics computed {"range":"7d","totalInRange":25}
+ GET /api/analytics?range=7d 200 in 20ms (next.js: 2ms, proxy.ts: 2ms, application-code: 15ms)
+ GET /admin/nurses 200 in 20ms (next.js: 3ms, proxy.ts: 2ms, application-code: 14ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 15ms (next.js: 1920µs, proxy.ts: 3ms, application-code: 9ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 12ms (next.js: 2ms, proxy.ts: 3ms, application-code: 7ms)
+ GET /admin/nurses 200 in 549ms (next.js: 2ms, proxy.ts: 2ms, application-code: 544ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+ GET /api/auth/me 200 in 76ms (next.js: 48ms, proxy.ts: 3ms, application-code: 24ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 11ms (next.js: 3ms, proxy.ts: 3ms, application-code: 5ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:548:159
+
+  545         throw __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$utils$2f$errors$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Errors"].forbidden('You do not have permission to view this role');
+  546     }
+  547 }
+→ 548 const users = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findMany({
+        where: {
+          role: "NURSE"
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          isActive: true,
+          isOnline: true,
+          avatar: true,
+          phone: true,
+          departmentId: true,
+          ~~~~~~~~~~~~
+          department: true,
+          specializations: {
+            include: {
+              specialization: true
+            }
+          },
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              dispatches: {
+                where: {
+                  status: {
+                    in: [
+                      "ASSIGNED",
+                      "IN_PROGRESS"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+      ?   password?: true,
+      ?   dispatches?: true,
+      ?   auditLogs?: true
+        },
+        orderBy: {
+          name: "asc"
+        }
+      })
+
+Unknown field `departmentId` for select statement on model `User`. Available options are marked with ?.
+ GET /api/users?role=NURSE 500 in 11ms (next.js: 1861µs, proxy.ts: 2ms, application-code: 6ms)
+ POST /api/users 422 in 18ms (next.js: 6ms, proxy.ts: 4ms, application-code: 8ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."password", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+prisma:error 
+Invalid `tx.user.create()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:619:39
+
+  616 const seedName = encodeURIComponent(data.name);
+  617 const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedName}`;
+  618 const user = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
+→ 619     const created = await tx.user.create({
+            data: {
+              email: "a@b.com",
+              name: "Amr Mousa Sayed Rashed",
+              password: "$2b$10$GoVREtnDv.VNUPcPkXZ9v.pmVql7Ah6Lnr3CkU8JC54hG/KIXV4VW",
+              role: "NURSE",
+              phone: "01100386004",
+              departmentId: null,
+              ~~~~~~~~~~~~
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amr%20Mousa%20Sayed%20Rashed",
+              specializations: {
+                create: []
+              },
+          ?   id?: String,
+          ?   isActive?: Boolean,
+          ?   isOnline?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime,
+          ?   dispatches?: DispatchCreateNestedManyWithoutNurseInput,
+          ?   auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+            },
+            select: {
+              id: true,
+              email: true,
+              name: true,
+              role: true,
+              isActive: true,
+              isOnline: true,
+              avatar: true,
+              phone: true,
+              departmentId: true,
+              department: true,
+              specializations: {
+                include: {
+                  specialization: true
+                }
+              },
+              createdAt: true,
+              updatedAt: true
+            }
+          })
+
+Unknown argument `departmentId`. Available options are marked with ?.
+prisma:query ROLLBACK
+ POST /api/users 500 in 353ms (next.js: 3ms, proxy.ts: 4ms, application-code: 345ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."password", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+prisma:error 
+Invalid `tx.user.create()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:619:39
+
+  616 const seedName = encodeURIComponent(data.name);
+  617 const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedName}`;
+  618 const user = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
+→ 619     const created = await tx.user.create({
+            data: {
+              email: "a@b.com",
+              name: "Amr Mousa Sayed Rashed",
+              password: "$2b$10$N4WyYoai6uwIBrO6iLefhuIInveGZ6oBBA7fjcWOPxjjNSZ6OMuWS",
+              role: "NURSE",
+              phone: "01100386004",
+              departmentId: null,
+              ~~~~~~~~~~~~
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amr%20Mousa%20Sayed%20Rashed",
+              specializations: {
+                create: []
+              },
+          ?   id?: String,
+          ?   isActive?: Boolean,
+          ?   isOnline?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime,
+          ?   dispatches?: DispatchCreateNestedManyWithoutNurseInput,
+          ?   auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+            },
+            select: {
+              id: true,
+              email: true,
+              name: true,
+              role: true,
+              isActive: true,
+              isOnline: true,
+              avatar: true,
+              phone: true,
+              departmentId: true,
+              department: true,
+              specializations: {
+                include: {
+                  specialization: true
+                }
+              },
+              createdAt: true,
+              updatedAt: true
+            }
+          })
+
+Unknown argument `departmentId`. Available options are marked with ?.
+prisma:query ROLLBACK
+ POST /api/users 500 in 202ms (next.js: 4ms, proxy.ts: 4ms, application-code: 194ms)
+prisma:query SELECT "public"."User"."id", "public"."User"."email", "public"."User"."name", "public"."User"."password", "public"."User"."role"::text, "public"."User"."isActive", "public"."User"."isOnline", "public"."User"."avatar", "public"."User"."phone", "public"."User"."createdAt", "public"."User"."updatedAt" FROM "public"."User" WHERE ("public"."User"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+prisma:error 
+Invalid `tx.user.create()` invocation in
+C:\aa\cure\.next\dev\server\chunks\[root-of-the-server]__11bbhwj._.js:619:39
+
+  616 const seedName = encodeURIComponent(data.name);
+  617 const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedName}`;
+  618 const user = await __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
+→ 619     const created = await tx.user.create({
+            data: {
+              email: "a@b.com",
+              name: "Amr Mousa Sayed Rashed",
+              password: "$2b$10$CvkqeSQPDjU0g.rGlZGxheo0RfuSIFtUvdkVDZoKkKoCGjnTyX4Da",
+              role: "NURSE",
+              phone: "01100386004",
+              departmentId: null,
+              ~~~~~~~~~~~~
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amr%20Mousa%20Sayed%20Rashed",
+              specializations: {
+                create: []
+              },
+          ?   id?: String,
+          ?   isActive?: Boolean,
+          ?   isOnline?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime,
+          ?   dispatches?: DispatchCreateNestedManyWithoutNurseInput,
+          ?   auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+            },
+            select: {
+              id: true,
+              email: true,
+              name: true,
+              role: true,
+              isActive: true,
+              isOnline: true,
+              avatar: true,
+              phone: true,
+              departmentId: true,
+              department: true,
+              specializations: {
+                include: {
+                  specialization: true
+                }
+              },
+              createdAt: true,
+              updatedAt: true
+            }
+          })
+
+Unknown argument `departmentId`. Available options are marked with ?.
+prisma:query ROLLBACK
+ POST /api/users 500 in 220ms (next.js: 4ms, proxy.ts: 4ms, application-code: 212ms)

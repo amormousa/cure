@@ -26,6 +26,13 @@ interface AnalyticsData {
   statusBreakdown?: { PENDING: number; ASSIGNED: number; IN_PROGRESS: number; COMPLETED: number; CANCELLED: number }
   priorityBreakdown?: { LOW: number; MEDIUM: number; HIGH: number; URGENT: number }
   nursePerformance?: any[]
+  kpiTrends: {
+    createdToday: number
+    completionRate: number
+    onlineNurses: number
+    availableNurses: number
+    urgentPending: number
+  }
 }
 
 const emptyStatusBreakdown = {
@@ -78,6 +85,13 @@ export default function DashboardPage() {
         statusBreakdown: { ...emptyStatusBreakdown, ...data.statusBreakdown },
         priorityBreakdown: { ...emptyPriorityBreakdown, ...data.priorityBreakdown },
         nursePerformance: data.nursePerformance || [],
+        kpiTrends: data.kpiTrends || {
+          createdToday: 0,
+          completionRate: 0,
+          onlineNurses: 0,
+          availableNurses: 0,
+          urgentPending: 0,
+        },
       })
 
       if (dispatchesRes.ok && dispatchesRes.data) {
@@ -169,31 +183,31 @@ export default function DashboardPage() {
           title="Dispatches Today"
           value={analyticsData?.createdToday || 0}
           description="Created today"
-          trend={{ value: 10, isPositive: true }}
+          trend={{ value: Math.abs(analyticsData?.kpiTrends.createdToday || 0), isPositive: (analyticsData?.kpiTrends.createdToday || 0) >= 0 }}
         />
         <KPICard
           title="Completion Rate"
           value={`${analyticsData?.completionRate || 0}%`}
           description={`${analyticsData?.completedToday || 0} completed`}
-          trend={{ value: 5, isPositive: analyticsData?.completionRate ? analyticsData.completionRate > 70 : false }}
+          trend={{ value: Math.abs(analyticsData?.kpiTrends.completionRate || 0), isPositive: (analyticsData?.kpiTrends.completionRate || 0) >= 0 }}
         />
         <KPICard
           title="Online Nurses"
           value={analyticsData?.onlineNurses || 0}
           description="Active staff"
-          trend={{ value: 2, isPositive: true }}
+          trend={{ value: Math.abs(analyticsData?.kpiTrends.onlineNurses || 0), isPositive: (analyticsData?.kpiTrends.onlineNurses || 0) >= 0 }}
         />
         <KPICard
           title="Available Nurses"
           value={analyticsData?.availableNurses || 0}
           description="Ready for assignment"
-          trend={{ value: 1, isPositive: true }}
+          trend={{ value: Math.abs(analyticsData?.kpiTrends.availableNurses || 0), isPositive: (analyticsData?.kpiTrends.availableNurses || 0) >= 0 }}
         />
         <KPICard
           title="Urgent Pending"
           value={analyticsData?.urgentPending || 0}
           description="Need assignment"
-          trend={{ value: 1, isPositive: false }}
+          trend={{ value: Math.abs(analyticsData?.kpiTrends.urgentPending || 0), isPositive: (analyticsData?.kpiTrends.urgentPending || 0) <= 0 }}
           variant="warning"
         />
       </div>

@@ -27,6 +27,13 @@ enum Priority {
   URGENT
 }
 
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
 model Department {
   id          String   @id @default(cuid())
   name        String   @unique
@@ -86,10 +93,54 @@ model User {
   specializations UserSpecialization[]
   dispatches      Dispatch[]           @relation("AssignedNurse")
   auditLogs       AuditLog[]
+  notifications   Notification[]
 
   @@index([role])
   @@index([isActive])
   @@index([departmentId])
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  action      String
+  entity      String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  roles RolePermission[]
+
+  @@unique([action, entity])
+  @@index([entity])
+}
+
+model RolePermission {
+  role         Role
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([role, permissionId])
+  @@index([permissionId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType @default(INFO)
+  title     String
+  message   String
+  entityType String?
+  entityId   String?
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([userId, readAt])
+  @@index([entityType, entityId])
+  @@index([createdAt])
 }
 
 model Patient {

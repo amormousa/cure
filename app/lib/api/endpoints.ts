@@ -273,6 +273,29 @@ export const specializationApi = {
     }),
 }
 
+// ============= NOTIFICATIONS =============
+
+export const notificationApi = {
+  list: async (params?: { unreadOnly?: boolean }) => {
+    const query = new URLSearchParams()
+    if (params?.unreadOnly !== undefined) query.append('unreadOnly', String(params.unreadOnly))
+    const endpoint = query.toString() ? `/api/notifications?${query.toString()}` : '/api/notifications'
+    return apiCall(endpoint, schemas.NotificationListResponseSchema)
+  },
+
+  markRead: async (id: string) =>
+    apiCall(`/api/notifications/${id}`, schemas.NotificationSingleResponseSchema, {
+      method: 'PATCH',
+      cache: false,
+    }),
+
+  delete: async (id: string) =>
+    apiCall(`/api/notifications/${id}`, schemas.NotificationSingleResponseSchema, {
+      method: 'DELETE',
+      cache: false,
+    }),
+}
+
 // ============= ANALYTICS =============
 
 export const analyticsApi = {
@@ -297,4 +320,5 @@ export type {
   Analytics,
   Department,
   Specialization,
+  Notification,
 } from './schemas'

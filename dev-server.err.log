@@ -5295,3 +5295,246 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
 [browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
 [31m[ERROR][0m 2026-06-16T23:54:42.671Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
 [31m[ERROR][0m 2026-06-16T23:54:42.715Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[31m[ERROR][0m 2026-06-17T00:21:31.179Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:21:31.390Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:21:46.859Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:21:46.872Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:21:50.419Z [API:departments] GET /api/departments failed {}
+[31m[ERROR][0m 2026-06-17T00:21:50.483Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:22:01.315Z [API:specializations] GET /api/specializations failed {}
+[31m[ERROR][0m 2026-06-17T00:22:01.331Z [API:specializations] GET /api/specializations failed {}
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:22:04.251Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:22:04.279Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:24:25.207Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:24:25.227Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:24:30.873Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:24:30.884Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:24:44.761Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:24:44.774Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:24:51.786Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:24:51.796Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:34:16.866Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:34:16.905Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:34:25.123Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:34:25.133Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:34:26.645Z [API:specializations] GET /api/specializations failed {}
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:34:26.653Z [API:specializations] GET /api/specializations failed {}
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[browser] [Socket] Connection error: websocket error (app/lib/socket.ts:52:15)
+[31m[ERROR][0m 2026-06-17T00:45:40.089Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:40.103Z [API:departments] GET /api/departments failed {}
+[browser] API error for /api/departments: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:40.957Z [API:specializations] GET /api/specializations failed {}
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:40.966Z [API:specializations] GET /api/specializations failed {}
+[browser] API error for /api/specializations: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:41.642Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:41.654Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:44.433Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:44.446Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:45:47.898Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[31m[ERROR][0m 2026-06-17T00:45:47.909Z [API:users] GET /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/users?role=NURSE: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[browser] API error for /api/users: {
+  error: {
+    code: [32m'VALIDATION_FAILED'[39m,
+    details: [
+      {
+        code: [32m'too_small'[39m,
+        inclusive: [33mtrue[39m,
+        message: [32m'Password must be at least 8 characters'[39m,
+        minimum: [33m8[39m,
+        origin: [32m'string'[39m,
+        path: [ [32m'password'[39m ]
+      }
+    ],
+    message: [32m'Validation failed'[39m
+  },
+  status: [33m422[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:46:12.169Z [API:users] POST /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:46:16.535Z [API:users] POST /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)
+[31m[ERROR][0m 2026-06-17T00:46:17.387Z [API:users] POST /api/users failed {"name":"PrismaClientValidationError","clientVersion":"7.8.0"}
+[browser] API error for /api/users: {
+  error: { code: [32m'INTERNAL_ERROR'[39m, message: [32m'Internal server error'[39m },
+  status: [33m500[39m
+} (app/lib/api/client.ts:30:54)

@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { PrismaClient, Priority, Role, DispatchStatus } from '@prisma/client'
+import { PrismaClient, Priority, Role, DispatchStatus, NotificationType } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import pg from 'pg'
 import bcrypt from 'bcryptjs'
@@ -60,6 +60,34 @@ async function main() {
       departmentId: departments[0].id,
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin',
     },
+  })
+
+  const businessEntities = ['User', 'Patient', 'Dispatch', 'Department', 'Specialization', 'Notification', 'AuditLog']
+  const actions = ['CREATE', 'READ', 'UPDATE', 'DELETE']
+  const permissions = []
+  for (const entity of businessEntities) {
+    for (const action of actions) {
+      permissions.push(
+        await prisma.permission.upsert({
+          where: { action_entity: { action, entity } },
+          update: { description: `${action.toLowerCase()} ${entity.toLowerCase()} records` },
+          create: { action, entity, description: `${action.toLowerCase()} ${entity.toLowerCase()} records` },
+        }),
+      )
+    }
+  }
+
+  await prisma.rolePermission.deleteMany()
+  await prisma.rolePermission.createMany({
+    data: permissions.flatMap((permission) => {
+      const allowedRoles =
+        permission.entity === 'AuditLog' || ['CREATE', 'UPDATE', 'DELETE'].includes(permission.action)
+          ? [Role.ADMIN]
+          : [Role.ADMIN, Role.DISPATCHER]
+
+      return allowedRoles.map((role) => ({ role, permissionId: permission.id }))
+    }),
+    skipDuplicates: true,
   })
 
   await prisma.user.upsert({
@@ -232,6 +260,30 @@ async function main() {
         dispatches: dispatchSeeds.length,
       },
     },
+  })
+
+  await prisma.notification.deleteMany({
+    where: { userId: admin.id },
+  })
+  await prisma.notification.createMany({
+    data: [
+      {
+        userId: admin.id,
+        type: NotificationType.SUCCESS,
+        title: 'Database seed completed',
+        message: 'Production-like departments, staff, patients, dispatches, permissions, and audit logs are ready.',
+        entityType: 'System',
+        entityId: 'seed',
+      },
+      {
+        userId: admin.id,
+        type: NotificationType.WARNING,
+        title: 'Urgent dispatch monitoring',
+        message: 'Review urgent and in-progress dispatches from the operations dashboard.',
+        entityType: 'Dispatch',
+        entityId: 'seed-urgent-monitoring',
+      },
+    ],
   })
 }
 
