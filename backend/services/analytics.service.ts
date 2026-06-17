@@ -204,6 +204,39 @@ export async function getDashboardData(): Promise<DashboardData> {
     avgTime: n.completed > 0 ? Math.round(n.totalTime / n.completed * 10) / 10 : 0,
   })).slice(0, 10)
 
+  // 30-day daily series
+  const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
+  const recentDispatches = await prisma.dispatch.findMany({
+    where: {
+      OR: [
+        { createdAt: { gte: thirtyDaysAgo } },
+        { completedAt: { gte: thirtyDaysAgo } },
+      ],
+    },
+    select: { createdAt: true, completedAt: true },
+  })
+
+  const dailyMap = new Map<string, { created: number; completed: number }>()
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date()
+    d.setDate(d.getDate() - i)
+    const key = d.toISOString().split('T')[0]
+    dailyMap.set(key, { created: 0, completed: 0 })
+  }
+
+  for (const d of recentDispatches) {
+    const createdKey = d.createdAt.toISOString().split('T')[0]
+    if (dailyMap.has(createdKey)) dailyMap.get(createdKey)!.created++
+    if (d.completedAt) {
+      const completedKey = d.completedAt.toISOString().split('T')[0]
+      if (dailyMap.has(completedKey)) dailyMap.get(completedKey)!.completed++
+    }
+  }
+
+  const dailySeries = Array.from(dailyMap.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, counts]) => ({ date, ...counts }))
+
   return {
     createdToday,
     completedToday,
@@ -211,7 +244,7 @@ export async function getDashboardData(): Promise<DashboardData> {
     availableNurses,
     urgentPending,
     completionRate,
-    dailySeries: [],
+    dailySeries,
     statusBreakdown,
     priorityBreakdown,
     nursePerformance,
@@ -371,7 +404,34 @@ export async function getTaskAnalytics(): Promise<TaskAnalytics> {
 }
 
 export async function getDepartmentAnalytics(): Promise<DepartmentAnalytics> {
-  return { departments: [] }
+  const departments = await prisma.department.findMany({
+    where: { isActive: true },
+    include: { users: { select: { id: true }, where: { isActive: true } } },
+  })
+
+  const departmentsWithCounts = await Promise.all(
+    departments.map(async (dept) => {
+      const userIds = dept.users.map(u => u.id)
+      if (userIds.length === 0) return { id: dept.id, name: dept.name, userCount: 0, taskCount: 0, activeTaskCount: 0, completionRate: 0 }
+
+      const [taskCount, activeTaskCount, completedTaskCount] = await Promise.all([
+        prisma.dispatch.count({ where: { nurseId: { in: userIds } } }),
+        prisma.dispatch.count({ where: { nurseId: { in: userIds }, status: { in: ['ASSIGNED', 'IN_PROGRESS'] } } }),
+        prisma.dispatch.count({ where: { nurseId: { in: userIds }, status: 'COMPLETED' } }),
+      ])
+
+      return {
+        id: dept.id,
+        name: dept.name,
+        userCount: userIds.length,
+        taskCount,
+        activeTaskCount,
+        completionRate: taskCount > 0 ? Math.round((completedTaskCount / taskCount) * 100) : 0,
+      }
+    })
+  )
+
+  return { departments: departmentsWithCounts }
 }
 
 export async function getSpecializationAnalytics(): Promise<SpecializationAnalytics> {

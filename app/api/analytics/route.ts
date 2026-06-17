@@ -41,7 +41,7 @@ export async function GET(req: NextRequest): Promise<NextResponse<{ data?: Analy
       ...fullData,
       // Legacy fields at top level
       dispatchesToday: dashboard.createdToday,
-      completedToday: dashboard.createdToday,
+      completedToday: dashboard.completedToday,
       createdToday: dashboard.createdToday,
       availableNurses: dashboard.availableNurses,
       onlineNurses: dashboard.onlineNurses,
