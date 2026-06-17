@@ -20,7 +20,14 @@ export default function DepartmentsPage() {
   const [error, setError] = useState('')
 
   const filtered = useMemo(
-    () => departments.filter((department) => department.name.toLowerCase().includes(query.toLowerCase())),
+    () =>
+      departments
+        .filter((department) => department.name.toLowerCase().includes(query.toLowerCase()))
+        .sort((a, b) => {
+          // Active items first, then inactive
+          if (a.isActive === b.isActive) return 0
+          return a.isActive ? -1 : 1
+        }),
     [departments, query],
   )
 

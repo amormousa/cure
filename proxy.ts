@@ -1,4 +1,3 @@
-// middleware.ts
 import { NextRequest, NextResponse } from 'next/server'
 
 const publicRoutes = ['/login', '/api/auth']
@@ -15,13 +14,21 @@ type MiddlewareToken = {
   exp?: number
 }
 
+function base64UrlDecodeToString(input: string): string {
+  // JWT payload is base64url (RFC 4648 §5)
+  const normalized = input.replace(/-/g, '+').replace(/_/g, '/')
+  const pad = normalized.length % 4 === 0 ? '' : '='.repeat(4 - (normalized.length % 4))
+  // atob is supported in Edge runtime; we avoid Node crypto / jsonwebtoken
+  return atob(normalized + pad)
+}
+
 function decodeToken(token: string): MiddlewareToken | null {
   try {
-    const payload = token.split('.')[1]
-    if (!payload) return null
+    const parts = token.split('.')
+    if (parts.length < 2) return null
 
-    const normalized = payload.replace(/-/g, '+').replace(/_/g, '/')
-    const decoded = JSON.parse(atob(normalized)) as MiddlewareToken
+    const payloadJson = base64UrlDecodeToString(parts[1])
+    const decoded = JSON.parse(payloadJson) as MiddlewareToken
 
     if (decoded.exp && decoded.exp * 1000 < Date.now()) return null
     if (!decoded.userId || !decoded.role) return null
@@ -32,7 +39,11 @@ function decodeToken(token: string): MiddlewareToken | null {
   }
 }
 
-export function middleware(request: NextRequest) {
+export const config = {
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+}
+
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isApiRoute = pathname.startsWith('/api/')
 
@@ -44,7 +55,13 @@ export function middleware(request: NextRequest) {
       if (token) {
         const decoded = decodeToken(token)
         if (decoded) {
-          const fallback = decoded.role === 'DISPATCHER' ? '/operations/kanban' : (decoded.role === 'ADMIN' ? '/admin/nurses' : '/')
+          const fallback =
+            decoded.role === 'DISPATCHER'
+              ? '/operations/kanban'
+              : decoded.role === 'ADMIN'
+                ? '/admin/nurses'
+                : '/'
+
           return NextResponse.redirect(new URL(fallback, request.url))
         }
       }
@@ -52,26 +69,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Check authentication
+  // Check authentication for non-public routes
   const token = request.cookies.get('auth-token')?.value
   if (!token) {
-    if (isApiRoute) {
-      return NextResponse.next()
-    }
+    if (isApiRoute) return NextResponse.next()
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
   const decoded = decodeToken(token)
   if (!decoded) {
-    if (isApiRoute) {
-      return NextResponse.next()
-    }
+    if (isApiRoute) return NextResponse.next()
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  if (isApiRoute) {
-    return NextResponse.next()
-  }
+  if (isApiRoute) return NextResponse.next()
 
   // Check authorization based on roleAccessMap
   for (const [route, allowedRoles] of Object.entries(roleAccessMap)) {
@@ -80,22 +91,19 @@ export function middleware(request: NextRequest) {
         const fallback = decoded.role === 'DISPATCHER' ? '/operations/kanban' : '/'
         return NextResponse.redirect(new URL(fallback, request.url))
       }
-      break;
+      break
     }
   }
 
-  // Add user info to headers for API routes
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-user-id', decoded.userId)
-  requestHeaders.set('x-user-role', decoded.role)
-
   return NextResponse.next({
     request: {
-      headers: requestHeaders,
+      headers: (() => {
+        const requestHeaders = new Headers(request.headers)
+        requestHeaders.set('x-user-id', decoded.userId)
+        requestHeaders.set('x-user-role', decoded.role)
+        return requestHeaders
+      })(),
     },
   })
 }
 
-export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
-}

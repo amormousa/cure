@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Kanban, BarChart3, Users, X } from 'lucide-react'
+import { LayoutDashboard, ClipboardList, BarChart3, Users, Building2, Stethoscope, Settings, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface SidebarProps {
@@ -20,24 +20,42 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
       name: 'Dashboard',
       href: '/',
       icon: LayoutDashboard,
-      roles: ['ADMIN', 'NURSE'],
+      roles: ['ADMIN', 'NURSE', 'DISPATCHER'],
     },
     {
-      name: 'Operations',
+      name: 'Tasks',
       href: '/operations/kanban',
-      icon: Kanban,
-      roles: ['ADMIN'],
+      icon: ClipboardList,
+      roles: ['ADMIN', 'DISPATCHER', 'NURSE'],
     },
     {
       name: 'Analytics',
       href: '/analytics',
       icon: BarChart3,
-      roles: ['ADMIN'],
+      roles: ['ADMIN', 'DISPATCHER'],
     },
     {
       name: 'Users',
-      href: '/admin/nurses',
+      href: '/admin/users',
       icon: Users,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Departments',
+      href: '/admin/departments',
+      icon: Building2,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Specializations',
+      href: '/admin/specializations',
+      icon: Stethoscope,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Settings',
+      href: '/admin/settings',
+      icon: Settings,
       roles: ['ADMIN'],
     },
   ]

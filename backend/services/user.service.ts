@@ -29,9 +29,40 @@ export const SAFE_USER_SELECT = {
 } as const
 
 // ─── List ──────────────────────────────────────────────
-export async function listUsers(role?: string | null, callerRole?: string) {
+export interface ListUsersParams {
+  role?: string | null
+  search?: string
+  isActive?: boolean
+  page?: number
+  limit?: number
+  sortBy?: 'name' | 'createdAt' | 'email'
+  sortOrder?: 'asc' | 'desc'
+}
+
+export interface PaginatedUsers {
+  data: Awaited<ReturnType<typeof listUsers>>
+  pagination: {
+    total: number
+    page: number
+    limit: number
+    pages: number
+  }
+}
+
+export async function listUsers(params?: ListUsersParams, callerRole?: string) {
+  const {
+    role,
+    search,
+    isActive,
+    page = 1,
+    limit = 10,
+    sortBy = 'name',
+    sortOrder = 'asc'
+  } = params ?? {}
+
   let where: Record<string, unknown> = {}
 
+  // Role filter
   if (callerRole === 'ADMIN') {
     if (role) {
       if (!['ADMIN', 'NURSE', 'DISPATCHER'].includes(role)) {
@@ -46,6 +77,26 @@ export async function listUsers(role?: string | null, callerRole?: string) {
     }
   }
 
+  // Search filter (name, email, phone)
+  if (search && search.trim()) {
+    const searchTerm = search.trim()
+    where.OR = [
+      { name: { contains: searchTerm, mode: 'insensitive' } },
+      { email: { contains: searchTerm, mode: 'insensitive' } },
+      { phone: { contains: searchTerm, mode: 'insensitive' } },
+    ]
+  }
+
+  // Active status filter
+  if (isActive !== undefined) {
+    where.isActive = isActive
+  }
+
+  // Get total count for pagination
+  const total = await prisma.user.count({ where })
+
+  // Get paginated users
+  const skip = (page - 1) * limit
   const users = await prisma.user.findMany({
     where,
     select: {
@@ -58,11 +109,20 @@ export async function listUsers(role?: string | null, callerRole?: string) {
         },
       },
     },
-    orderBy: { name: 'asc' },
+    orderBy: { [sortBy]: sortOrder },
+    skip,
+    take: limit,
   })
 
-  log.info('Listed users', { count: users.length, role })
-  return users
+  const pagination = {
+    total,
+    page,
+    limit,
+    pages: Math.ceil(total / limit),
+  }
+
+  log.info('Listed users', { count: users.length, role, search, page, total })
+  return { data: users, pagination }
 }
 
 // ─── Get by ID ─────────────────────────────────────────

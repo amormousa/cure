@@ -31,7 +31,7 @@ interface User {
 interface UserDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  editingUser?: User | null
+  editingUser?: User | undefined | null
   onUserSaved?: () => void
 }
 

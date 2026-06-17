@@ -16,9 +16,26 @@ export async function GET(req: NextRequest) {
 
     const { searchParams } = new URL(req.url)
     const roleQuery = searchParams.get('role')
+    const search = searchParams.get('search')
+    const isActiveParam = searchParams.get('isActive')
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '10')
+    const sortBy = (searchParams.get('sortBy') as 'name' | 'createdAt' | 'email') || 'name'
+    const sortOrder = (searchParams.get('sortOrder') as 'asc' | 'desc') || 'asc'
 
-    const users = await userService.listUsers(roleQuery, authUser!.role)
-    return NextResponse.json({ data: users }, { status: 200 })
+    const isActive = isActiveParam === 'true' ? true : isActiveParam === 'false' ? false : undefined
+
+    const result = await userService.listUsers({
+      role: roleQuery,
+      search: search || undefined,
+      isActive,
+      page,
+      limit,
+      sortBy,
+      sortOrder,
+    }, authUser!.role)
+
+    return NextResponse.json({ data: result.data, pagination: result.pagination }, { status: 200 })
   } catch (error) {
     if (error instanceof ApiError) {
       return NextResponse.json(error.toJSON(), { status: error.statusCode })

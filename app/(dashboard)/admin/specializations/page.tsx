@@ -20,7 +20,14 @@ export default function SpecializationsPage() {
   const [error, setError] = useState('')
 
   const filtered = useMemo(
-    () => specializations.filter((specialization) => specialization.name.toLowerCase().includes(query.toLowerCase())),
+    () =>
+      specializations
+        .filter((specialization) => specialization.name.toLowerCase().includes(query.toLowerCase()))
+        .sort((a, b) => {
+          // Active items first, then inactive
+          if (a.isActive === b.isActive) return 0
+          return a.isActive ? -1 : 1
+        }),
     [specializations, query],
   )
 

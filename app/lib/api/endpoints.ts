@@ -155,14 +155,26 @@ export const patientApi = {
 // ============= USERS =============
 
 export const userApi = {
-  list: async (params?: { role?: string; page?: number; limit?: number }) => {
+  list: async (params?: {
+    role?: string
+    search?: string
+    isActive?: boolean
+    page?: number
+    limit?: number
+    sortBy?: 'name' | 'createdAt' | 'email'
+    sortOrder?: 'asc' | 'desc'
+  }) => {
     const query = new URLSearchParams()
     if (params?.role) query.append('role', params.role)
+    if (params?.search) query.append('search', params.search)
+    if (params?.isActive !== undefined) query.append('isActive', String(params.isActive))
     if (params?.page) query.append('page', params.page.toString())
     if (params?.limit) query.append('limit', params.limit.toString())
+    if (params?.sortBy) query.append('sortBy', params.sortBy)
+    if (params?.sortOrder) query.append('sortOrder', params.sortOrder)
 
     const endpoint = query.toString() ? `/api/users?${query.toString()}` : '/api/users'
-    return apiCall(endpoint, schemas.UserListResponseSchema)
+    return apiCall(endpoint, schemas.UserListResponseSchema, { cache: false })
   },
 
   get: async (id: string) =>
@@ -214,11 +226,11 @@ export const departmentApi = {
     const query = new URLSearchParams()
     if (params?.includeInactive !== undefined) query.append('includeInactive', String(params.includeInactive))
     const endpoint = query.toString() ? `/api/departments?${query.toString()}` : '/api/departments'
-    return apiCall(endpoint, schemas.DepartmentListResponseSchema)
+    return apiCall(endpoint, schemas.DepartmentListResponseSchema, { cache: false })
   },
 
   get: async (id: string) =>
-    apiCall(`/api/departments/${id}`, schemas.DepartmentSingleResponseSchema),
+    apiCall(`/api/departments/${id}`, schemas.DepartmentSingleResponseSchema, { cache: false }),
 
   create: async (data: { name: string; description?: string | null; isActive?: boolean }) =>
     apiCall('/api/departments', schemas.DepartmentSingleResponseSchema, {
@@ -246,11 +258,11 @@ export const specializationApi = {
     const query = new URLSearchParams()
     if (params?.includeInactive !== undefined) query.append('includeInactive', String(params.includeInactive))
     const endpoint = query.toString() ? `/api/specializations?${query.toString()}` : '/api/specializations'
-    return apiCall(endpoint, schemas.SpecializationListResponseSchema)
+    return apiCall(endpoint, schemas.SpecializationListResponseSchema, { cache: false })
   },
 
   get: async (id: string) =>
-    apiCall(`/api/specializations/${id}`, schemas.SpecializationSingleResponseSchema),
+    apiCall(`/api/specializations/${id}`, schemas.SpecializationSingleResponseSchema, { cache: false }),
 
   create: async (data: { name: string; description?: string | null; isActive?: boolean }) =>
     apiCall('/api/specializations', schemas.SpecializationSingleResponseSchema, {
@@ -299,12 +311,17 @@ export const notificationApi = {
 // ============= ANALYTICS =============
 
 export const analyticsApi = {
+  // Legacy analytics API
   get: async (params?: { range?: '7d' | '30d' | '90d' }) => {
     const query = new URLSearchParams()
     if (params?.range) query.append('range', params.range)
 
     const endpoint = query.toString() ? `/api/analytics?${query.toString()}` : '/api/analytics'
     return apiCall(endpoint, schemas.AnalyticsResponseSchema)
+  },
+  // Full premium analytics API
+  getFull: async () => {
+    return apiCall('/api/analytics', schemas.FullAnalyticsResponseSchema, { cache: false })
   },
 }
 
@@ -321,4 +338,5 @@ export type {
   Department,
   Specialization,
   Notification,
+  FullAnalytics,
 } from './schemas'

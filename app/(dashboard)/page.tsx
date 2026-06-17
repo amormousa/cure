@@ -85,12 +85,12 @@ export default function DashboardPage() {
         statusBreakdown: { ...emptyStatusBreakdown, ...data.statusBreakdown },
         priorityBreakdown: { ...emptyPriorityBreakdown, ...data.priorityBreakdown },
         nursePerformance: data.nursePerformance || [],
-        kpiTrends: data.kpiTrends || {
-          createdToday: 0,
-          completionRate: 0,
-          onlineNurses: 0,
-          availableNurses: 0,
-          urgentPending: 0,
+        kpiTrends: {
+          createdToday: data.createdToday || 0,
+          completionRate: data.completionRate || 0,
+          onlineNurses: data.onlineNurses || 0,
+          availableNurses: data.availableNurses || 0,
+          urgentPending: data.urgentPending || 0,
         },
       })
 

@@ -6,7 +6,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import {
   LayoutDashboard,
-  Kanban,
   BarChart3,
   Users,
   LogOut,
@@ -18,6 +17,8 @@ import {
   Shield,
   Building2,
   Stethoscope,
+  Settings,
+  ClipboardList,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/app/components/common/ErrorBoundary'
@@ -65,29 +66,29 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navItems = [
     {
-      name: 'Overview',
+      name: 'Dashboard',
       href: '/',
       icon: LayoutDashboard,
       exact: true,
-      roles: ['ADMIN', 'NURSE'],
+      roles: ['ADMIN', 'NURSE', 'DISPATCHER'],
     },
     {
-      name: 'Operations',
+      name: 'Tasks',
       href: '/operations/kanban',
-      icon: Kanban,
+      icon: ClipboardList,
       exact: false,
-      roles: ['ADMIN'],
+      roles: ['ADMIN', 'DISPATCHER', 'NURSE'],
     },
     {
       name: 'Analytics',
       href: '/analytics',
       icon: BarChart3,
       exact: false,
-      roles: ['ADMIN'],
+      roles: ['ADMIN', 'DISPATCHER'],
     },
     {
       name: 'Users',
-      href: '/admin/nurses',
+      href: '/admin/users',
       icon: Users,
       exact: false,
       roles: ['ADMIN'],
@@ -103,6 +104,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       name: 'Specializations',
       href: '/admin/specializations',
       icon: Stethoscope,
+      exact: false,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Settings',
+      href: '/admin/settings',
+      icon: Settings,
       exact: false,
       roles: ['ADMIN'],
     },

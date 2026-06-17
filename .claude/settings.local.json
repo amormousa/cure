@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next dev)",
+      "Bash(ls -la c:/aa/cure/*.log)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npx prisma db execute --url \"postgresql://postgres:postgres@localhost:5432/cure_portal\" --sql \"SELECT 1 as test\")",
+      "Bash(curl -s http://localhost:3001/api/specializations)",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/login -H \"Content-Type: application/json\" -d '{\"\"email\"\":\"\"admin@cure.com\"\",\"\"password\"\":\"\"admin123\"\"}')",
+      "Bash(npx tsx prisma/seed.ts)",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/login -H \"Content-Type: application/json\" -d '{\"\"email\"\":\"\"admin@cure.com\"\",\"\"password\"\":\"\"Admin@123\"\"}')",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/login -H \"Content-Type: application/json\" -d '{\"\"email\"\":\"\"admin@cure.com\"\",\"\"password\"\":\"\"Admin@123\"\"}' -c c:/aa/cure/cookies.txt)",
+      "Bash(curl -s http://localhost:3001/api/specializations -b c:/aa/cure/cookies.txt)",
+      "Bash(curl -s http://localhost:3001/api/specializations/cmqhbmui20003c8tf0k2iilcm -b c:/aa/cure/cookies.txt)",
+      "Bash(curl -s -X POST \"http://localhost:3001/api/specializations\" -H \"Content-Type: application/json\" -b \"c:/aa/cure/cookies.txt\" -d \"{\"\"name\"\":\"\"Pediatric Care\"\",\"\"description\"\":\"\"Child healthcare\"\"}\")",
+      "Bash(curl -s -X PATCH \"http://localhost:3001/api/specializations/cmqhwhd4k000ja0tfxpgvc79j\" -H \"Content-Type: application/json\" -b \"c:/aa/cure/cookies.txt\" -d \"{\"\"description\"\":\"\"Updated: Child healthcare\"\"}\")",
+      "Bash(curl -s -X DELETE \"http://localhost:3001/api/specializations/cmqhwhd4k000ja0tfxpgvc79j\" -b \"c:/aa/cure/cookies.txt\")",
+      "Bash(node -e \":*)",
+      "Bash(curl -s http://localhost:3001/api/departments -b c:/aa/cure/cookies.txt)",
+      "Bash(curl -s \"http://localhost:3001/api/departments/cmqhbmugw0000c8tffphxdmew\" -b \"c:/aa/cure/cookies.txt\")",
+      "Bash(curl -s -X POST \"http://localhost:3001/api/departments\" -H \"Content-Type: application/json\" -b \"c:/aa/cure/cookies.txt\" -d \"{\"\"name\"\":\"\"Surgery Department\"\",\"\"description\"\":\"\"Surgical operations and post-op care\"\"}\")",
+      "Bash(curl -s -X PATCH \"http://localhost:3001/api/departments/cmqhytej9000pa0tfib64myo9\" -H \"Content-Type: application/json\" -b \"c:/aa/cure/cookies.txt\" -d \"{\"\"description\"\":\"\"Updated: Surgical operations\"\"}\")",
+      "Bash(curl -s -X DELETE \"http://localhost:3001/api/departments/cmqhytej9000pa0tfib64myo9\" -b \"c:/aa/cure/cookies.txt\")",
+      "Bash(curl -s \"http://localhost:3001/api/users/cmqhbmuiy000ac8tfyzlcr4ry\" -b \"c:/aa/cure/cookies.txt\")",
+      "Bash(curl -s -X POST \"http://localhost:3001/api/auth/login\" -H \"Content-Type: application/json\" -d \"{\"\"email\"\":\"\"admin@cure.com\"\",\"\"password\"\":\"\"Admin@123\"\"}\" -c \"c:/aa/cure/cookies.txt\")",
+      "Bash(curl -s \"http://localhost:3001/api/users\" -b \"c:/aa/cure/cookies.txt\")",
+      "Bash(curl -s http://localhost:3000/api/users/cmqhbmuiy000ac8tfyzlcr4ry)",
+      "Bash(curl -s http://localhost:3000/api/users)",
+      "Bash(lsof -i :3000)"
+    ]
+  }
+}
