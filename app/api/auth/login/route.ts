@@ -3,20 +3,45 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { LoginSchema } from '@/lib/validations'
 import { signToken } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
 import bcrypt from 'bcryptjs'
+
+
+const log = createLogger('API:auth/login')
+
+const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
+const LIMIT = 5;
+const WINDOW_MS = 60 * 1000;
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for') || 'unknown';
+    const now = Date.now();
+    const rateLimit = rateLimitMap.get(ip);
+
+    if (rateLimit) {
+      if (now - rateLimit.timestamp < WINDOW_MS) {
+        if (rateLimit.count >= LIMIT) {
+          return NextResponse.json(
+            { error: { code: 'TOO_MANY_REQUESTS', message: 'Too many requests. Please try again later.' } },
+            { status: 429 }
+          );
+        }
+        rateLimit.count++;
+      } else {
+        rateLimitMap.set(ip, { count: 1, timestamp: now });
+      }
+    } else {
+      rateLimitMap.set(ip, { count: 1, timestamp: now });
+    }
+
     const body = await req.json()
 
     // Validate input
     const validated = LoginSchema.safeParse(body)
     if (!validated.success) {
       return NextResponse.json(
-        {
-          error: 'Validation failed',
-          details: validated.error.issues,
-        },
+        { error: { code: 'VALIDATION_FAILED', message: 'Validation failed', details: validated.error.issues } },
         { status: 422 }
       )
     }
@@ -30,7 +55,7 @@ export async function POST(req: NextRequest) {
 
     if (!user || !user.isActive) {
       return NextResponse.json(
-        { error: 'Invalid email or password' },
+        { error: { code: 'UNAUTHORIZED', message: 'Invalid email or password' } },
         { status: 401 }
       )
     }
@@ -39,7 +64,7 @@ export async function POST(req: NextRequest) {
     const passwordValid = await bcrypt.compare(password, user.password)
     if (!passwordValid) {
       return NextResponse.json(
-        { error: 'Invalid email or password' },
+        { error: { code: 'UNAUTHORIZED', message: 'Invalid email or password' } },
         { status: 401 }
       )
     }
@@ -51,6 +76,7 @@ export async function POST(req: NextRequest) {
       role: user.role,
     })
 
+
     // Set cookie
     const response = NextResponse.json(
       {
@@ -61,6 +87,11 @@ export async function POST(req: NextRequest) {
             name: user.name,
             role: user.role,
             avatar: user.avatar,
+            isActive: user.isActive,
+            isOnline: user.isOnline,
+            phone: user.phone,
+            createdAt: user.createdAt.toISOString(),
+            updatedAt: user.updatedAt?.toISOString(),
           },
         },
         message: 'Login successful',
@@ -77,11 +108,22 @@ export async function POST(req: NextRequest) {
       path: '/',
     })
 
+    await prisma.auditLog.create({
+      data: {
+        userId: user.id,
+        action: 'LOGIN',
+        entityType: 'Auth',
+        entityId: user.id,
+        newValue: { userId: user.id, role: user.role },
+        details: { ip },
+      },
+    })
+
     return response
   } catch (error) {
-    console.error('[POST /api/auth/login]', error)
+    log.error('POST /api/auth/login failed', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }
     )
   }

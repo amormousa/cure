@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Kanban, BarChart3, Users, X } from 'lucide-react'
+import { LayoutDashboard, ClipboardList, BarChart3, Users, Building2, Stethoscope, Settings, HeartPulse, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface SidebarProps {
@@ -18,26 +18,50 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
   const navItems = [
     {
       name: 'Dashboard',
-      href: '/dashboard',
+      href: '/',
       icon: LayoutDashboard,
-      roles: ['ADMIN', 'NURSE'],
+      roles: ['ADMIN', 'NURSE', 'DISPATCHER'],
     },
     {
-      name: 'Operations',
-      href: '/dashboard/operations/kanban',
-      icon: Kanban,
-      roles: ['ADMIN'],
+      name: 'Tasks',
+      href: '/operations/kanban',
+      icon: ClipboardList,
+      roles: ['ADMIN', 'DISPATCHER', 'NURSE'],
     },
     {
       name: 'Analytics',
-      href: '/dashboard/analytics',
+      href: '/admin/analytics',
       icon: BarChart3,
-      roles: ['ADMIN'],
+      roles: ['ADMIN', 'DISPATCHER'],
+    },
+    {
+      name: 'Nurses',
+      href: '/admin/nurses',
+      icon: HeartPulse,
+      roles: ['ADMIN', 'DISPATCHER'],
     },
     {
       name: 'Users',
-      href: '/dashboard/admin/users',
+      href: '/admin/users',
       icon: Users,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Departments',
+      href: '/admin/departments',
+      icon: Building2,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Specializations',
+      href: '/admin/specializations',
+      icon: Stethoscope,
+      roles: ['ADMIN'],
+    },
+    {
+      name: 'Settings',
+      href: '/admin/settings',
+      icon: Settings,
       roles: ['ADMIN'],
     },
   ]
@@ -45,7 +69,7 @@ export function Sidebar({ isOpen = true, onClose, userRole }: SidebarProps) {
   const filteredItems = navItems.filter((item) => item.roles.includes(userRole))
 
   const isActive = (href: string) => {
-    return pathname.startsWith(href)
+    return href === '/' ? pathname === '/' : pathname.startsWith(href)
   }
 
   return (

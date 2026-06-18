@@ -1,113 +1,67 @@
 // app/api/dispatches/route.ts
+// Thin controller — delegates to dispatch service.
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
 import { CreateDispatchSchema } from '@/lib/validations'
-import { getAuthUser } from '@/lib/auth'
+import { authorize } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
+import { ApiError } from '@/backend/utils/errors'
+import * as dispatchService from '@/backend/services/dispatch.service'
+
+const log = createLogger('API:dispatches')
 
 export async function GET(req: NextRequest) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { user: authUser, errorResponse } = await authorize()
+    if (errorResponse) return errorResponse
 
     const { searchParams } = new URL(req.url)
-    const status = searchParams.get('status')
-    const priority = searchParams.get('priority')
-    const nurseId = searchParams.get('nurseId')
-    const search = searchParams.get('search')
-
-    // Build filter
-    const where: any = {}
-    if (status) where.status = status
-    if (priority) where.priority = priority
-    if (nurseId) where.nurseId = nurseId
-    if (search) {
-      where.OR = [
-        { patient: { name: { contains: search, mode: 'insensitive' } } },
-        { patient: { phone: { contains: search, mode: 'insensitive' } } },
-      ]
-    }
-
-    const dispatches = await prisma.dispatch.findMany({
-      where,
-      include: {
-        patient: true,
-        nurse: { select: { id: true, name: true, avatar: true } },
-      },
-      orderBy: { scheduledFor: 'asc' },
+    const result = await dispatchService.listDispatches({
+      status: searchParams.get('status'),
+      priority: searchParams.get('priority'),
+      nurseId: searchParams.get('nurseId'),
+      search: searchParams.get('search'),
+      page: searchParams.get('page') ? parseInt(searchParams.get('page')!, 10) : 1,
+      limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')!, 10) : 1000,
     })
 
-    return NextResponse.json({ data: dispatches }, { status: 200 })
+    return NextResponse.json(result, { status: 200 })
   } catch (error) {
-    console.error('[GET /api/dispatches]', error)
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('GET /api/dispatches failed', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
     )
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser || authUser.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const { user: authUser, errorResponse } = await authorize(['ADMIN'])
+    if (errorResponse) return errorResponse
 
     const body = await req.json()
     const validated = CreateDispatchSchema.safeParse(body)
 
     if (!validated.success) {
       return NextResponse.json(
-        { error: 'Validation failed', details: validated.error.issues },
-        { status: 422 }
+        { error: { code: 'VALIDATION_FAILED', message: 'Validation failed', details: validated.error.issues } },
+        { status: 422 },
       )
     }
 
-    // Verify patient exists
-    const patient = await prisma.patient.findUnique({
-      where: { id: validated.data.patientId },
-    })
-
-    if (!patient) {
-      return NextResponse.json(
-        { error: 'Patient not found' },
-        { status: 404 }
-      )
-    }
-
-    const dispatch = await prisma.dispatch.create({
-      data: {
-        patientId: validated.data.patientId,
-        priority: validated.data.priority,
-        scheduledFor: new Date(validated.data.scheduledFor),
-        notes: validated.data.notes,
-      },
-      include: {
-        patient: true,
-        nurse: { select: { id: true, name: true, avatar: true } },
-      },
-    })
-
-    // Create audit log
-    await prisma.auditLog.create({
-      data: {
-        userId: authUser.userId,
-        action: 'DISPATCH_CREATED',
-        entityType: 'Dispatch',
-        entityId: dispatch.id,
-        dispatchId: dispatch.id,
-        details: dispatch,
-      },
-    })
-
+    const dispatch = await dispatchService.createDispatch(validated.data, authUser!.userId)
     return NextResponse.json({ data: dispatch, message: 'Dispatch created' }, { status: 201 })
   } catch (error) {
-    console.error('[POST /api/dispatches]', error)
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('POST /api/dispatches failed', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
     )
   }
 }

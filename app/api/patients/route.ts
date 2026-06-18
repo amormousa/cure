@@ -1,80 +1,58 @@
 // app/api/patients/route.ts
+// Thin controller — delegates to patient service.
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
 import { CreatePatientSchema } from '@/lib/validations'
-import { getAuthUser } from '@/lib/auth'
+import { authorize } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
+import { ApiError } from '@/backend/utils/errors'
+import * as patientService from '@/backend/services/patient.service'
+
+const log = createLogger('API:patients')
 
 export async function GET(req: NextRequest) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { user: authUser, errorResponse } = await authorize()
+    if (errorResponse) return errorResponse
 
-    const patients = await prisma.patient.findMany({
-      include: {
-        dispatches: {
-          select: {
-            id: true,
-            status: true,
-          },
-        },
-      },
-      orderBy: { name: 'asc' },
-    })
-
+    const patients = await patientService.listPatients()
     return NextResponse.json({ data: patients }, { status: 200 })
   } catch (error) {
-    console.error('[GET /api/patients]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('GET /api/patients failed', error)
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
+    )
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser || authUser.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const { user: authUser, errorResponse } = await authorize(['ADMIN'])
+    if (errorResponse) return errorResponse
 
     const body = await req.json()
     const validated = CreatePatientSchema.safeParse(body)
 
     if (!validated.success) {
       return NextResponse.json(
-        { error: 'Validation failed', details: validated.error.issues },
-        { status: 422 }
+        { error: { code: 'VALIDATION_FAILED', message: 'Validation failed', details: validated.error.issues } },
+        { status: 422 },
       )
     }
 
-    const patient = await prisma.patient.create({
-      data: {
-        name: validated.data.name,
-        address: validated.data.address,
-        phone: validated.data.phone,
-        condition: validated.data.condition,
-        notes: validated.data.notes || null,
-      },
-    })
-
-    // Create audit log
-    await prisma.auditLog.create({
-      data: {
-        userId: authUser.userId,
-        action: 'PATIENT_CREATED',
-        entityType: 'Patient',
-        entityId: patient.id,
-        details: {
-          name: patient.name,
-          phone: patient.phone,
-          condition: patient.condition,
-        },
-      },
-    })
-
+    const patient = await patientService.createPatient(validated.data, authUser!.userId)
     return NextResponse.json({ data: patient }, { status: 201 })
   } catch (error) {
-    console.error('[POST /api/patients]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    log.error('POST /api/patients failed', error)
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 },
+    )
   }
 }

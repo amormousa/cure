@@ -6,74 +6,10 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id          String    @id @default(cuid())
-  email       String    @unique
-  name        String
-  password    String    // bcrypt hash
-  role        Role      @default(NURSE)
-  isActive    Boolean   @default(true)
-  isOnline    Boolean   @default(false)   // real-time presence
-  avatar      String?
-  phone       String?
-  dispatches  Dispatch[] @relation("AssignedNurse")
-  auditLogs   AuditLog[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
-
-model Patient {
-  id          String     @id @default(cuid())
-  name        String
-  address     String
-  phone       String
-  condition   String
-  notes       String?
-  dispatches  Dispatch[]
-  createdAt   DateTime   @default(now())
-}
-
-model Dispatch {
-  id           String         @id @default(cuid())
-  patientId    String
-  patient      Patient        @relation(fields: [patientId], references: [id])
-  status       DispatchStatus @default(PENDING)
-  priority     Priority       @default(MEDIUM)
-  scheduledFor DateTime
-  nurseId      String?
-  nurse        User?          @relation("AssignedNurse", fields: [nurseId], references: [id])
-  notes        String?
-  completedAt  DateTime?
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  auditLogs    AuditLog[]
-
-  @@index([status])
-  @@index([priority])
-  @@index([nurseId])
-  @@index([scheduledFor])
-}
-
-model AuditLog {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  action      String   // e.g. "STATUS_CHANGED", "NURSE_ASSIGNED"
-  entityType  String   // e.g. "Dispatch"
-  entityId    String
-  details     Json?    // before/after snapshot
-  createdAt   DateTime @default(now())
-  dispatchId  String?
-  dispatch    Dispatch? @relation(fields: [dispatchId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([entityType])
-  @@index([createdAt])
-}
-
 enum Role {
   ADMIN
   NURSE
+  DISPATCHER
 }
 
 enum DispatchStatus {
@@ -89,4 +25,180 @@ enum Priority {
   MEDIUM
   HIGH
   URGENT
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+model Department {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users User[]
+
+  @@index([isActive])
+  @@index([name])
+}
+
+model Specialization {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users UserSpecialization[]
+
+  @@index([isActive])
+  @@index([name])
+}
+
+model UserSpecialization {
+  userId           String
+  specializationId String
+  yearsExperience  Int      @default(0)
+  createdAt        DateTime @default(now())
+
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialization Specialization @relation(fields: [specializationId], references: [id], onDelete: Cascade)
+
+  @@id([userId, specializationId])
+  @@index([specializationId])
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  password     String
+  role         Role     @default(NURSE)
+  isActive     Boolean  @default(true)
+  isOnline     Boolean  @default(false)
+  avatar       String?
+  phone        String?
+  departmentId String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  department      Department?          @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  specializations UserSpecialization[]
+  dispatches      Dispatch[]           @relation("AssignedNurse")
+  auditLogs       AuditLog[]
+  notifications   Notification[]
+
+  @@index([role])
+  @@index([isActive])
+  @@index([departmentId])
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  action      String
+  entity      String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  roles RolePermission[]
+
+  @@unique([action, entity])
+  @@index([entity])
+}
+
+model RolePermission {
+  role         Role
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([role, permissionId])
+  @@index([permissionId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType @default(INFO)
+  title     String
+  message   String
+  entityType String?
+  entityId   String?
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([userId, readAt])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+model Patient {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  phone       String
+  condition   String
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  dispatches Dispatch[]
+
+  @@index([name])
+  @@index([phone])
+}
+
+model Dispatch {
+  id           String         @id @default(cuid())
+  patientId    String
+  patient      Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  status       DispatchStatus @default(PENDING)
+  priority     Priority       @default(MEDIUM)
+  scheduledFor DateTime
+  nurseId      String?
+  nurse        User?          @relation("AssignedNurse", fields: [nurseId], references: [id], onDelete: SetNull)
+  notes        String?
+  completedAt  DateTime?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  auditLogs AuditLog[]
+
+  @@index([status])
+  @@index([priority])
+  @@index([nurseId])
+  @@index([patientId])
+  @@index([scheduledFor])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String
+  entityId   String
+  previousValue Json?
+  newValue   Json?
+  details    Json?
+  createdAt  DateTime @default(now())
+  dispatchId String?
+  dispatch   Dispatch? @relation(fields: [dispatchId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([createdAt])
 }

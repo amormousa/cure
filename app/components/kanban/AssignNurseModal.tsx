@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { User } from '@/types'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { X, Check } from 'lucide-react'
+import { userApi } from '@/app/lib/api/endpoints'
 
 interface AssignNurseModalProps {
   isOpen: boolean
@@ -21,11 +22,14 @@ export function AssignNurseModal({ isOpen, onClose, currentNurseId, onAssign }: 
 
     const fetchNurses = async () => {
       try {
-        const res = await fetch('/api/users')
-        if (res.ok) {
-          const result = await res.json()
+        const result = await userApi.list({ role: 'NURSE' })
+        if (result.ok && result.data) {
           // Filter to show active nurses
-          setNurses(result.data.filter((u: User) => u.role === 'NURSE' && u.isActive))
+          setNurses(
+            result.data.data
+              .filter((u) => u.role === 'NURSE' && (u.isActive ?? true))
+              .map((u) => ({ ...u, isActive: u.isActive ?? true, isOnline: u.isOnline ?? false }) as User)
+          )
         }
       } catch (error) {
         console.error('Failed to fetch nurses for assignment:', error)
@@ -98,7 +102,13 @@ export function AssignNurseModal({ isOpen, onClose, currentNurseId, onAssign }: 
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <img src={nurse.avatar} alt={nurse.name} className="h-8 w-8 rounded-full bg-gray-50 border border-gray-100" />
+                      {nurse.avatar ? (
+                        <img src={nurse.avatar} alt={nurse.name} className="h-8 w-8 rounded-full bg-gray-50 border border-gray-100" />
+                      ) : (
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-xs font-semibold text-gray-500">
+                          {nurse.name.slice(0, 1).toUpperCase()}
+                        </span>
+                      )}
                       <div>
                         <div className="font-semibold text-gray-900 flex items-center gap-1.5">
                           {nurse.name}

@@ -1,16 +1,18 @@
+// app/api/auth/me/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getAuthUser } from '@/lib/auth'
+import { authorize } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
+
+const log = createLogger('API:auth/me')
 
 export async function GET(req: NextRequest) {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { user: authUser, errorResponse } = await authorize()
+    if (errorResponse) return errorResponse
 
     const user = await prisma.user.findUnique({
-      where: { id: authUser.userId },
+      where: { id: authUser!.userId },
       select: {
         id: true,
         email: true,
@@ -21,16 +23,23 @@ export async function GET(req: NextRequest) {
         avatar: true,
         phone: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
 
     if (!user || !user.isActive) {
-      return NextResponse.json({ error: 'User not found or inactive' }, { status: 401 })
+      return NextResponse.json(
+        { error: { code: 'UNAUTHORIZED', message: 'User not found or inactive' } },
+        { status: 401 }
+      )
     }
 
     return NextResponse.json({ data: user }, { status: 200 })
   } catch (error) {
-    console.error('[GET /api/auth/me]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    log.error('GET /api/auth/me failed', error)
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
+      { status: 500 }
+    )
   }
 }

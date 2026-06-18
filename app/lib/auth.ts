@@ -9,7 +9,7 @@ const JWT_EXPIRY = '7d'
 export interface JWTPayload {
   userId: string
   email: string
-  role: 'ADMIN' | 'NURSE'
+  role: 'ADMIN' | 'NURSE' | 'DISPATCHER'
   iat?: number
   exp?: number
 }
@@ -73,3 +73,29 @@ export async function clearAuthCookie(): Promise<void> {
     console.error('Failed to clear auth cookie:', error)
   }
 }
+
+export async function authorize(allowedRoles?: ('ADMIN' | 'NURSE' | 'DISPATCHER')[]) {
+  const user = await getAuthUser()
+  if (!user) {
+    return {
+      user: null,
+      errorResponse: NextResponse.json(
+        { error: { code: 'UNAUTHORIZED', message: 'Authentication required' } },
+        { status: 401 }
+      ),
+    }
+  }
+
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return {
+      user,
+      errorResponse: NextResponse.json(
+        { error: { code: 'FORBIDDEN', message: 'You do not have permission to access this resource' } },
+        { status: 403 }
+      ),
+    }
+  }
+
+  return { user, errorResponse: null }
+}
+

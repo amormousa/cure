@@ -1,165 +1,70 @@
 // app/api/analytics/route.ts
+// Premium analytics API for enterprise-grade dashboard
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
-import { getAuthUser } from '@/lib/auth'
+import { authorize } from '@/lib/auth'
+import { createLogger } from '@/backend/utils/logger'
+import { ApiError } from '@/backend/utils/errors'
+import * as analyticsService from '@/backend/services/analytics.service'
 
-export async function GET(req: NextRequest) {
+const log = createLogger('API:analytics')
+
+// Supported date ranges
+type DateRange = 'today' | 'yesterday' | '7d' | '30d' | 'thisMonth' | 'custom'
+
+interface AnalyticsResponse {
+  executive: analyticsService.ExecutiveKPIs
+  realTime: analyticsService.RealTimeData
+  users: analyticsService.UserAnalytics
+  tasks: analyticsService.TaskAnalytics
+  departments: analyticsService.DepartmentAnalytics
+  specializations: analyticsService.SpecializationAnalytics
+  activityFeed: analyticsService.ActivityFeedItem[]
+  insights: analyticsService.SmartInsight[]
+  predictions: analyticsService.PredictionData
+  dashboard: analyticsService.DashboardData
+}
+
+export async function GET(req: NextRequest): Promise<NextResponse<{ data?: AnalyticsResponse; error?: { code: string; message: string } }>> {
   try {
-    const authUser = await getAuthUser()
-    if (!authUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { user: authUser, errorResponse } = await authorize(['ADMIN', 'DISPATCHER'])
+    if (errorResponse) return errorResponse
 
     const { searchParams } = new URL(req.url)
-    const from = searchParams.get('from')
-    const to = searchParams.get('to')
+    const range = (searchParams.get('range') || '30d') as DateRange
 
-    // Default to last 30 days
-    const toDate = to ? new Date(to) : new Date()
-    const fromDate = from
-      ? new Date(from)
-      : new Date(toDate.getTime() - 30 * 24 * 60 * 60 * 1000)
+    // Get full analytics data
+    const fullData = await analyticsService.getFullAnalytics()
+    const { dashboard } = fullData
 
-    // --- KPI: Quick aggregate queries run in parallel ---
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-
-    const [allDispatches, completedTodayCount, allNurses, urgentPendingCount] =
-      await Promise.all([
-        // All dispatches in range (for series + breakdown)
-        prisma.dispatch.findMany({
-          where: {
-            createdAt: { gte: fromDate, lte: toDate },
-          },
-          include: {
-            nurse: { select: { id: true, name: true } },
-          },
-        }),
-        // Completed today
-        prisma.dispatch.count({
-          where: {
-            status: 'COMPLETED',
-            completedAt: { gte: today },
-          },
-        }),
-        // All active nurses for "available nurses" calc
-        prisma.user.findMany({
-          where: { role: 'NURSE', isActive: true },
-          select: {
-            id: true,
-            isOnline: true,
-            dispatches: {
-              where: { status: { in: ['ASSIGNED', 'IN_PROGRESS'] } },
-              select: { id: true },
-            },
-          },
-        }),
-        // Urgent pending
-        prisma.dispatch.count({
-          where: { status: 'PENDING', priority: 'URGENT' },
-        }),
-      ])
-
-    // Available nurses = online AND no active dispatch
-    const availableNursesCount = allNurses.filter(
-      (n) => n.isOnline && n.dispatches.length === 0
-    ).length
-
-    // --- Daily series ---
-    const dailyMap = new Map<string, { created: number; completed: number }>()
-    let cur = new Date(fromDate)
-    while (cur <= toDate) {
-      dailyMap.set(cur.toISOString().split('T')[0], { created: 0, completed: 0 })
-      cur = new Date(cur.getTime() + 24 * 60 * 60 * 1000)
+    // Flatten dashboard fields for legacy API compatibility
+    const data = {
+      ...fullData,
+      // Legacy fields at top level
+      dispatchesToday: dashboard.createdToday,
+      completedToday: dashboard.completedToday,
+      createdToday: dashboard.createdToday,
+      availableNurses: dashboard.availableNurses,
+      onlineNurses: dashboard.onlineNurses,
+      urgentPending: dashboard.urgentPending,
+      completionRate: dashboard.completionRate,
+      dailySeries: dashboard.dailySeries,
+      statusBreakdown: dashboard.statusBreakdown,
+      priorityBreakdown: dashboard.priorityBreakdown,
+      nursePerformance: dashboard.nursePerformance,
+      kpiTrends: dashboard,
     }
 
-    allDispatches.forEach((d) => {
-      const dateStr = d.createdAt.toISOString().split('T')[0]
-      const entry = dailyMap.get(dateStr)
-      if (entry) entry.created++
-
-      if (d.status === 'COMPLETED' && d.completedAt) {
-        const completedStr = d.completedAt.toISOString().split('T')[0]
-        const completedEntry = dailyMap.get(completedStr)
-        if (completedEntry) completedEntry.completed++
-      }
-    })
-
-    const dailySeries = Array.from(dailyMap.entries())
-      .map(([date, data]) => ({ date, ...data }))
-      .sort((a, b) => a.date.localeCompare(b.date))
-
-    // --- Status breakdown ---
-    const statusBreakdown = {
-      PENDING: allDispatches.filter((d) => d.status === 'PENDING').length,
-      ASSIGNED: allDispatches.filter((d) => d.status === 'ASSIGNED').length,
-      IN_PROGRESS: allDispatches.filter((d) => d.status === 'IN_PROGRESS').length,
-      COMPLETED: allDispatches.filter((d) => d.status === 'COMPLETED').length,
-      CANCELLED: allDispatches.filter((d) => d.status === 'CANCELLED').length,
-    }
-
-    // --- Priority breakdown ---
-    const priorityBreakdown = {
-      LOW: allDispatches.filter((d) => d.priority === 'LOW').length,
-      MEDIUM: allDispatches.filter((d) => d.priority === 'MEDIUM').length,
-      HIGH: allDispatches.filter((d) => d.priority === 'HIGH').length,
-      URGENT: allDispatches.filter((d) => d.priority === 'URGENT').length,
-    }
-
-    // --- Nurse performance (completed this month) ---
-    const monthStart = new Date()
-    monthStart.setDate(1)
-    monthStart.setHours(0, 0, 0, 0)
-
-    const completedThisMonth = await prisma.dispatch.findMany({
-      where: {
-        status: 'COMPLETED',
-        completedAt: { gte: monthStart },
-      },
-      include: { nurse: { select: { id: true, name: true } } },
-    })
-
-    const nurseStats = new Map<
-      string,
-      { nurseId: string; name: string; completed: number }
-    >()
-    completedThisMonth.forEach((d) => {
-      if (d.nurse) {
-        const existing = nurseStats.get(d.nurse.id)
-        if (existing) {
-          existing.completed++
-        } else {
-          nurseStats.set(d.nurse.id, {
-            nurseId: d.nurse.id,
-            name: d.nurse.name,
-            completed: 1,
-          })
-        }
-      }
-    })
-
-    const nursePerformance = Array.from(nurseStats.values()).sort(
-      (a, b) => b.completed - a.completed
-    )
-
-    return NextResponse.json(
-      {
-        data: {
-          // KPI fields (used by dashboard overview)
-          completedToday: completedTodayCount,
-          availableNurses: availableNursesCount,
-          urgentPending: urgentPendingCount,
-          // Chart fields
-          dailySeries,
-          statusBreakdown,
-          priorityBreakdown,
-          nursePerformance,
-        },
-      },
-      { status: 200 }
-    )
+    return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
-    console.error('[GET /api/analytics]', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    if (error instanceof ApiError) {
+      return NextResponse.json(error.toJSON(), { status: error.statusCode })
+    }
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    const errorStack = error instanceof Error ? error.stack : undefined
+    log.error('GET /api/analytics failed', { message: errorMessage, stack: errorStack })
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: errorMessage } },
+      { status: 500 },
+    )
   }
 }

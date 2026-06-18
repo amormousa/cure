@@ -5,6 +5,7 @@ import { User, Dispatch } from '@/types'
 import { LoadingSpinner } from '@/app/components/common/LoadingSpinner'
 import { X, Calendar, MapPin, AlertCircle, CheckCircle2, ShieldAlert } from 'lucide-react'
 import { statusToColor, getStatusLabel, formatDate, formatTime } from '@/lib/utils'
+import { dispatchApi, userApi } from '@/app/lib/api/endpoints'
 
 export function NurseMatrix() {
   const [nurses, setNurses] = useState<User[]>([])
@@ -17,17 +18,18 @@ export function NurseMatrix() {
   const fetchData = async () => {
     try {
       const [nursesRes, dispatchesRes] = await Promise.all([
-        fetch('/api/users'),
-        fetch('/api/dispatches'),
+        userApi.list({ role: 'NURSE' }),
+        dispatchApi.list(),
       ])
 
-      if (nursesRes.ok && dispatchesRes.ok) {
-        const nursesData = await nursesRes.json()
-        const dispatchesData = await dispatchesRes.json()
-        
+      if (nursesRes.ok && nursesRes.data && dispatchesRes.ok && dispatchesRes.data) {
         // Filter only nurses
-        setNurses(nursesData.data.filter((u: User) => u.role === 'NURSE'))
-        setDispatches(dispatchesData.data)
+        setNurses(
+          nursesRes.data.data
+            .filter((u) => u.role === 'NURSE')
+            .map((u) => ({ ...u, isActive: u.isActive ?? true, isOnline: u.isOnline ?? false }) as User)
+        )
+        setDispatches(dispatchesRes.data.data as Dispatch[])
       }
     } catch (error) {
       console.error('Failed to fetch matrix data:', error)
@@ -60,10 +62,9 @@ export function NurseMatrix() {
   const fetchNurseHistory = async (nurseId: string) => {
     setHistoryLoading(true)
     try {
-      const res = await fetch(`/api/dispatches?nurseId=${nurseId}`)
-      if (res.ok) {
-        const result = await res.json()
-        setNurseHistory(result.data)
+      const result = await dispatchApi.list({ nurseId })
+      if (result.ok && result.data) {
+        setNurseHistory(result.data.data as Dispatch[])
       }
     } catch (error) {
       console.error('Failed to fetch nurse history:', error)
@@ -159,7 +160,7 @@ export function NurseMatrix() {
               <div className="border-b border-gray-200 px-6 py-5 flex items-center justify-between bg-gray-50">
                 <div className="flex items-center gap-3">
                   <img
-                    src={selectedNurse.avatar}
+                    src={selectedNurse.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${selectedNurse.id}`}
                     alt={selectedNurse.name}
                     className="h-10 w-10 rounded-full"
                   />
